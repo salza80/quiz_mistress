@@ -6,7 +6,7 @@ var config = module.exports = {
     context: __dirname,
     // the main entry point for our application's frontend JS
     entry: {
-      quiz: ['babel-polyfill','whatwg-fetch', './frontend/quiz/index.js']
+      quiz: ['whatwg-fetch', './frontend/quiz/index.js']
     },
 };
 
