@@ -28,6 +28,7 @@ var Quiz = React.createClass({
         <div className="row">
           <div className="col-md-12">
             {this.state.title}
+            {this.props.url_name}
           </div>
         </div>
       </div>
