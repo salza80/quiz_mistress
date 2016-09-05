@@ -1,7 +1,10 @@
 %p#notice= notice
 
-#renderer{"data-props" => '{"url_name": "testing"}'}
-  = javascript_include_tag 'bundles/quiz-bundle'
+
+= content_tag :div, nil, id: "renderer", data: {props: {url_name: @urlName}}
+
+
+= javascript_include_tag 'bundles/quiz-bundle'
 
 
 = link_to 'Back', quizzes_path 

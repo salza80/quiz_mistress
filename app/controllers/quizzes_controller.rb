@@ -10,6 +10,7 @@ class QuizzesController < ApplicationController
   # GET /quizzes/1
   # GET /quizzes/1.json
   def show
+    @urlName = params[:id]
   end
 
  

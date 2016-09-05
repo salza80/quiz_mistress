@@ -10,17 +10,22 @@ var QuizStore = Reflux.createStore({
     this.trigger(this.data)
   },
   getInitialState: function() {
-    return  {
-      quiz: {
-        title: "Test"
-      }
-    };
+    
+  },
+  onLoad: function(url_name){
+   backend.fetch('quizzes/' + url_name + '.json?')
+    .then(this.onLoadCompleted)
+    .catch( this.onLoadFailed );
+  },
+  onLoadCompleted: function(data){
+        this.data=data;
+        this.trigger(this.data);
   },
   onAnswered: function(answer){
     backend.postJSON('quizzes/answered.json?', 
     {
       quiz_params: {
-        question_id: 1
+        url_name: 1
       }
     }).then(this.onAnsweredCompleted)
     .catch( this.onAnsweredFailed );
