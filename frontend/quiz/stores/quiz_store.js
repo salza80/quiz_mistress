@@ -20,16 +20,13 @@ var QuizStore = Reflux.createStore({
     backend.postJSON('quizzes/answered.json?', 
     {
       quiz_params: {
-        quiestion_id: 1
+        question_id: 1
       }
     }).then(this.onAnsweredCompleted)
     .catch( this.onAnsweredFailed );
   },
   onAnsweredCompleted: function(data) {
-    this.data.last_executed = "simple";
     this.data.projects = data.projects;
-    this.data.aggs = data.aggs;
-    this.data.searchInfo = data.result;
     this.trigger(this.data);
   },
   onAnsweredFailed: function(data){

@@ -11,6 +11,6 @@ class Question < ApplicationRecord
   end
 
   def max_points
-    answers.ordered_by_points.limit(1).pluck(:points).first
+    answers.ordered_by_points.limit(1).pluck(:points).first || 0
   end
 end

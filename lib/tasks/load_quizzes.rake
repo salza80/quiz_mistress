@@ -35,7 +35,9 @@ namespace :db do
           question.reload
        
           question.images.build(path: 'images/' + q.xpath('img_url').text, image_role: 'main')
+
           (1..6).each do |i|
+            puts q.xpath("answer_#{i}_title").text
             next if q.xpath("answer_#{i}_title").text.empty?
             question.answers.build(
               title: q.xpath("answer_#{i}_title").text,
@@ -43,6 +45,7 @@ namespace :db do
               order_by:  q.xpath('order_by').empty? ? Random.new().rand(100) : q.xpath('order_by').text.to_i  
             )
           end
+          question.save!
         end
         f.close
 

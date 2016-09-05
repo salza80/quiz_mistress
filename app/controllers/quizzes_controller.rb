@@ -12,15 +12,7 @@ class QuizzesController < ApplicationController
   def show
   end
 
-  # GET /quizzes/new
-  def new
-    @quiz = Quiz.new
-  end
-
-  # GET /quizzes/1/edit
-  def edit
-  end
-
+ 
 
   private
     # Use callbacks to share common setup or constraints between actions.
