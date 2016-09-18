@@ -1,0 +1,29 @@
+!!!
+%html
+  %head
+    %title QuizMistress
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    .container-fluid
+      %nav.navbar.navbar-light.bg-faded
+        .container
+          #navbar-header
+            %a.navbar-brand{:href => "#"}
+              %span.glyphicon.glyphicon-home
+              Quiz Mistress
+          .collapse.navbar-collapse.navbar-toggleable-xs
+            %ul.nav.navbar-nav
+              %li.nav-item
+                %a.nav-link{:href => "#"}
+                  Quizzes
+              %li.nav-item
+                %a.nav-link{:href => "#"}
+                  About
+    .container
+      .row
+        .col-md-12
+          = yield
+
+

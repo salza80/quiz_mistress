@@ -1,0 +1,23 @@
+.quiz-list{
+  .card-header{
+    background: repeating-linear-gradient(
+      45deg,
+      #606dbc,
+      #606dbc 3px,
+      #465298 3px,
+      #465298 6px
+    );
+  }
+  .card-title{
+    font-weight: bold;
+    color: white;
+  }
+  h3{
+    margin-bottom: 5px;
+    margin-top:5px;
+  }
+  .card-text{
+    color: #465298;
+    font-weight: bold;
+  }
+}

@@ -17,7 +17,7 @@ namespace :db do
         quiz.save!
         quiz.reload
         quiz.images.destroy_all
-        quiz.images.build(path: 'images/' + loadquiz.xpath('img_url').text, image_role: 'main' )
+        quiz.images.build(path: 'quizzes/' + loadquiz.xpath('img_url').text, image_role: 'main' )
        
         f.close
 
@@ -34,7 +34,7 @@ namespace :db do
           question.save!
           question.reload
        
-          question.images.build(path: 'images/' + q.xpath('img_url').text, image_role: 'main')
+          question.images.build(path: 'quizzes/' + q.xpath('img_url').text, image_role: 'main')
 
           (1..6).each do |i|
             puts q.xpath("answer_#{i}_title").text
@@ -62,7 +62,7 @@ namespace :db do
           )
           new_outcome.save!
           new_outcome.reload
-          new_outcome.images.build(path: 'images/' +  q.xpath('img_url').text, image_role: 'main')
+          new_outcome.images.build(path: 'quizzes/' +  q.xpath('img_url').text, image_role: 'main')
         end
         f.close
         puts "saving quiz #{dir}"
