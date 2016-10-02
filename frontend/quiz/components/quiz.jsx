@@ -7,16 +7,16 @@ var Quiz = React.createClass({
   getInitialState: function() {
     return {
             title: 'test1',
-            question: {}
+            question: {
+              answers: []
+            }
           };
   },
 
   onStoreChange: function(data){
-    console.log(data)
-    console.log(data.question)
     this.setState({
       title: data.title,
-      question: data.question,
+      question: data.question
     }, this.onStateUpdated);
   },
   onStateUpdated: function(){
@@ -34,13 +34,14 @@ var Quiz = React.createClass({
   },
   render: function() {
     return (
-      <div className="QuizContainer">
-        <div className="row">
-          <div className="col-md-12">
-            {this.state.title}
-            {this.props.url_name}
-            <question question={this.state.question}></question>
+      <div className="quiz-container card">
+        <div className="quiz card-header">
+          <div className="quiz-title">
+            <h2 className="card-title"> {this.state.title}</h2>
           </div>
+        </div>
+        <div className="question-container card-block">
+          <Question question={this.state.question}></Question>
         </div>
       </div>
     );

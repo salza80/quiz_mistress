@@ -21,3 +21,31 @@
     font-weight: bold;
   }
 }
+
+.quiz-container{
+  .question-container{
+    padding:0px;
+  }
+
+  .quiz-answers {
+    .answer-box{
+      text-align: justify;
+    }
+
+    p{
+      font-weight: bold;
+    }
+    margin-top: 10px;
+    .fa {
+      @extend .fa-minus !optional;
+      margin-right: 10px;
+    }
+    li:hover {
+      background-color: $dropdown-link-hover-bg;
+      .fa{
+        color: green;
+        @extend .fa-check !optional;
+      }
+    }
+  }
+}

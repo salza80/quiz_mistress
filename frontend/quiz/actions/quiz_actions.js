@@ -2,7 +2,8 @@ const Reflux = require('reflux');
 
 
 var QuizActions = Reflux.createActions([
-  "Answered",
+  "answerQuestion",
+  "prevQuestion",
   "Load"
 ]);
 
