@@ -29,7 +29,22 @@ backend.fetch = function(url) {
     return Promise.resolve(data);
   }).catch(this.error);
 };
-
+backend.updateJSON = function(url, jsonData) {
+  return fetch(this.getPath(url), {
+    credentials: 'include',
+    method: 'PUT',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'X-CSRF-Token' : QM.CONST.CSRF_TOKEN
+    },
+    body: JSON.stringify(jsonData)
+  })
+  .then(this.json)
+  .then(function (data) {
+    return Promise.resolve(data);
+  }).catch(this.error);
+}; 
 backend.postJSON = function(url, jsonData) {
   return fetch(this.getPath(url), {
     credentials: 'include',
@@ -37,7 +52,7 @@ backend.postJSON = function(url, jsonData) {
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
-      'X-CSRF-Token' : ZQP.CONST.CSRF_TOKEN
+      'X-CSRF-Token' : QM.CONST.CSRF_TOKEN
     },
     body: JSON.stringify(jsonData)
   })
@@ -54,7 +69,7 @@ backend.delete = function(url, jsonData) {
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
-      'X-CSRF-Token' :  ZQP.CONST.CSRF_TOKEN
+      'X-CSRF-Token' :  QM.CONST.CSRF_TOKEN
     },
     body: JSON.stringify(jsonData)
   })

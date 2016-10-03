@@ -14,6 +14,7 @@ var Quiz = React.createClass({
   },
 
   onStoreChange: function(data){
+    console.log(data)
     this.setState({
       title: data.title,
       question: data.question

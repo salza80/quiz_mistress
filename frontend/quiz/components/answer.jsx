@@ -1,4 +1,5 @@
 const React = require('react');
+const QuizActions= require('../actions/quiz_actions')
 
 
 
@@ -19,9 +20,12 @@ var Answer = React.createClass({
   componentWillUnmount: function() {
 
   },
+  answerQuestion: function(){
+    QuizActions.answerQuestion(this.props.answer)
+  },
   render: function() {
     return (
-        <li className="list-group-item">
+        <li onClick={this.answerQuestion} className="list-group-item">
           <span className='fa' aria-hidden="true"></span>
           <span>{this.props.answer.title}</span>
         </li>
