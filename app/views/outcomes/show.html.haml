@@ -1,0 +1,6 @@
+.outcome-box
+  %h3 
+    =@outcome.title
+  /= image_tag("/assets/images/" + @output.main_image.path, class: "img-fluid")
+  .outcome-description.well
+    = @outcome.description

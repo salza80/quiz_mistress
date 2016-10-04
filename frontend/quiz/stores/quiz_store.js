@@ -51,7 +51,9 @@ var QuizStore = Reflux.createStore({
     .catch( this.onFinishQuizFailed );
   },
   onFinishQuizFailed: function(){},
-  onFinishQuizCompleted: function() {},
+  onFinishQuizCompleted: function(data) {
+    window.location = data.redirect_to
+  },
   onAnswerQuestion: function(answer){
     this.answers.push(answer);
     this.data.question = this.getNextQuestion();
