@@ -63,6 +63,7 @@ namespace :db do
           new_outcome.save!
           new_outcome.reload
           new_outcome.images.build(path: 'quizzes/' +  q.xpath('img_url').text, image_role: 'main')
+          new_outcome.save!
         end
         f.close
         puts "saving quiz #{dir}"

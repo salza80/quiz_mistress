@@ -14,13 +14,13 @@
       %nav.navbar.navbar-light.bg-faded
         .container
           #navbar-header
-            %a.navbar-brand{:href => "#"}
-              %span.glyphicon.glyphicon-home
+            = link_to root_path, class: 'navbar-brand' do
+              %span.fa.fa-home
               Quiz Mistress
           .collapse.navbar-collapse.navbar-toggleable-xs
             %ul.nav.navbar-nav
               %li.nav-item
-                %a.nav-link{:href => "#"}
+                = link_to quizzes_path, class: 'nav-link'  do
                   Quizzes
               %li.nav-item
                 %a.nav-link{:href => "#"}
