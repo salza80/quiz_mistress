@@ -2,5 +2,6 @@
   %h3 
     =@outcome.title
   = image_tag("/assets/images/" + @outcome.main_image.path, class: "img-fluid")
+  = img_reference(@outcome.main_image)
   .outcome-description.well
     = @outcome.description

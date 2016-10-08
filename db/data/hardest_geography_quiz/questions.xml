@@ -4,6 +4,9 @@
 		<title>What is the capital of Algeria?</title>
 		<description/>
 		<img_url>hardest_geography_quiz/algeria.jpg</img_url>
+		<img_title>Algeria</img_title>
+		<img_ref_title></img_ref_title>
+		<img_ref_url></img_ref_url>
 		<answer_1_title>Algiers</answer_1_title>
 		<answer_1_points>1</answer_1_points>
 		<answer_2_title>Warsaw</answer_2_title>
@@ -21,6 +24,9 @@
 		<title>What is the capital of Belarus?</title>
 		<description/>
 		<img_url>hardest_geography_quiz/belarus.jpg</img_url>
+		<img_title>Belarus</img_title>
+		<img_ref_title>Test quiz reference title</img_ref_title>
+		<img_ref_url>http://www.google.com/</img_ref_url>
 		<answer_1_title>Minsk</answer_1_title>
 		<answer_1_points>1</answer_1_points>
 		<answer_2_title>Vietiane</answer_2_title>
@@ -38,6 +44,9 @@
 		<title>What is the capital of Chile?</title>
 		<description/>
 		<img_url>hardest_geography_quiz/chile.jpg</img_url>
+		<img_title>Chile</img_title>
+		<img_ref_title></img_ref_title>
+		<img_ref_url></img_ref_url>
 		<answer_1_title>Santiago</answer_1_title>
 		<answer_1_points>1</answer_1_points>
 		<answer_2_title>Havana</answer_2_title>
@@ -55,6 +64,9 @@
 		<title>What is the capital of Cuba?</title>
 		<description/>
 		<img_url>hardest_geography_quiz/cuba.jpg</img_url>
+		<img_title>Cuba</img_title>
+		<img_ref_title></img_ref_title>
+		<img_ref_url></img_ref_url>
 		<answer_1_title>Havana</answer_1_title>
 		<answer_1_points>1</answer_1_points>
 		<answer_2_title>Santiago</answer_2_title>
@@ -72,6 +84,9 @@
 		<title>What is the capital of Laos?</title>
 		<description/>
 		<img_url>hardest_geography_quiz/laos.jpg</img_url>
+		<img_title>Loas</img_title>
+		<img_ref_title></img_ref_title>
+		<img_ref_url></img_ref_url>
 		<answer_1_title>Vietiane</answer_1_title>
 		<answer_1_points>1</answer_1_points>
 		<answer_2_title>Pyongyang</answer_2_title>
@@ -89,6 +104,9 @@
 		<title>What is the capital of Mauritius?</title>
 		<description/>
 		<img_url>hardest_geography_quiz/mauritius.jpg</img_url>
+		<img_title>Mauritus</img_title>
+		<img_ref_title></img_ref_title>
+		<img_ref_url></img_ref_url>
 		<answer_1_title>Port Louis</answer_1_title>
 		<answer_1_points>1</answer_1_points>
 		<answer_2_title>Kyiv</answer_2_title>
@@ -106,6 +124,9 @@
 		<title>What is the capital of Morocco?</title>
 		<description/>
 		<img_url>hardest_geography_quiz/morocco.jpg</img_url>
+		<img_title>Morocco</img_title>
+		<img_ref_title></img_ref_title>
+		<img_ref_url></img_ref_url>
 		<answer_1_title>Rabat</answer_1_title>
 		<answer_1_points>1</answer_1_points>
 		<answer_2_title>Port Louis</answer_2_title>
@@ -123,6 +144,9 @@
 		<title>What is the capital of North Korea?</title>
 		<description/>
 		<img_url>hardest_geography_quiz/northkorea.jpg</img_url>
+		<img_title>North Korea</img_title>
+		<img_ref_title></img_ref_title>
+		<img_ref_url></img_ref_url>
 		<answer_1_title>Pyongyang</answer_1_title>
 		<answer_1_points>1</answer_1_points>
 		<answer_2_title>Kingston</answer_2_title>
@@ -140,6 +164,9 @@
 		<title>What is the capital of Poland?</title>
 		<description/>
 		<img_url>hardest_geography_quiz/poland.jpg</img_url>
+		<img_title>Poland</img_title>
+		<img_ref_title></img_ref_title>
+		<img_ref_url></img_ref_url>
 		<answer_1_title>Warsaw</answer_1_title>
 		<answer_1_points>1</answer_1_points>
 		<answer_2_title>Rabat</answer_2_title>
@@ -157,6 +184,9 @@
 		<title>What is the capital of Syria?</title>
 		<description/>
 		<img_url>hardest_geography_quiz/syria.jpg</img_url>
+		<img_title>Syria</img_title>
+		<img_ref_title></img_ref_title>
+		<img_ref_url></img_ref_url>
 		<answer_1_title>Damascus</answer_1_title>
 		<answer_1_points>1</answer_1_points>
 		<answer_2_title>Bridgetown</answer_2_title>
@@ -174,6 +204,9 @@
 		<title>What is the capital of Ukraine?</title>
 		<description/>
 		<img_url>hardest_geography_quiz/ukraine.jpg</img_url>
+		<img_title>Ukraine</img_title>
+		<img_ref_title></img_ref_title>
+		<img_ref_url></img_ref_url>
 		<answer_1_title>Kiev</answer_1_title>
 		<answer_1_points>1</answer_1_points>
 		<answer_2_title>Damascus</answer_2_title>
@@ -191,6 +224,9 @@
 		<title>What is the capital of Jamaica?</title>
 		<description/>
 		<img_url>hardest_geography_quiz/jamaica.jpg</img_url>
+		<img_title>Jamaica</img_title>
+		<img_ref_title></img_ref_title>
+		<img_ref_url></img_ref_url>
 		<answer_1_title>Kingston</answer_1_title>
 		<answer_1_points>1</answer_1_points>
 		<answer_2_title>Algiers</answer_2_title>

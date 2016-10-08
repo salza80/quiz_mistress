@@ -4,30 +4,45 @@
 		<title>Geography Wizard!</title>
 		<description>You've been around the world a couple of times, or maybe more. Or have you just studied the atlas?</description>
 		<img_url>hardest_geography_quiz/outcome_wizard.jpg</img_url>
+		<img_title>Geography Wizard</img_title>
+		<img_ref_title></img_ref_title>
+		<img_ref_url></img_ref_url>
 		<points_to>12</points_to>
 	</outcomes>
 	<outcomes>
 		<title>Supreme Sightseer</title>
 		<description>You've seen the sights, you've had delights on many a foreign shore.</description>
 		<img_url>hardest_geography_quiz/outcome_supreme.jpg</img_url>
+		<img_title>Sightseer Traveller</img_title>
+		<img_ref_title></img_ref_title>
+		<img_ref_url></img_ref_url>
 		<points_to>10</points_to>
 	</outcomes>
 	<outcomes>
 		<title>Top-notch Traveller</title>
 		<description>Top effort. You are a worldly character!</description>
 		<img_url>hardest_geography_quiz/outcome_traveller.jpg</img_url>
+		<img_title>Top Traveller</img_title>
+		<img_ref_title>Test reference title</img_ref_title>
+		<img_ref_url>http://www.hotmail.com/</img_ref_url>
 		<points_to>8</points_to>
 	</outcomes>
 	<outcomes>
 		<title>Familiar Tourist</title>
 		<description>You've travelled a bit in your time, just not so much to those lesser known places.</description>
 		<img_url>hardest_geography_quiz/outcome_tourist.jpg</img_url>
+		<img_title>Tourise</img_title>
+		<img_ref_title></img_ref_title>
+		<img_ref_url></img_ref_url>
 		<points_to>5</points_to>
 	</outcomes>
 	<outcomes>
 		<title>Hermit Homebody</title>
 		<description>Hmm…your geography knowledge suggests you might need to come out of your shell and explore the world a little more. As they say, the world is a book and those who haven't traveled, have only read one page.</description>
 		<img_url>hardest_geography_quiz/outcome_hermit.jpg</img_url>
+		<img_title>Hermit</img_title>
+		<img_ref_title></img_ref_title>
+		<img_ref_url></img_ref_url>
 		<points_to>2</points_to>
 	</outcomes>
 </root>

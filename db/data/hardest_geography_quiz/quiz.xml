@@ -3,5 +3,8 @@
 	<title>Lesser known capitals? How well do you know your geography?</title>
 	<description>This is the hardest Geography quiz around…are you up to the challenge?</description>
 	<img_url>hardest_geography_quiz/geographyquiz1.jpg</img_url>
+	<img_title>Geography Quiz Wizard</img_title>
+	<img_ref_title>Test quiz ref tittle</img_ref_title>
+	<img_ref_url>http://hotmail.com/</img_ref_url>
 	<url_name>hardest_geography_quiz</url_name>
 </root>

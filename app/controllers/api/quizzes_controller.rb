@@ -11,7 +11,7 @@ module Api
     end
 
     def update
-      points = 8
+      points = 8 
       result_code = ResultEncoder.new(points).encoded
       @path = quiz_outcome_path(result_code: result_code, quiz_url_name: params[:url_name], format: 'html' )
     end

@@ -1,5 +1,6 @@
 const React = require('react');
 const AnswerList= require('./answerList.jsx')
+const ImageReference= require('../../shared/components/imageReference.jsx')
 
 
 var Question = React.createClass({
@@ -33,6 +34,7 @@ var Question = React.createClass({
           </div>
         </div>
         <img className="card-img-top img-fluid img-thumbnail" src={this.props.question.image_url} />
+        <ImageReference image={this.props.question.main_image} ></ImageReference>
         <div className="card-block">
           <div className="question-description">
             <p className="card-text">{this.props.question.description}</p>

@@ -9,6 +9,7 @@
               = quiz.title
           .card-block
             = image_tag("/assets/images/" + quiz.main_image.path, class: "img-fluid")
+            = img_reference(quiz.main_image)
           .card-block
             .card-text
               = quiz.description

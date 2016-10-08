@@ -13,7 +13,7 @@ var QuizStore = Reflux.createStore({
   },
   getInitialState: function() {
     return {
-      title: "test",
+      title: "",
       url_name: "",
       question: {}
     }

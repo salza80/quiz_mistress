@@ -3,15 +3,10 @@ class OutcomesController < ApplicationController
 
   
   def show
-     puts "sfasdfasdfsdf"
-
       points = ResultEncoder.new(params[:result_code]).decoded
-      puts points
-
       quiz =  Quiz.find_by(url_name: params[:quiz_url_name])
-      puts quiz.inspect
       @outcome = quiz.outcomes.find_by_points(points)
-      puts @outcome.inspect
+      puts @outcome.main_image.inspect
   end
 
 
