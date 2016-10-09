@@ -1,9 +1,20 @@
 %p#notice= notice
 
+.quiz-start
+  .card.text-md-center.card-outline-primary
+    .card-header.heading-bk
+      %h4.card-title
+        = @quiz.title
+    .card-block
+      = image_tag("/assets/images/" + @quiz.main_image.path, class: "img-fluid img-rounded  m-x-auto d-block")
+      = img_reference(@quiz.main_image)
+    .card-block
+      .card-text
+        = @quiz.description
+    .card-footer.text-md-center
+      = link_to "Play Now", @quiz, remote:true, class: "btn btn-success"
 
-= content_tag :div, nil, id: "renderer", data: {props: {url_name: @urlName}}
-
-
+= content_tag :div, nil, id: "renderer", class: 'invisible', data: {props: {url_name: @urlName}}
 = javascript_include_tag 'bundles/quiz-bundle'
 
 

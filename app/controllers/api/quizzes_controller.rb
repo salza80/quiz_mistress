@@ -1,6 +1,5 @@
 module Api
   class QuizzesController < ApplicationController
-    # respond_to :json
     def index
       @quizzes = Quiz.all
     end
@@ -11,7 +10,8 @@ module Api
     end
 
     def update
-      points = 8 
+      puts quiz_params
+      points = 8
       result_code = ResultEncoder.new(points).encoded
       @path = quiz_outcome_path(result_code: result_code, quiz_url_name: params[:url_name], format: 'html' )
     end
@@ -20,6 +20,9 @@ module Api
 
     def quiz_params
       params.require(:result).permit(:points, :url_name)
+    end
+    def quiz_results
+      params.require(:result).permit(:answers)
     end
   end
 end

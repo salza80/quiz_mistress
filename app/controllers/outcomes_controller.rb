@@ -4,9 +4,8 @@ class OutcomesController < ApplicationController
   
   def show
       points = ResultEncoder.new(params[:result_code]).decoded
-      quiz =  Quiz.find_by(url_name: params[:quiz_url_name])
-      @outcome = quiz.outcomes.find_by_points(points)
-      puts @outcome.main_image.inspect
+      @quiz =  Quiz.find_by(url_name: params[:quiz_url_name])
+      @outcome = @quiz.outcomes.find_by_points(points)
   end
 
 

@@ -6,7 +6,7 @@ const Question= require('./question.jsx')
 var Quiz = React.createClass({
   getInitialState: function() {
     return {
-            title: 'test1',
+            title: '',
             question: {
               answers: []
             }
@@ -14,7 +14,6 @@ var Quiz = React.createClass({
   },
 
   onStoreChange: function(data){
-    console.log(data)
     this.setState({
       title: data.title,
       question: data.question

@@ -1,7 +1,13 @@
 .outcome-box
-  %h3 
-    =@outcome.title
-  = image_tag("/assets/images/" + @outcome.main_image.path, class: "img-fluid")
-  = img_reference(@outcome.main_image)
-  .outcome-description.well
-    = @outcome.description
+  .card.text-md-center.card-outline-primary
+    .card-header.heading-bk
+      %h4.card-title
+        = @outcome.title
+    .card-block
+      = image_tag("/assets/images/" + @outcome.main_image.path, class: "img-fluid img-rounded  m-x-auto d-block")
+      = img_reference(@outcome.main_image)
+    .card-block
+      .card-text
+        = @outcome.description
+    .card-footer.text-md-center
+      = link_to "Play Again!", @quiz, class: "btn"
