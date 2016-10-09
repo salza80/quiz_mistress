@@ -10,8 +10,10 @@ module Api
     end
 
     def update
-      puts quiz_params
-      points = 8
+      quiz = Quiz.find_by(url_name: params[:url_name])
+      json = JSON.parse(request.body.read)
+      answers = json['result']['answers']
+      points = quiz.calc_result_points(answers)
       result_code = ResultEncoder.new(points).encoded
       @path = quiz_outcome_path(result_code: result_code, quiz_url_name: params[:url_name], format: 'html' )
     end
@@ -22,7 +24,7 @@ module Api
       params.require(:result).permit(:points, :url_name)
     end
     def quiz_results
-      params.require(:result).permit(:answers)
+      params.require(:result).permit(answers: [:question_id, :answer_id])
     end
   end
 end

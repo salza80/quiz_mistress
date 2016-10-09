@@ -26,4 +26,17 @@ class Quiz < ApplicationRecord
   def main_image
     images.by_role('main').first
   end
+
+
+  def calc_result_points(results)
+    total=0
+    r = Array.new()
+    results.each do |result|
+      q = questions.find(result['question_id'])
+      next unless q
+
+      total += q.get_points(result['answer_id'])
+    end
+    total
+  end
 end

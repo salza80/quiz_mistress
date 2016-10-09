@@ -19,7 +19,7 @@ var QuizStore = Reflux.createStore({
     }
     
   },
-   getQuestion: function(){
+  getQuestion: function(){
     return this.questions[this.current_question];
   },
   getNextQuestion: function(){
@@ -34,6 +34,7 @@ var QuizStore = Reflux.createStore({
     .catch( this.onLoadFailed );
   },
    onLoadCompleted: function(data){
+      this.answers = [];
       this.data.title=data.title;
       this.data.url_name = data.url_name;
       this.questions = data.questions;
@@ -42,9 +43,10 @@ var QuizStore = Reflux.createStore({
       this.trigger(this.data);
   },
   finishQuiz: function(){
+    console.log(this.answers)
     backend.updateJSON('quizzes/' + this.data.url_name + '.json?', 
     {
-      quiz_params: {
+      result: {
         answers: this.answers
       }
     }).then(this.onFinishQuizCompleted)
@@ -55,7 +57,7 @@ var QuizStore = Reflux.createStore({
     window.location = data.redirect_to
   },
   onAnswerQuestion: function(answer){
-    this.answers.push(answer);
+    this.answers.push({question_id: this.data.question.id, answer_id: answer.id});
     this.data.question = this.getNextQuestion();
     if (this.data.question === undefined){
       this.finishQuiz();

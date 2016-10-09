@@ -13,4 +13,11 @@ class Question < ApplicationRecord
   def max_points
     answers.ordered_by_points.limit(1).pluck(:points).first || 0
   end
+
+  def get_points(answer_id)
+    a = answers.find(answer_id)
+    return 0 unless a
+    return a.points
+  end
+
 end
