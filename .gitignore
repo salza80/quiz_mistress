@@ -18,6 +18,8 @@
 .byebug_history
 config/database.yml
 
+/public/assets/*
+!/public/assets/images
 /app/assets/javascripts/bundles
 
 node_modules
