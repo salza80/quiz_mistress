@@ -35,7 +35,7 @@ var Quiz = React.createClass({
   render: function() {
     return (
       <div className="quiz-container card">
-        <div className="quiz card-header">
+        <div className="quiz card-header heading-bk">
           <div className="quiz-title">
             <h2 className="card-title"> {this.state.title}</h2>
           </div>

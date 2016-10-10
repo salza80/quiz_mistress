@@ -1,3 +1,4 @@
+
 %p#notice= notice
 
 .quiz-start
@@ -11,7 +12,7 @@
     .card-block
       .card-text
         = @quiz.description
-    .card-footer.text-md-center
+    .card-footer.text-xs-center
       = link_to "Play Now", @quiz, remote:true, class: "btn btn-success"
 
 = content_tag :div, nil, id: "renderer", class: 'invisible', data: {props: {url_name: @urlName}}

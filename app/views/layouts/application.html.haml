@@ -1,8 +1,8 @@
 !!!
 %html
   %head
-    %title QuizMistress
     = csrf_meta_tags
+    = display_meta_tags default_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     = javascript_tag do

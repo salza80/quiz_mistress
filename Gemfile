@@ -30,6 +30,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'haml'
 gem 'bootstrap', '~> 4.0.0.alpha4'
 gem "font-awesome-rails"
+gem "meta-tags"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
