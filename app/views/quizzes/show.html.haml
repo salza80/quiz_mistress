@@ -14,9 +14,8 @@
         = @quiz.description
     .card-footer.text-xs-center
       = link_to "Play Now", @quiz, remote:true, class: "btn btn-success"
+      = button_tag 'share on facebook', style: 'button', onclick: "Social.share(this)", class:"btn btn-primary", data:{ 's-href': quiz_url(@quiz) , 's-redirect-url': quiz_url(@quiz) }
 
-= content_tag :div, nil, id: "renderer", class: 'invisible', data: {props: {url_name: @urlName}}
+= content_tag :div, nil, id: "renderer", class: 'hidden', data: {props: {url_name: @urlName}}
 = javascript_include_tag 'bundles/quiz-bundle'
 
-
-= link_to 'Back', quizzes_path 

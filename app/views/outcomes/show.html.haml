@@ -10,4 +10,6 @@
       .card-text
         = @outcome.description
     .card-footer.text-md-center
+      = button_tag 'Share on facebook!', style: 'button', onclick: "Social.share(this)", class:"btn btn-primary", data:{ 's-href': request.original_url, 's-redirect-url': quiz_url(@quiz) }
       = link_to "Play Again!", @quiz, class: "btn"
+
