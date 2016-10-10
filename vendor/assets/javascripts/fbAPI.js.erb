@@ -1,4 +1,6 @@
  window.fbAsyncInit = function() {
+  console.log('here')
+    console.log('<%= ENV["FB_APP_ID"] %>')
     FB.init({
       appId      : '<%= ENV["FB_APP_ID"] %>',
       xfbml      : true,
@@ -14,3 +16,4 @@
      js.src = "//connect.facebook.net/en_US/sdk.js";
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
+
