@@ -2,6 +2,7 @@
   .card.text-md-center.card-outline-primary
     .card-header.heading-bk
       %h4.card-title
+        = "You scored #{@result[:percentage]}%! - "
         = @outcome.title
     .card-block
       = image_tag("/assets/images/" + @outcome.main_image.path, class: "img-fluid img-rounded  m-x-auto d-block")
