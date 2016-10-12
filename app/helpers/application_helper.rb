@@ -12,8 +12,11 @@ module ApplicationHelper
       url: request.base_url,
       description: "Quizzes just for fun!",
       image: request.base_url + "/assets/images/" + "quiz_mistress.jpg"
-    }
+    },
+    viewport:"width=device-width, initial-scale=1, shrink-to-fit=no"
   }
+
+  
   end
 
   def img_reference(image)
