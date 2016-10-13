@@ -1,7 +1,6 @@
 -# - content_for :head do
 -#   = stylesheet_link_tag 'admin/application', 'data-turbolinks-track' => true
 -# - content_for :script do
--#   = javascript_include_tag 'admin/application', 'data-turbolinks-track' => true 
 - content_for :content do
   .container-fluid
     .row
@@ -9,7 +8,7 @@
         %nav
           %ul.nav.nav-sidebar
             %li
-              =link_to 'test', client_quizzes_path
+              =link_to 'My Details', edit_user_registration_path
       .col-xs-9.col-md-10
         = render '/layouts/notice'
         = yield

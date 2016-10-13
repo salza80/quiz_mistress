@@ -1,0 +1,12 @@
+%ul.nav.navbar-nav
+  -if current_user
+    %li.nav-item
+      = link_to edit_user_registration_path, class: 'nav-link'  do
+        My Profile
+    %li.nav-item
+      = link_to client_quizzes_path, class: 'nav-link'  do
+        My Content
+  -else
+    %li.nav-item
+      = link_to quizzes_path, class: 'nav-link'  do
+        Quizzes

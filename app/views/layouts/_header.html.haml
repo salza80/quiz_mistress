@@ -6,8 +6,5 @@
       %span.fa.fa-home
         Quiz Mistress
     #navCollapse.collapse.navbar-collapse.navbar-toggleable-xs
-      %ul.nav.navbar-nav
-        %li.nav-item
-          = link_to quizzes_path, class: 'nav-link'  do
-            Quizzes
-      #login-actions= render :partial => 'layouts/login'
+      = render :partial => 'layouts/navmenu'
+      = render :partial => 'layouts/login'
