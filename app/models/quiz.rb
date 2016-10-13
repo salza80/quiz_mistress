@@ -11,7 +11,7 @@ class Quiz < ApplicationRecord
 
 
   def self.find(input)
-    input.to_i == 0 ? where(url_name:input) : super
+    input.to_i == 0 ? where(url_name:input).first : super
   end
 
 

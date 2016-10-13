@@ -1,0 +1,21 @@
+= form_for [:client, @quiz], class: 'project' do |f|
+  - if @quiz.errors.any?
+    #error_explanation
+      %h4= "#{pluralize(@user.errors.count, "Fehler")}:"
+      %ul
+        - @quiz.errors.full_messages.each do |msg|
+          %li= msg
+  .form-group
+    = f.label :title, class: "col-sm-2"
+    .col-sm-10
+      = f.text_field :title, class: "form-control", required: true
+  .form-group
+    = f.label :url_name, class: "col-sm-2"
+    .col-sm-10
+      = f.text_field :url_name, class: "form-control", required: true
+  .form-group
+    = f.label :description, class: "col-sm-2"
+    .col-sm-10
+      = f.text_field :description, class: "form-control"
+  .actions
+    = f.submit 'Save', class: "btn btn-primary"
