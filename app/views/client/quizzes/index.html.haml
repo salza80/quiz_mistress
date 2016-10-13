@@ -1,0 +1,13 @@
+%p#notice= notice
+.quiz-list
+  %ul
+    - @quizzes.each do |quiz|
+      %li
+        .row
+          .col-md-4
+            = quiz.title
+          .col-md-4
+            = quiz.main_image.path
+          .col-md-4
+            = quiz.description
+

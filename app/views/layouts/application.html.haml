@@ -10,25 +10,19 @@
       var QM = QM || {};
       QM.CONST = {};
       QM.CONST.CSRF_TOKEN  = '#{form_authenticity_token}'
-  %body
+    = yield :head
+  %body{"data-action" => "#{controller.action_name}", "data-controller" => "#{controller.controller_path}"}
     .container-fluid
-      %nav.navbar.navbar-light.bg-faded
-        .container
-          #navbar-header
-            = link_to root_path, class: 'navbar-brand' do
-              %span.fa.fa-home
-              Quiz Mistress
-          .collapse.navbar-collapse.navbar-toggleable-xs
-            %ul.nav.navbar-nav
-              %li.nav-item
-                = link_to quizzes_path, class: 'nav-link'  do
-                  Quizzes
-    -#           %li.nav-item
-    -#             %a.nav-link{:href => "#"}
-    -#               About
+      -if content_for?(:header)
+        = yield :header
+      -else
+        = render :partial => '/layouts/header'
     .container
       .row
         .col-md-12
-          = yield
-
-
+          -if content_for?(:content)
+            = yield :content
+          -else
+            = render  :partial => '/layouts/notice'
+            = yield
+= yield :script

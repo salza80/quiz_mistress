@@ -1,0 +1,13 @@
+%nav.navbar.navbar-light.bg-faded
+  .container
+    %button.navbar-toggler.pull-right.hidden-sm-up{"aria-controls" => "navCollapse", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navCollapse", "data-toggle" => "collapse", :type => "button"}
+      \☰
+    = link_to root_path, class: 'navbar-brand' do
+      %span.fa.fa-home
+        Quiz Mistress
+    #navCollapse.collapse.navbar-collapse.navbar-toggleable-xs
+      %ul.nav.navbar-nav
+        %li.nav-item
+          = link_to quizzes_path, class: 'nav-link'  do
+            Quizzes
+      #login-actions= render :partial => 'layouts/login'
