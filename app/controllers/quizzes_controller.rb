@@ -27,6 +27,6 @@ class QuizzesController < ApplicationController
 
     def set_tags(quiz)
       set_meta_tags title: quiz.title, description: quiz.description
-      set_meta_tags og:{ type: "article", title: quiz.title, url: quiz_url(quiz), description: quiz.description, image: request.base_url + "/assets/images/" + quiz.main_image.path }
+      set_meta_tags og:{ type: "article", title: quiz.title, url: quiz_url(quiz), description: quiz.description, image: quiz.image.image_file.url }
     end
 end

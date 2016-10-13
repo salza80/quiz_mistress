@@ -4,8 +4,8 @@
       %h4.card-title
         = @quiz.title
     .card-block
-      = image_tag("/assets/images/" + @quiz.main_image.path, class: "img-fluid img-rounded  m-x-auto d-block")
-      = img_reference(@quiz.main_image)
+      = image_full @quiz.image, class: "img-fluid img-rounded  m-x-auto d-block"
+      = img_reference(@quiz.image)
     .card-block
       .card-text
         = @quiz.description

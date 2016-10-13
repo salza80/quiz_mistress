@@ -27,6 +27,11 @@ module ApplicationHelper
     content_tag(:span, "Image source: ".html_safe + l, class:'img-ref')
   end
 
+  def image_full(image, opts={})
+    return unless image
+    opts[:class] = "img-fluid" unless opts[:class]
+    image_tag(image.image_file.url, opts)
+  end
 
 
 end

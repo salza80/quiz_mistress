@@ -1,7 +1,8 @@
 class Quiz < ApplicationRecord
   has_many :questions, dependent: :destroy
   has_many :outcomes, dependent: :destroy
-  has_many :images, as: :imageable
+  has_one :image, as: :imageable, dependent: :destroy
+  accepts_nested_attributes_for :image, allow_destroy: true
   validates :title, :description, :url_name, presence: true
   validates_format_of :url_name, :without => /^\d/, :multiline => true, uniqueness:true
 
@@ -21,10 +22,6 @@ class Quiz < ApplicationRecord
       total += q.max_points
     end
     total
-  end
-
-  def main_image
-    images.by_role('main').first
   end
 
   def calc_points(answers)

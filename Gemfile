@@ -33,6 +33,7 @@ gem "font-awesome-rails"
 gem "meta-tags"
 gem "devise"
 gem 'omniauth-facebook'
+gem 'carrierwave', '>= 1.0.0.beta', '< 2.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

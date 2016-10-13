@@ -7,7 +7,7 @@
       %li.list-group-item.list-group-item-action
         .row
           .col-md-2
-            = image_tag("/assets/images/" + quiz.main_image.path, class: "img-fluid img-thumbnail") if quiz.main_image
+            = image_full quiz.image
           .col-md-4
             = quiz.title
           .col-md-4

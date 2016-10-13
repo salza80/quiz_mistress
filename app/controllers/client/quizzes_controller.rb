@@ -10,6 +10,7 @@ class Client::QuizzesController < Client::ApplicationController
 
   def new
     @quiz = Quiz.new
+    @quiz.build_image
   end
 
   # GET /quizzes/1
@@ -20,6 +21,7 @@ class Client::QuizzesController < Client::ApplicationController
 
   def create
     @quiz = Quiz.create(quiz_params)
+    # @quiz.image.create(image_file: params[:image_file])
     render :edit
   end
 
@@ -35,16 +37,14 @@ class Client::QuizzesController < Client::ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_quiz
-      puts params
-
       @quiz = Quiz.find(params[:id])
-      puts @quiz.inspect
-      puts @quiz.to_param
+      @quiz.build_image if @quiz.image.nil?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def quiz_params
-      params.require(:quiz).permit(:title, :description, :url_name)
+      puts params
+      params.require(:quiz).permit(:title, :description, :url_name, image_attributes:[:image_file, :id])
     end
 
     # def set_tags(quiz)

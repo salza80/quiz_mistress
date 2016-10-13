@@ -12,10 +12,17 @@
   .form-group
     = f.label :url_name, class: "col-sm-2"
     .col-sm-10
-      = f.text_field :url_name, class: "form-control", required: true
+      = f.text_field :url_name, readonly: f.object.persisted? , class: "form-control", required: true
   .form-group
     = f.label :description, class: "col-sm-2"
     .col-sm-10
       = f.text_field :description, class: "form-control"
+  =f.fields_for :image do |ff|
+    .image
+      = image_full ff.object, class:"img-thumbnail"
+    .form-group
+      = ff.label :image_file
+      .col-sm-10
+        = ff.file_field :image_file
   .actions
     = f.submit 'Save', class: "btn btn-primary"
