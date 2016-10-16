@@ -8,11 +8,13 @@ Rails.application.routes.draw do
 
   
   scope '/api', module: 'api', constraints: { format: 'json' } do
-    resources :quizzes, only: [:index, :show, :update], param: :url_name
+    resources :quizzes, only: [:index, :show, :update], param: :url_name 
   end
 
   scope 'manage', module: :client, as: 'client' do
-    resources :quizzes
+    resources :quizzes do
+      resources :questions
+    end
   end
 
  

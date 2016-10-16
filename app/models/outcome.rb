@@ -1,7 +1,7 @@
 class Outcome < ApplicationRecord
   belongs_to :quiz
   validates :order_by, :title, :points_to, presence: true
-  has_many :images, as: :imageable
+  has_one :image, as: :imageable, dependent: :destroy
   # default_scope {order('points_to DESC')}
 
   def self.find_by_points(points)
@@ -10,7 +10,7 @@ class Outcome < ApplicationRecord
   end
 
   def main_image
-    images.by_role('main').first
+    image
   end
 
 end

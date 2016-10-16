@@ -1,0 +1,16 @@
+%h2
+  Questions
+.question-list
+  %ul.list-group
+    - questions.each do |question|
+      %li.list-group-item.list-group-item-action
+        .row
+          .col-md-2
+            = image_full question.image
+          .col-md-4
+            = question.title
+          .col-md-4
+            No Answers:
+            = question.answers.count
+          .col-md-2
+            = link_to 'Edit', edit_client_quiz_question_path(question.quiz,question), remote: true

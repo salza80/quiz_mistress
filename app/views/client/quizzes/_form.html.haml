@@ -1,7 +1,7 @@
 = form_for [:client, @quiz], class: 'project' do |f|
   - if @quiz.errors.any?
     #error_explanation
-      %h4= "#{pluralize(@user.errors.count, "Fehler")}:"
+      %h4= "#{pluralize(@quiz.errors.count, "Fehler")}:"
       %ul
         - @quiz.errors.full_messages.each do |msg|
           %li= msg

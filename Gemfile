@@ -35,6 +35,10 @@ gem "devise"
 gem 'omniauth-facebook'
 gem 'carrierwave', '>= 1.0.0.beta', '< 2.0'
 
+gem "reform"
+
+gem "reform-rails"
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

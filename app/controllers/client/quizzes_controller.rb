@@ -21,12 +21,10 @@ class Client::QuizzesController < Client::ApplicationController
 
   def create
     @quiz = Quiz.create(quiz_params)
-    # @quiz.image.create(image_file: params[:image_file])
     render :edit
   end
 
   def edit
-
   end
 
   def update
@@ -43,7 +41,6 @@ class Client::QuizzesController < Client::ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def quiz_params
-      puts params
       params.require(:quiz).permit(:title, :description, :url_name, image_attributes:[:image_file, :id])
     end
 
