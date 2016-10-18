@@ -16,4 +16,5 @@
 //= require bootstrap
 //= require fbAPI
 //= require social
+//= require jquery.remotipart
 

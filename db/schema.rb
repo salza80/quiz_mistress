@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161013210543) do
+ActiveRecord::Schema.define(version: 20161018173605) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,8 +27,6 @@ ActiveRecord::Schema.define(version: 20161013210543) do
 
   create_table "images", force: :cascade do |t|
     t.string   "title"
-    t.string   "image_role"
-    t.string   "path"
     t.string   "ref_title"
     t.string   "ref_url"
     t.string   "imageable_type"

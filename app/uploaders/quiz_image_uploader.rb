@@ -15,6 +15,8 @@ class QuizImageUploader < CarrierWave::Uploader::Base
   # end
 
   def store_dir
+    puts model.inspect
+    puts model.imageable.inspect
     "assets/images/quizzes/#{model.imageable.url_name}"
   end
 

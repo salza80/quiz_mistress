@@ -16,9 +16,11 @@ namespace :db do
         quiz.description = loadquiz.xpath('description').text
         quiz.save!
         quiz.reload
-        quiz.images.destroy_all
-        quiz.images.build(path: 'quizzes/' + loadquiz.xpath('img_url').text, image_role: 'main', title: loadquiz.xpath('img_title').text, ref_title: loadquiz.xpath('img_ref_title').text, ref_url: loadquiz.xpath('img_ref_url').text )
-       
+        quiz.build_image(title: loadquiz.xpath('img_title').text, ref_title: loadquiz.xpath('img_ref_title').text, ref_url: loadquiz.xpath('img_ref_url').text )
+        File.open('quizzes/' +  loadquiz.xpath('img_url').text) do |image|
+          quiz.image.image_file = image
+        end
+        quiz.save
         f.close
 
         quiz.questions.destroy_all
@@ -33,8 +35,12 @@ namespace :db do
           )
           question.save!
           question.reload
-       
-          question.images.build(path: 'quizzes/' + q.xpath('img_url').text, image_role: 'main',title: q.xpath('img_title').text,  ref_title: q.xpath('img_ref_title').text, ref_url: q.xpath('img_ref_url').text)
+
+          question.images.build(title: q.xpath('img_title').text,  ref_title: q.xpath('img_ref_title').text, ref_url: q.xpath('img_ref_url').text)
+          File.open('quizzes/' +  q.xpath('img_url').text) do |image|
+            question.image.image_file = image
+          end
+          question.save
 
           (1..6).each do |i|
             puts q.xpath("answer_#{i}_title").text
@@ -62,7 +68,11 @@ namespace :db do
           )
           new_outcome.save!
           new_outcome.reload
-          new_outcome.images.build(path: 'quizzes/' +  q.xpath('img_url').text, image_role: 'main', title: q.xpath('img_title').text, ref_title: q.xpath('img_ref_title').text, ref_url: q.xpath('img_ref_url').text)
+
+          new_outcome.images.build(title: q.xpath('img_title').text,  ref_title: q.xpath('img_ref_title').text, ref_url: q.xpath('img_ref_url').text)
+          File.open('quizzes/' +  q.xpath('img_url').text) do |image|
+            new_outcome.image.image_file = image
+          end
           new_outcome.save!
         end
         f.close

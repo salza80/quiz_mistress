@@ -5,13 +5,12 @@ class Question < ApplicationRecord
   validates :order_by, :title, presence: true
   default_scope {order('order_by ASC')}
 
-
-  def main_image
-    image
-  end
-
   def max_points
     answers.ordered_by_points.limit(1).pluck(:points).first || 0
+  end
+
+  def url_name
+    quiz.url_name
   end
 
   def get_points(answer_id)
