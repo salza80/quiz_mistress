@@ -1,51 +1,63 @@
 class Client::QuizzesController < Client::ApplicationController
   before_action :authenticate_user!
-  before_action :set_quiz, only: [:show, :edit, :update]
+  before_action :set_quiz, only: [:show, :edit, :update, :destroy]
 
-  # GET /quizzes
-  # GET /quizzes.json
+
   def index
     @quizzes = Quiz.all
   end
 
   def new
-    @quiz = Quiz.new
-    @quiz.build_image
+    # @quiz = Quiz.new
+    # @quiz.build_image
+    @quiz_form = Client::QuizForm.new(Quiz.new)
   end
 
-  # GET /quizzes/1
-  # GET /quizzes/1.json
   def show
  
   end
 
   def create
-    @quiz = Quiz.create(quiz_params)
-    render :edit
+
+    @quiz_form = Client::QuizForm.new(Quiz.new)
+    if @quiz_form.validate(quiz_params)
+      @quiz_form.save  
+      redirect_to client_quizzes_url 
+    else
+      render :new
+    end
+    
   end
 
   def edit
+    @quiz_form = Client::QuizForm.new(@quiz)
   end
 
   def update
-    @quiz.update!(quiz_params)
-    render :edit
+    @quiz_form = Client::QuizForm.new(@quiz)
+    if @quiz_form.validate(quiz_params)
+      @quiz_form.save
+       redirect_to edit_client_quiz_url(@quiz)
+    else
+      render :edit
+    end
+
+    
+  end
+
+  def destroy
+    @quiz.destroy!
+    redirect_to client_quizzes_url
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_quiz
       @quiz = Quiz.find(params[:id])
-      @quiz.build_image if @quiz.image.nil?
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def quiz_params
-      params.require(:quiz).permit(:title, :description, :url_name, image_attributes:[:image_file, :id])
+      params.require(:quiz).permit(:title, :description, :url_name, image_attributes:[:image_file])
     end
 
-    # def set_tags(quiz)
-    #   set_meta_tags title: quiz.title, description: quiz.description
-    #   set_meta_tags og:{ type: "article", title: quiz.title, url: quiz_url(quiz), description: quiz.description, image: request.base_url + "/assets/images/" + quiz.main_image.path }
-    # end
+
 end

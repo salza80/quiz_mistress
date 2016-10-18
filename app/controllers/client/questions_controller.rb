@@ -2,10 +2,6 @@ class Client::QuestionsController < Client::ApplicationController
   before_action :authenticate_user!
   before_action :set_question, only: [:show, :edit, :update, :destroy]
 
-  def index
-    @questions = @quiz.questions.all
-  end
-
   def new
     @quiz = find_quiz
     @question_form = Client::QuestionForm.new(@quiz.questions.new)

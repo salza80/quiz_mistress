@@ -1,9 +1,9 @@
-= form_for [:client, @quiz], class: 'project' do |f|
-  - if @quiz.errors.any?
+= form_for [:client, @quiz_form], class: 'project' do |f|
+  - if @quiz_form.errors.any?
     #error_explanation
-      %h4= "#{pluralize(@quiz.errors.count, "Fehler")}:"
+      %h4= "#{pluralize(@quiz_form.errors.count, "Fehler")}:"
       %ul
-        - @quiz.errors.full_messages.each do |msg|
+        - @quiz_form.errors.full_messages.each do |msg|
           %li= msg
   .form-group
     = f.label :title, class: "col-sm-2"
