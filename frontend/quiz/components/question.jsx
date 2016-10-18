@@ -33,8 +33,7 @@ var Question = React.createClass({
             </div>
           </div>
         </div>
-        <img className="card-img-top img-fluid img-thumbnail" src={this.props.question.image_url} />
-        <ImageReference image={this.props.question.main_image} ></ImageReference>
+        <ImageReference image={this.props.question.image} ></ImageReference>
         <div className="card-block">
           <div className="question-description">
             <p className="card-text">{this.props.question.description}</p>

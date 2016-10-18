@@ -20,24 +20,35 @@ var ImageReference = React.createClass({
   componentWillUnmount: function() {
 
   },
-  shouldRender: function(){
+  shouldRenderRef: function(){
     if(this.props.image === undefined){return false}
     if(this.props.image.ref_url === undefined || this.props.image.ref_url == ''){return false}
     return true;
   },
+  shouldRenderImg: function(){
+    if(this.props.image === undefined){return false}
+    if(this.props.image.image_file === undefined ){return false}
+    return true;
+  },
   render: function() {
-    var ref;
-    if(this.shouldRender()){
+    var ref, img;
+    if(this.shouldRenderRef()){
       ref = (
-          <span className="img-ref">
+          <div className="img-ref">
             Image Source:
             <a target="_blank" rel="nofollow" href={this.props.image.ref_url}>{this.props.image.ref_title}</a>
-          </span>
+          </div>
         )
+    }
+    if(this.shouldRenderImg()){
+      img = (
+        <img className="card-img-top img-fluid img-thumbnail" src={this.props.image.image_file.url} />
+      )
     }
     return (
       <div>
-        {ref}  
+        {img} 
+        {ref}
       </div> 
     );
   }

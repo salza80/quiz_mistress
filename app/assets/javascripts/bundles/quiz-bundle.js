@@ -20222,7 +20222,9 @@
 	  getImages: function(data){
 	    var images = [];
 	    for( var i=0; i<data.questions.length -1; i++){
-	      images.push(data.questions[i].image_url)
+	      try{
+	        images.push(data.questions[i].image.image_file.url)
+	      }catch(e){}
 	    } 
 	    return images;
 	  },
@@ -24045,8 +24047,7 @@
 	          )
 	        )
 	      ),
-	      React.createElement('img', { className: 'card-img-top img-fluid img-thumbnail', src: this.props.question.image_url }),
-	      React.createElement(ImageReference, { image: this.props.question.main_image }),
+	      React.createElement(ImageReference, { image: this.props.question.image }),
 	      React.createElement(
 	        'div',
 	        { className: 'card-block' },
@@ -24169,7 +24170,7 @@
 	  conponentWillMount: function conponentWillMount() {},
 	  componentDidMount: function componentDidMount() {},
 	  componentWillUnmount: function componentWillUnmount() {},
-	  shouldRender: function shouldRender() {
+	  shouldRenderRef: function shouldRenderRef() {
 	    if (this.props.image === undefined) {
 	      return false;
 	    }
@@ -24178,11 +24179,20 @@
 	    }
 	    return true;
 	  },
+	  shouldRenderImg: function shouldRenderImg() {
+	    if (this.props.image === undefined) {
+	      return false;
+	    }
+	    if (this.props.image.image_file === undefined) {
+	      return false;
+	    }
+	    return true;
+	  },
 	  render: function render() {
-	    var ref;
-	    if (this.shouldRender()) {
+	    var ref, img;
+	    if (this.shouldRenderRef()) {
 	      ref = React.createElement(
-	        'span',
+	        'div',
 	        { className: 'img-ref' },
 	        'Image Source:',
 	        React.createElement(
@@ -24192,9 +24202,13 @@
 	        )
 	      );
 	    }
+	    if (this.shouldRenderImg()) {
+	      img = React.createElement('img', { className: 'card-img-top img-fluid img-thumbnail', src: this.props.image.image_file.url });
+	    }
 	    return React.createElement(
 	      'div',
 	      null,
+	      img,
 	      ref
 	    );
 	  }

@@ -52,7 +52,9 @@ var QuizStore = Reflux.createStore({
   getImages: function(data){
     var images = [];
     for( var i=0; i<data.questions.length -1; i++){
-      images.push(data.questions[i].image_url)
+      try{
+        images.push(data.questions[i].image.image_file.url)
+      }catch(e){}
     } 
     return images;
   },
