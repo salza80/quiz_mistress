@@ -19,7 +19,7 @@ class OutcomesController < ApplicationController
 
     def set_tags(quiz, outcome)
       set_meta_tags title: quiz.title + " | " + outcome.title, description: quiz.description
-      set_meta_tags og:{ type: "article",title: "You scored #{@result[:percentage]}%! " +  outcome.title, url: request.original_url, description: outcome.description, image: request.base_url + "/assets/images/" + outcome.main_image.path }
+      set_meta_tags og:{ type: "article",title: "You scored #{@result[:percentage]}%! " +  outcome.title, url: request.original_url, description: outcome.description, image: outcome.image.image_file.url }
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

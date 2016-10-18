@@ -5,8 +5,8 @@
         = "You scored #{@result[:percentage]}%! - "
         = @outcome.title
     .card-block
-      = image_tag("/assets/images/" + @outcome.main_image.path, class: "img-fluid img-rounded  m-x-auto d-block")
-      = img_reference(@outcome.main_image)
+      = image_full @outcome.image, class: "img-fluid img-rounded  m-x-auto d-block"
+      = img_reference(@outcome.image)
     .card-block
       .card-text
         = @outcome.description
