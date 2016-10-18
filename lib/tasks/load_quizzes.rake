@@ -17,7 +17,7 @@ namespace :db do
         quiz.save!
         quiz.reload
         quiz.build_image(title: loadquiz.xpath('img_title').text, ref_title: loadquiz.xpath('img_ref_title').text, ref_url: loadquiz.xpath('img_ref_url').text )
-        File.open('quizzes/' +  loadquiz.xpath('img_url').text) do |image|
+        File.open('db/data/' + loadquiz.xpath('img_url').text) do |image|
           quiz.image.image_file = image
         end
         quiz.save
@@ -36,8 +36,8 @@ namespace :db do
           question.save!
           question.reload
 
-          question.images.build(title: q.xpath('img_title').text,  ref_title: q.xpath('img_ref_title').text, ref_url: q.xpath('img_ref_url').text)
-          File.open('quizzes/' +  q.xpath('img_url').text) do |image|
+          question.build_image(title: q.xpath('img_title').text,  ref_title: q.xpath('img_ref_title').text, ref_url: q.xpath('img_ref_url').text)
+          File.open('db/data/' + q.xpath('img_url').text) do |image|
             question.image.image_file = image
           end
           question.save
@@ -67,10 +67,10 @@ namespace :db do
             order_by:  q.xpath('order_by').empty? ? loadoutcomes.children.index(q) : q.xpath('order_by').text.to_i 
           )
           new_outcome.save!
-          new_outcome.reload
+          new_outcome.reload  
 
-          new_outcome.images.build(title: q.xpath('img_title').text,  ref_title: q.xpath('img_ref_title').text, ref_url: q.xpath('img_ref_url').text)
-          File.open('quizzes/' +  q.xpath('img_url').text) do |image|
+          new_outcome.build_image(title: q.xpath('img_title').text,  ref_title: q.xpath('img_ref_title').text, ref_url: q.xpath('img_ref_url').text)
+          File.open('db/data/' + q.xpath('img_url').text) do |image|
             new_outcome.image.image_file = image
           end
           new_outcome.save!

@@ -9,8 +9,8 @@ class Outcome < ApplicationRecord
     .order('points_to ASC').first
   end
 
-  def main_image
-    image
+  def url_name
+    quiz.url_name
   end
 
 end
