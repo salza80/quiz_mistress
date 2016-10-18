@@ -3,7 +3,7 @@ class Question < ApplicationRecord
   has_many :answers, dependent: :destroy
   has_one :image, as: :imageable, dependent: :destroy
   validates :order_by, :title, presence: true
-  default_scope {order('order_by DESC')}
+  default_scope {order('order_by ASC')}
 
 
   def main_image

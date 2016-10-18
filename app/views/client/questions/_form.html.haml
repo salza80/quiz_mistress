@@ -1,4 +1,4 @@
-= form_for [:client, @quiz, @question_form], url: client_quiz_questions_path(@quiz,@question_form), class: 'project', remote: true  do |f|
+= form_for [:client, @quiz, @question_form], class: 'project', remote: true  do |f|
   - if @question_form.errors.any?
     #error_explanation
       %h4= "#{pluralize(@question_form.errors.count, "Fehler")}:"
@@ -24,10 +24,10 @@
       = ff.label :image_file
       .col-sm-10
         = ff.file_field :image_file
-  =f.fields_for :answers do |ff|
-    .form-group
-      = f.label :title, class: "col-sm-2"
-      .col-sm-10
-        = ff.text_field :title, class: "form-control"
+  -# =f.fields_for :answers do |ff|
+  -#   .form-group
+  -#     = f.label :title, class: "col-sm-2"
+  -#     .col-sm-10
+  -#       = ff.text_field :title, class: "form-control"
   .actions
     = f.submit 'Save', class: "btn btn-primary"

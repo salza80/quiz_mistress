@@ -11,7 +11,8 @@ class Client::QuestionsController < Client::ApplicationController
   def new
     @quiz = Quiz.find(params[:quiz_id])
     question = @quiz.questions.new
-    @question_form = Client::QuestionForm.new(question)
+    @question_form = question
+    # @question_form = Client::QuestionForm.new(question)
   end
 
   # GET /quizzes/1
@@ -44,14 +45,13 @@ class Client::QuestionsController < Client::ApplicationController
   end
 
   def update
-    puts "here in update"
     @question_form = Client::QuestionForm.new(@question)
     if @question_form.validate(question_params)
       @question_form.save 
     else
       # handle validation errors.
     end
-    
+    @quiz = Quiz.find(params[:quiz_id])
   end
 
   private
@@ -63,6 +63,6 @@ class Client::QuestionsController < Client::ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:client_question).permit(:title, :description, :order_by, answers:[:id, :title, :points])
+      params.require(:question).permit(:title, :description, :order_by, answers:[:title, :points, :order_by])
     end
 end

@@ -1,5 +1,6 @@
 class Client::QuestionForm  < Reform::Form
   include Reform::Form::ActiveRecord
+  model :Question
   property :title
   property :description
   property :order_by
