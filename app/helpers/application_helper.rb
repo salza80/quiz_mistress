@@ -16,8 +16,6 @@ module ApplicationHelper
     viewport:"width=device-width, initial-scale=1, shrink-to-fit=no",
     charset: "utf-8",
   }
-
-  
   end
 
   def img_reference(image)
@@ -32,6 +30,7 @@ module ApplicationHelper
     opts[:class] = "img-fluid" unless opts[:class]
     image_tag(image.image_file.url, opts)
   end
+
 
 
 end

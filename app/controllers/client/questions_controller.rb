@@ -5,6 +5,11 @@ class Client::QuestionsController < Client::ApplicationController
   def new
     @quiz = find_quiz
     @question_form = Client::QuestionForm.new(@quiz.questions.new)
+    @question_form.prepopulate!
+  end
+
+  def index
+    @quiz = find_quiz
   end
 
   def show
@@ -25,10 +30,12 @@ class Client::QuestionsController < Client::ApplicationController
     end
     question = @question_form.model.reload
     @question_form = Client::QuestionForm.new(question)
+    @question_form.prepopulate!
   end
 
   def edit
     @question_form = Client::QuestionForm.new(@question)
+    @question_form.prepopulate!
   end
 
   def update
@@ -39,6 +46,7 @@ class Client::QuestionsController < Client::ApplicationController
       # handle validation errors.
     end
     @quiz = find_quiz
+    @question_form.prepopulate!
   end
 
   def destroy
@@ -60,6 +68,6 @@ class Client::QuestionsController < Client::ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:title, :description, :order_by, image_attributes:[:title,:image_file, :ref_title, :ref_url], answers:[:title, :points, :order_by])
+      params.require(:question).permit(:id, :title, :description, :order_by, image_attributes:[:id, :title,:image_file, :ref_title, :ref_url], answers_attributes:[:id,:title, :points, :order_by, :_destroy])
     end
 end

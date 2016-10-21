@@ -19,5 +19,13 @@
       = f.number_field :order_by, class: "form-control"
   =f.fields_for :image do |ff|
     =render partial:'image_form', locals: { f: ff }
+  
+  = f.fields_for :answers do |a|
+    #answers  
+      -if a.object.persisted?
+        =render partial: 'answer_form', locals: { f:a }
+  .links
+    = link_to_add_association 'add answer', f, :answers, partial: 'answer_form',force_non_association_create: true
   .actions
-    = f.submit 'Save', class: "btn btn-primary"
+  = link_to 'cancel', client_quiz_questions_path(@quiz), class: "btn btn-default", remote: true
+  = f.submit 'Save', class: "btn btn-primary"
