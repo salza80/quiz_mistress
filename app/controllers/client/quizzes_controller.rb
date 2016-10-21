@@ -8,8 +8,6 @@ class Client::QuizzesController < Client::ApplicationController
   end
 
   def new
-    # @quiz = Quiz.new
-    # @quiz.build_image
     @quiz_form = Client::QuizForm.new(Quiz.new)
   end
 
@@ -18,11 +16,13 @@ class Client::QuizzesController < Client::ApplicationController
   end
 
   def create
+    quiz = Quiz.new
+    quiz.build_image
+    @quiz_form = Client::QuizForm.new(quiz)
 
-    @quiz_form = Client::QuizForm.new(Quiz.new)
     if @quiz_form.validate(quiz_params)
       @quiz_form.save  
-      redirect_to client_quizzes_url 
+      redirect_to edit_client_quiz_url(@quiz_form)
     else
       render :new
     end
@@ -37,9 +37,8 @@ class Client::QuizzesController < Client::ApplicationController
     @quiz_form = Client::QuizForm.new(@quiz)
     if @quiz_form.validate(quiz_params)
       @quiz_form.save
-       redirect_to edit_client_quiz_url(@quiz)
     else
-      render :edit
+  
     end
 
     
@@ -56,7 +55,8 @@ class Client::QuizzesController < Client::ApplicationController
     end
 
     def quiz_params
-      params.require(:quiz).permit(:title, :description, :url_name, image_attributes:[:image_file])
+      params.require(:quiz).permit(:title, :description, :url_name, image_attributes:[:title,:image_file, :ref_title, :ref_url])
+      
     end
 
 

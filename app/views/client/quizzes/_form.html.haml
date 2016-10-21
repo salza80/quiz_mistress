@@ -1,4 +1,4 @@
-= form_for [:client, @quiz_form], class: 'project' do |f|
+= form_for [:client, @quiz_form],html:{ multipart: :true }, authenticity_token: true, class: 'project', remote: @quiz_form.persisted? do |f|
   - if @quiz_form.errors.any?
     #error_explanation
       %h4= "#{pluralize(@quiz_form.errors.count, "Fehler")}:"
@@ -17,12 +17,7 @@
     = f.label :description, class: "col-sm-2"
     .col-sm-10
       = f.text_field :description, class: "form-control"
-  =f.fields_for :image do |ff|
-    .image
-      = image_full ff.object, class:"img-thumbnail"
-    .form-group
-      = ff.label :image_file
-      .col-sm-10
-        = ff.file_field :image_file
+  = f.fields_for :image do |ff|
+    =render partial:'image_form', locals: { f: ff }
   .actions
     = f.submit 'Save', class: "btn btn-primary"

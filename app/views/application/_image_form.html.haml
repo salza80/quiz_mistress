@@ -1,0 +1,18 @@
+.image
+  = image_full f.object, class:"img-thumbnail"
+.form-group
+  = f.label :title, class: "col-sm-2"
+  .col-sm-10
+    = f.text_field :title, class: "form-control"
+.form-group
+  = f.label :image_file, class: "col-sm-2"
+  .col-sm-10
+    = f.file_field :image_file, class: "form-control"
+.form-group
+  = f.label :ref_title, class: "col-sm-2"
+  .col-sm-10
+    = f.text_field :ref_title, class: "form-control"
+.form-group
+  = f.label :ref_url, class: "col-sm-2"
+  .col-sm-10
+    =f.text_field :ref_url, class: "form-control"

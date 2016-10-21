@@ -11,9 +11,12 @@ class Client::QuestionsController < Client::ApplicationController
  
   end
 
+
   def create
     @quiz = find_quiz
-    @question_form = Client::QuestionForm.new(@quiz.questions.new)
+    question = @quiz.questions.new
+    question.build_image
+    @question_form = Client::QuestionForm.new(question)
     if @question_form.validate(question_params)
       @question_form.save  
       
@@ -35,7 +38,7 @@ class Client::QuestionsController < Client::ApplicationController
     else
       # handle validation errors.
     end
-    @quiz = Quiz.find(params[:quiz_id])
+    @quiz = find_quiz
   end
 
   def destroy
@@ -57,6 +60,6 @@ class Client::QuestionsController < Client::ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:title, :description, :order_by, image_attributes:[:image_file], answers:[:title, :points, :order_by])
+      params.require(:question).permit(:title, :description, :order_by, image_attributes:[:title,:image_file, :ref_title, :ref_url], answers:[:title, :points, :order_by])
     end
 end

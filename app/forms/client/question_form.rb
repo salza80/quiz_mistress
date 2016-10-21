@@ -8,7 +8,10 @@ class Client::QuestionForm  < Reform::Form
   validates :title, :order_by, presence: true
   
   property :image, populator: :image! do
+    property :title
     property :image_file
+    property :ref_url
+    property :ref_title
   end
 
   collection :answers do
@@ -24,8 +27,6 @@ class Client::QuestionForm  < Reform::Form
   end
 
   def image!(fragment:, **)
-    puts "here"
-    puts fragment.inspect
     model.image ? model.image : self.image = model.build_image
   end
 
