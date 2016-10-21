@@ -2,8 +2,9 @@
   Edit Quiz
 #quiz_form
   =render partial:'form'
-=link_to 'Add Questions', new_client_quiz_question_path(@quiz), remote: :true, class: "btn btn-primary"
-#question_form
-#question_list
-  =render partial:'client/questions/question_list', locals: { questions: @quiz.questions }
-
+#questions
+  %h4 Questions
+  =link_to 'Add Questions', new_client_quiz_question_path(@quiz), remote: :true, class: "btn btn-primary"
+  #question_form
+  #question_list
+    =render partial:'client/questions/question_list', locals: { questions: @quiz.questions }

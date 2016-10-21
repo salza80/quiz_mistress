@@ -28,6 +28,7 @@ module ApplicationHelper
   def image_full(image, opts={})
     return unless image
     opts[:class] = "img-fluid" unless opts[:class]
+    puts image.image_file.url
     image_tag(image.image_file.url, opts)
   end
 

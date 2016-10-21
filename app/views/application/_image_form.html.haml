@@ -1,18 +1,23 @@
-.image
-  = image_full f.object, class:"img-thumbnail"
-.form-group
-  = f.label :title, class: "col-sm-2"
-  .col-sm-10
-    = f.text_field :title, class: "form-control"
-.form-group
-  = f.label :image_file, class: "col-sm-2"
-  .col-sm-10
-    = f.file_field :image_file, class: "form-control"
-.form-group
-  = f.label :ref_title, class: "col-sm-2"
-  .col-sm-10
-    = f.text_field :ref_title, class: "form-control"
-.form-group
-  = f.label :ref_url, class: "col-sm-2"
-  .col-sm-10
-    =f.text_field :ref_url, class: "form-control"
+.border
+  %h4 Main Image
+  .form-group
+    .col-sm-2
+      = label_tag "Current Image"
+    .col-sm-10
+      = image_full f.object, class:"img-thumbnail"
+  .form-group
+    = f.label :image_file, class: "col-sm-2"
+    .col-sm-10
+      = f.file_field :image_file, class: "form-control"
+  .form-group
+    = f.label :title, "Image Title", class: "col-sm-2"
+    .col-sm-10
+      = f.text_field :title, class: "form-control"
+  .form-group
+    = f.label :ref_title, "Source Name", class: "col-sm-2"
+    .col-sm-10
+      = f.text_field :ref_title, class: "form-control"
+  .form-group
+    = f.label :ref_url, "Source URL", class: "col-sm-2"
+    .col-sm-10
+      =f.url_field :ref_url, class: "form-control", placeholder: "http://www.example.com/test.jpg"

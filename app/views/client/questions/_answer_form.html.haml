@@ -1,17 +1,14 @@
-.answer
-  .form-group
-    = f.label :title, class: "col-sm-2"
-    .col-sm-10
-      = f.text_field :title, class: "form-control", required: true
-  .form-group
-    = f.label :points, class: "col-sm-2"
-    .col-sm-10
-      = f.text_field :points, class: "form-control", required: true
-  .form-group
-    = f.label :order_by, class: "col-sm-2"
-    .col-sm-10
-      = f.text_field :order_by, class: "form-control", required: true
-  .links
-    = f.hidden_field :_destroy
-    = f.hidden_field :id
-    = link_to_remove_association "remove answer", f, { wrapper_class: 'answer' }
+%li.list-group-item.list-group-item-action
+  .row
+    .col-md-7
+      = f.label  :title, class: "sr-only"
+      = f.text_field :title, class: "form-control", required: true, placeholder: "Answer Text"
+      = f.hidden_field :_destroy
+      = f.hidden_field :id
+    .col-md-4
+      = f.label :points
+      = f.number_field :points, class: "form-control", required: true
+    .col-md-1
+      = link_to_remove_association  f, { wrapper_class: 'answer', class: "btn btn-default" } do
+        %span.fa.fa-times
+    

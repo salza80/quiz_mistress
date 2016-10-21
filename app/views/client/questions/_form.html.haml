@@ -19,11 +19,12 @@
       = f.number_field :order_by, class: "form-control"
   =f.fields_for :image do |ff|
     =render partial:'image_form', locals: { f: ff }
-  
-  = f.fields_for :answers do |a|
-    #answers  
-      -if a.object.persisted?
-        =render partial: 'answer_form', locals: { f:a }
+  #answers
+    %h4 Answers
+    %ul.list
+      = f.fields_for :answers do |a|
+        -if a.object.persisted?
+          =render partial: 'answer_form', locals: { f:a }
   .links
     = link_to_add_association 'add answer', f, :answers, partial: 'answer_form',force_non_association_create: true
   .actions
