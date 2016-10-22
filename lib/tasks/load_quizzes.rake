@@ -14,6 +14,7 @@ namespace :db do
         )
         quiz.title = loadquiz.xpath('title').text
         quiz.description = loadquiz.xpath('description').text
+        quiz.status = :published
         quiz.save!
         quiz.reload
         quiz.build_image(title: loadquiz.xpath('img_title').text, ref_title: loadquiz.xpath('img_ref_title').text, ref_url: loadquiz.xpath('img_ref_url').text )
