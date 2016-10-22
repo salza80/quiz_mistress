@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   end
 
   scope 'manage', module: :client, as: 'client' do
+    patch 'quizzes/publish/:id', to: 'quizzes#publish', as: 'publish_quiz'
+    get '/patients/:id', to: 'patients#show', as: 'patient'
     resources :quizzes do
       resources :questions
     end

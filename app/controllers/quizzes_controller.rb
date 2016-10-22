@@ -4,7 +4,7 @@ class QuizzesController < ApplicationController
   # GET /quizzes
   # GET /quizzes.json
   def index
-    @quizzes = Quiz.all
+    @quizzes = Quiz.published
   end
 
   # GET /quizzes/1
@@ -16,7 +16,7 @@ class QuizzesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_quiz
-      @quiz = Quiz.find_by(url_name: params[:url_name])
+      @quiz = Quiz.published.find_by(url_name: params[:url_name])
       set_tags(@quiz)
     end
 

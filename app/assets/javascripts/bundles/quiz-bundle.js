@@ -24203,7 +24203,7 @@
 	      );
 	    }
 	    if (this.shouldRenderImg()) {
-	      img = React.createElement('img', { className: 'card-img-top img-fluid img-thumbnail', src: this.props.image.image_file.url });
+	      img = React.createElement('img', { className: 'card-img-top img-fluid', src: this.props.image.image_file.url });
 	    }
 	    return React.createElement(
 	      'div',

@@ -42,7 +42,7 @@ var ImageReference = React.createClass({
     }
     if(this.shouldRenderImg()){
       img = (
-        <img className="card-img-top img-fluid img-thumbnail" src={this.props.image.image_file.url} />
+        <img className="card-img-top img-fluid" src={this.props.image.image_file.url} />
       )
     }
     return (

@@ -15,9 +15,8 @@ class QuizImageUploader < CarrierWave::Uploader::Base
   # end
 
   def store_dir
-    puts model.inspect
-    puts model.imageable.inspect
-    "assets/images/quizzes/#{model.imageable.url_name}"
+    "assets/images/quizzes/#{mounted_as}/#{model.id}"
+    # "assets/images/quizzes/#{model.imageable.url_name}"
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:

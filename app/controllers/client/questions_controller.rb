@@ -5,7 +5,7 @@ class Client::QuestionsController < Client::ApplicationController
   def new
     @quiz = find_quiz
     @question_form = Client::QuestionForm.new(@quiz.questions.new)
-    @question_form.prepopulate!
+    # @question_form.prepopulate!
   end
 
   def index
@@ -23,14 +23,12 @@ class Client::QuestionsController < Client::ApplicationController
     question.build_image
     @question_form = Client::QuestionForm.new(question)
     if @question_form.validate(question_params)
-      @question_form.save  
-      
-    else
+      @question_form.save 
+      @quiz.reload
+     else
       # handle validation errors.
     end
-    question = @question_form.model.reload
-    @question_form = Client::QuestionForm.new(question)
-    @question_form.prepopulate!
+    
   end
 
   def edit

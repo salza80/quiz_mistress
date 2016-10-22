@@ -1,0 +1,6 @@
+- if @publish.errors.any?
+  #error_explanation
+    %h4= "#{pluralize(@publish.errors.count, "errors")}:"
+    %ul
+      - @publish.errors.full_messages.each do |msg|
+        %li= msg

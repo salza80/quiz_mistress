@@ -17,17 +17,14 @@ class Client::QuestionForm  < Reform::Form
 
   AnswerPopulator = -> (options) {
     fragment, collection, index = options[:fragment], options[:model], options[:index]
-    # puts collection
-    # puts fragment[:id]
+
     if fragment[:id].to_s ==  "" 
       item=nil
     else
       item = collection.find { |item| item.id.to_s == fragment[:id].to_s }
     end
-    puts item
 
     if fragment["_destroy"] == "1"
-      # Marked for removal
       collection.delete(item) if item
       return skip!
     else
@@ -35,15 +32,12 @@ class Client::QuestionForm  < Reform::Form
     end
   }
 
-  collection :answers, prepopulator: ->(*) { self.answers << Answer.new }, populator: AnswerPopulator do
+  collection :answers, prepopulator: ->(*) { self.answers << Answer.new(order_by:1) }, populator: AnswerPopulator do
     include NestedForm
     property :title
     property :points
-    property :order_by
     validates :title, :points,  presence: true
   end
-
-  
 
   def image
     super or Image.new()

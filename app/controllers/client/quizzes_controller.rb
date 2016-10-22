@@ -1,6 +1,6 @@
 class Client::QuizzesController < Client::ApplicationController
   before_action :authenticate_user!
-  before_action :set_quiz, only: [:show, :edit, :update, :destroy]
+  before_action :set_quiz, only: [:show, :edit, :update, :destroy, :publish]
 
 
   def index
@@ -13,6 +13,11 @@ class Client::QuizzesController < Client::ApplicationController
 
   def show
  
+  end
+
+  def publish
+    @publish = Publishers::Quiz.new(@quiz)
+    @publish.publish
   end
 
   def create

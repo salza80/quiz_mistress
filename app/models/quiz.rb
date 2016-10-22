@@ -5,6 +5,8 @@ class Quiz < ApplicationRecord
   validates :title, :description, :url_name, presence: true
   validates_format_of :url_name, :without => /^\d/, :multiline => true, uniqueness:true
 
+  enum status: [ :draft, :published ]
+ 
   def to_param
     url_name
   end

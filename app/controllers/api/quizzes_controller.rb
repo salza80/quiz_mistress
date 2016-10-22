@@ -1,16 +1,13 @@
 module Api
   class QuizzesController < ApplicationController
-    def index
-      @quizzes = Quiz.all
-    end
 
     def show
-      @quiz = Quiz.includes(questions: [:answers]).find_by(url_name: params[:url_name])
+      @quiz = Quiz.published.includes(questions: [:answers]).find_by(url_name: params[:url_name])
       render json: {message: 'Resource not found'}, status: :not_found if @quiz.nil?
     end
 
     def update
-      quiz = Quiz.find_by(url_name: params[:url_name])
+      quiz = Quiz.published.find_by(url_name: params[:url_name])
       json = JSON.parse(request.body.read)
       answers = json['result']['answers']
       result = quiz.get_result_by_answers(answers)
