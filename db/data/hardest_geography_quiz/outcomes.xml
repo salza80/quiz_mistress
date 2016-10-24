@@ -7,7 +7,7 @@
 		<img_title>Geography Wizard</img_title>
 		<img_ref_title></img_ref_title>
 		<img_ref_url></img_ref_url>
-		<points_to>12</points_to>
+		<percentage_to>90</percentage_to>
 	</outcomes>
 	<outcomes>
 		<title>Supreme Sightseer</title>
@@ -16,7 +16,7 @@
 		<img_title>Sightseer Traveller</img_title>
 		<img_ref_title></img_ref_title>
 		<img_ref_url></img_ref_url>
-		<points_to>10</points_to>
+		<percentage_to>70</percentage_to>
 	</outcomes>
 	<outcomes>
 		<title>Top-notch Traveller</title>
@@ -25,7 +25,7 @@
 		<img_title>Top Traveller</img_title>
 		<img_ref_title>Test reference title</img_ref_title>
 		<img_ref_url>http://www.hotmail.com/</img_ref_url>
-		<points_to>8</points_to>
+		<percentage_to>60</percentage_to>
 	</outcomes>
 	<outcomes>
 		<title>Familiar Tourist</title>
@@ -34,7 +34,7 @@
 		<img_title>Tourise</img_title>
 		<img_ref_title></img_ref_title>
 		<img_ref_url></img_ref_url>
-		<points_to>5</points_to>
+		<percentage_to>40</percentage_to>
 	</outcomes>
 	<outcomes>
 		<title>Hermit Homebody</title>
@@ -43,6 +43,6 @@
 		<img_title>Hermit</img_title>
 		<img_ref_title></img_ref_title>
 		<img_ref_url></img_ref_url>
-		<points_to>2</points_to>
+		<percentage_to>20</percentage_to>
 	</outcomes>
 </root>

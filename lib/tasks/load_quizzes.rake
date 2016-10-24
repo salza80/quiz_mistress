@@ -64,7 +64,7 @@ namespace :db do
           new_outcome = quiz.outcomes.build(
             title: q.xpath('title').text,
             description: q.xpath('description').text,
-            points_to: q.xpath('points_to').text.to_i,
+            percentage_to: q.xpath('percentage_to').text.to_i,
             order_by:  q.xpath('order_by').empty? ? loadoutcomes.children.index(q) : q.xpath('order_by').text.to_i 
           )
           new_outcome.save!

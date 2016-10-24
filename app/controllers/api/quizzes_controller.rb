@@ -11,7 +11,7 @@ module Api
       json = JSON.parse(request.body.read)
       answers = json['result']['answers']
       result = quiz.get_result_by_answers(answers)
-      points=result[:points]
+      points= result[:points]
       result_code = ResultEncoder.new(points).encoded
       @path = quiz_outcome_path(result_code: result_code, quiz_url_name: params[:url_name], format: 'html' )
     end

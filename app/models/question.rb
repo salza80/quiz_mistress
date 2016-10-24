@@ -9,10 +9,6 @@ class Question < ApplicationRecord
     answers.ordered_by_points.limit(1).pluck(:points).first || 0
   end
 
-  def url_name
-    quiz.url_name
-  end
-
   def get_points(answer_id)
     a = answers.find(answer_id)
     return 0 unless a

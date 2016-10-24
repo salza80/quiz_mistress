@@ -44,9 +44,15 @@ class Quiz < ApplicationRecord
     result[:points] = points
     result[:max_points] = max_points
     result[:percentage] = ((points.to_f / max_points.to_f) * 100).round
-
+    result[:outcome] = get_outcome_by_percentage(result[:percentage])
     result
+
   end
+
+  def get_outcome_by_percentage(percentage)
+    outcomes.find_by_percentage(percentage)
+  end
+
 
   
 end
