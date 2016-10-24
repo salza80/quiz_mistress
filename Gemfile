@@ -28,7 +28,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 
 gem 'haml'
-gem 'bootstrap', '~> 4.0.0.alpha4'
+gem 'bootstrap', '~> 4.0.0.alpha5'
 gem 'font-awesome-rails'
 gem 'meta-tags'
 gem 'devise'
@@ -37,7 +37,6 @@ gem 'carrierwave', '>= 1.0.0.beta', '< 2.0'
 gem 'remotipart', '~> 1.2'
 gem 'reform'
 gem 'cocoon'
-
 gem "reform-rails"
 
 # Use Capistrano for deployment

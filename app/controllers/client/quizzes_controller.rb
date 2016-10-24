@@ -27,7 +27,7 @@ class Client::QuizzesController < Client::ApplicationController
 
     if @quiz_form.validate(quiz_params)
       @quiz_form.save  
-      redirect_to edit_client_quiz_url(@quiz_form)
+      redirect_to client_quiz_url(@quiz_form)
     else
       render :new
     end
@@ -42,8 +42,9 @@ class Client::QuizzesController < Client::ApplicationController
     @quiz_form = Client::QuizForm.new(@quiz)
     if @quiz_form.validate(quiz_params)
       @quiz_form.save
+      redirect_to client_quiz_url(@quiz_form)
     else
-  
+      render :edit
     end
 
     

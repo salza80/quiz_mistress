@@ -1,12 +1,10 @@
 %li.answer.list-group-item.list-group-item-action
   .row
-    .col-md-7
-      = f.label  :title, class: "sr-only"
+    .col-md-8
       = f.text_field :title, class: "form-control", required: true, placeholder: "Answer Text"
       = f.hidden_field :_destroy
       = f.hidden_field :id
-    .col-md-4
-      = f.label :points
+    .col-md-3
       = f.number_field :points, class: "form-control", required: true
     .col-md-1
       = link_to_remove_association  f, { wrapper_class: 'answer', class: "btn btn-default" } do

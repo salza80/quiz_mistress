@@ -19,6 +19,10 @@
       = f.text_field :description, class: "form-control"
   = f.fields_for :image do |ff|
     =render partial:'image_form', locals: { f: ff }
-  .actions.pull-right
-    =  link_to 'Cancel', edit_client_quiz_path(@quiz_form), class: "btn btn-default"
-    = f.submit 'Save', class: "btn btn-primary"
+  .actions.clearfix
+    %span.pull-right
+      -if @quiz_form.persisted?
+        = link_to 'Cancel', client_quiz_path(@quiz_form), class: "btn btn-default"
+      -else
+        = link_to 'Cancel', client_quizzes_path, class: "btn btn-default"
+      = f.submit 'Save', class: "btn btn-primary"

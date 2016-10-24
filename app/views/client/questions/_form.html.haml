@@ -1,4 +1,8 @@
 = form_for [:client, @quiz, @question_form], html:{ multipart: :true }, authenticity_token: true, class: 'project', remote: true  do |f|
+  -if @question_form.persisted?
+    %h3 Edit Question
+  -else
+    %h3 New Question
   - if @question_form.errors.any?
     #error_explanation
       %h4= "#{pluralize(@question_form.errors.count, "Fehler")}:"
@@ -21,12 +25,19 @@
     =render partial:'image_form', locals: { f: ff }
   #answers
     %h4 Answers
-    %ul.list
-      = f.fields_for :answers do |a|
+    %ul.list-group.answer-list
+      %li.answer.list-group-item.list-group-item-action.clearfix
+        .col-md-8
+          Answer Text
+        .col-md-3
+          Points
+        .col-md-1
+      = f.fields_for :answers do |a|  
         -if a.object.persisted?
           =render partial: 'answer_form', locals: { f:a }
-  .links
-    = link_to_add_association 'add answer', f, :answers, partial: 'answer_form',force_non_association_create: true
-  .actions
-  = link_to 'cancel', client_quiz_questions_path(@quiz), class: "btn btn-default", remote: true
-  = f.submit 'Save', class: "btn btn-primary"
+      %li.answer.list-group-item.list-group-item-action.clearfix
+        = link_to_add_association 'add answer', f, :answers, partial: 'answer_form',force_non_association_create: true, class: 'btn btn-primary pull-right', data_association_insertion_method: 'append'
+  .actions.clearfix
+    %span.pull-right
+      = link_to 'cancel', client_quiz_questions_path(@quiz), class: "btn btn-default", remote: true
+      = f.submit 'Save', class: "btn btn-primary"

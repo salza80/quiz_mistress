@@ -1,0 +1,19 @@
+.quiz-start
+  .card.text-xs-center.card-outline-primary
+    .card-header.heading-bk
+      %h4.card-title
+        = @quiz.title
+    .card-block
+      = image_full @quiz.image, class: "img-fluid img-rounded img-thumbnail mx-auto d-block"
+      = img_reference(@quiz.image)
+    .card-block
+      .card-text
+        = @quiz.description
+    .card-footer.text-md-right
+      = link_to 'Edit', edit_client_quiz_path(@quiz), class: "btn btn-default"
+#questions
+  %h4 Questions
+  =link_to 'Add Questions', new_client_quiz_question_path(@quiz), remote: :true, class: "btn btn-primary"
+  #question_form
+  #question_list
+    =render partial:'client/questions/question_list', locals: { questions: @quiz.questions }
