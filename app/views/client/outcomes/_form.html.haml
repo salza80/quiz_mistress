@@ -25,5 +25,5 @@
     =render partial:'image_form', locals: { f: ff }
   .actions.clearfix
     %span.pull-right
-      = link_to 'cancel', client_quiz_questions_path(@quiz), class: "btn btn-default", remote: true
+      = link_to 'cancel', client_quiz_outcomes_path(@quiz), class: "btn btn-default", remote: true
       = f.submit 'Save', class: "btn btn-primary"

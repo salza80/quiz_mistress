@@ -17,3 +17,9 @@
   #question_form
   #question_list
     =render partial:'client/questions/question_list', locals: { questions: @quiz.questions }
+#outcomes
+  %h4 Outcomes
+  =link_to 'Add Outcomes', new_client_quiz_outcome_path(@quiz), remote: :true, class: "btn btn-primary"
+  #outcome_form
+  #outcome_list
+    =render partial:'client/outcomes/outcome_list', locals: { outcomes: @quiz.outcomes }
