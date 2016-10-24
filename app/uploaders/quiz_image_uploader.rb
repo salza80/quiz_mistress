@@ -5,8 +5,12 @@ class QuizImageUploader < CarrierWave::Uploader::Base
   # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
-  # storage :fog
+  # storage :file
+  if Rails.env.production?
+    storage :fog
+  else
+    storage :file
+  end
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -15,8 +19,12 @@ class QuizImageUploader < CarrierWave::Uploader::Base
   # end
 
   def store_dir
-    "assets/images/quizzes/#{mounted_as}/#{model.id}"
-    # "assets/images/quizzes/#{model.imageable.url_name}"
+    if Rails.env.production?
+      "images/quizzes/#{mounted_as}/#{model.id}"
+    else
+      "assets/images/quizzes/#{mounted_as}/#{model.id}"
+    end 
+    
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
