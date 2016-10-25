@@ -17,7 +17,6 @@
 CarrierWave.configure do |config|
   config.storage    = :aws                        # required
   config.aws_credentials = {
-    provider:              'AWS',                        # required
     access_key_id:     ENV['AWS_KEY'],                        # required
     secret_access_key: ENV['AWS_SECRET'],                     # required
     region:                'us-west-1',                  # optional, defaults to 'us-east-1'
