@@ -61,7 +61,7 @@ class Client::QuizzesController < Client::ApplicationController
     end
 
     def quiz_params
-      params.require(:quiz).permit(:title, :description, :url_name, image_attributes:[:title,:image_file, :ref_title, :ref_url])
+      params.require(:quiz).permit(:title, :description, :url_name, image_attributes:[:title,:image_file,:remote_image_file_url, :ref_title, :ref_url])
       
     end
 

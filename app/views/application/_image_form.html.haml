@@ -1,23 +1,40 @@
-.border
+#image-form
   %h4 Main Image
   .form-group
     .col-sm-2
       = label_tag "Current Image"
     .col-sm-10
       = image_full f.object, class:"img-thumbnail"
-  .form-group
-    = f.label :image_file, class: "col-sm-2"
+  .form-group.clearfix
+    = label_tag "Upload Via", nil, class: "col-sm-2"
     .col-sm-10
-      = f.file_field :image_file, class: "form-control"
-  .form-group
-    = f.label :title, "Image Title", class: "col-sm-2"
-    .col-sm-10
-      = f.text_field :title, class: "form-control"
+      %ul.nav.nav-tabs
+        %li.nav-item
+          =link_to "Local File", "#file_upload", class:"nav-link active", "data-toggle": "tab", role:"tab"
+        %li.nav-item
+          =link_to "URL","#url_upload", class:"nav-link", "data-toggle": "tab", role:"tab"
+  .tab-content
+    .tab-pane.active{id:"file_upload"}
+      .form-group
+        = f.label :image_file, class: "col-sm-2"
+        .col-sm-10
+          = f.file_field :image_file, class: "form-control"
+      .form-group
+        = f.label :ref_url, "Source URL", class: "col-sm-2"
+        .col-sm-10
+          =f.url_field :ref_url, class: "form-control", placeholder: "http://www.example.com/test.jpg"
+    .tab-pane{id:"url_upload"}
+      .form-group
+        = f.label :remote_image_file_url, "Image Url", class: "col-sm-2"
+        .col-sm-10
+          = f.text_field :remote_image_file_url, class: "form-control", placeholder: "http://www.example.com/test.jpg"
   .form-group
     = f.label :ref_title, "Source Name", class: "col-sm-2"
     .col-sm-10
       = f.text_field :ref_title, class: "form-control"
   .form-group
-    = f.label :ref_url, "Source URL", class: "col-sm-2"
+    = f.label :title, "Image Title", class: "col-sm-2"
     .col-sm-10
-      =f.url_field :ref_url, class: "form-control", placeholder: "http://www.example.com/test.jpg"
+      = f.text_field :title, class: "form-control"
+
+

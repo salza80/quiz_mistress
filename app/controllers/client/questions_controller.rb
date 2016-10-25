@@ -66,6 +66,6 @@ class Client::QuestionsController < Client::ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:id, :title, :description, :order_by, image_attributes:[:id, :title,:image_file, :ref_title, :ref_url], answers_attributes:[:id,:title, :points, :order_by, :_destroy])
+      params.require(:question).permit(:id, :title, :description, :order_by, image_attributes:[:id, :title,:image_file,:remote_image_file_url, :ref_title, :ref_url], answers_attributes:[:id,:title, :points, :order_by, :_destroy])
     end
 end

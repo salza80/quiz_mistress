@@ -1,6 +1,7 @@
 class Client::QuestionForm  < Reform::Form
   include Reform::Form::ActiveRecord
   include Reform::Form::ActiveModel::ModelReflections
+  include Client::ImageForm
 
   model :Question
   property :title
@@ -8,13 +9,7 @@ class Client::QuestionForm  < Reform::Form
   property :order_by
   validates :title, :order_by, presence: true
   
-  property :image, populator: :image! do
-    property :title
-    property :image_file
-    property :ref_url
-    property :ref_title
-  end
-
+  
   AnswerPopulator = -> (options) {
     fragment, collection, index = options[:fragment], options[:model], options[:index]
 
@@ -37,14 +32,6 @@ class Client::QuestionForm  < Reform::Form
     property :title
     property :points
     validates :title, :points,  presence: true
-  end
-
-  def image
-    super or Image.new()
-  end
-
-  def image!(fragment:, **)
-    model.image ? model.image : self.image = model.build_image
   end
 
 end

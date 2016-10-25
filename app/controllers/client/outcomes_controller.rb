@@ -66,6 +66,6 @@ class Client::OutcomesController < Client::ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def outcome_params
-      params.require(:outcome).permit(:id, :title, :description, :percentage_to, image_attributes:[:id, :title,:image_file, :ref_title, :ref_url])
+      params.require(:outcome).permit(:id, :title, :description, :percentage_to, image_attributes:[:id, :title,:image_file, :remote_image_file_url,:ref_title, :ref_url])
     end
 end
