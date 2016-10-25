@@ -7,7 +7,8 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # Choose what kind of storage to use for this uploader:
   # storage :file
   if Rails.env.production?
-    storage :fog
+    # storage :fog
+    storage :aws
   else
     storage :file
   end

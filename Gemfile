@@ -38,7 +38,8 @@ gem 'remotipart', '~> 1.2'
 gem 'reform'
 gem 'cocoon'
 gem "reform-rails"
-gem "fog-aws"
+gem 'carrierwave-aws'
+# gem "fog-aws"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
