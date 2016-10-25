@@ -1,6 +1,9 @@
 .pull-right
   %ul.nav.navbar-nav
     -if current_user
+      %li.nav-item
+        = link_to edit_user_registration_path, class: 'nav-link'  do
+          = image_tag current_user.avatar.url, alt: current_user.name, class: 'img', height: 50, width:50
       %li.nav-item=link_to 'Logout', destroy_user_session_path, :method => :delete, class: 'nav-link'
     -else
       %li.nav-item=link_to 'Register', new_user_registration_path, class: 'nav-link'

@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  mount_uploader :avatar, AvatarUploader
   PROVIDERS = {
     facebook: 'Facebook'
   }
@@ -18,8 +19,8 @@ class User < ApplicationRecord
       user = User.new
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
-      #user.name = auth.info.name
-      #user.image = auth.info.image # assuming the user model has an image
+      user.name = auth.info.name
+      user.remote_avatar_url = auth.info.image.gsub('http://','https://')
       user.skip_confirmation!
       user.save!
       user = register_oauth_with_matching_email(auth)
