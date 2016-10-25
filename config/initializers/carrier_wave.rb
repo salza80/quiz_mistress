@@ -25,7 +25,7 @@ CarrierWave.configure do |config|
     # endpoint:              'https://s3-us-west-1.amazonaws.com' # optional, defaults to nil
   }
   config.aws_bucket  = ENV['AWS_DIR']                          # required
-  config.aws_acl     = false                                        # optional, defaults to true
+  config.aws_acl     = 'public-read'                                        # optional, defaults to true
   config.aws_authenticated_url_expiration = 60 * 60 * 24 * 7
   config.aws_attributes = {
     expires: 1.week.from_now.httpdate,
