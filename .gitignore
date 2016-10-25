@@ -20,7 +20,7 @@ config/database.yml
 
 /public/assets/*
 /public/uploads
-!/public/assets/images/quizzes/fallback.jpg
+!/public/assets/images/defaults/*
 
 
 node_modules
