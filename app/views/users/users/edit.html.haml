@@ -1,0 +1,14 @@
+%h2
+  Edit Details
+= form_for(@user, url: users_url, html: { method: :put }) do |f|
+  .form-group
+    = image_tag f.object.avatar.url, alt: f.object.name, class: 'img rounded-circle', height: 50, width:50
+  .form-group
+    = f.label :avatar, 'Change Avatar'
+    = f.file_field :avatar, class: "form-control"
+  .form-group
+    = f.label :name
+    = f.text_field :name, autofocus: true, class: 'form-control'
+  .actions
+    = f.submit "Save", class: 'btn btn-primary'
+

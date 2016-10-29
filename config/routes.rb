@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
-   devise_for :users, path: 'profile',  controllers: { omniauth_callbacks: "users/omniauth_callbacks", sessions: 'users/sessions', registrations: 'users/registrations', passwords: 'users/passwords', confirmations: 'users/confirmations' }
+  devise_for :users, path: 'profile',  controllers: { omniauth_callbacks: "users/omniauth_callbacks", sessions: 'users/sessions', registrations: 'users/registrations', passwords: 'users/passwords', confirmations: 'users/confirmations' }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  scope 'profile', module: :users do
+    resource :users, only: [:edit, :update]
+  end
+
   root 'quizzes#index'
+
   resources :quizzes, only: [:index, :show] , param: :url_name do
     resources :outcomes, only: [:show], param: :result_code
   end
