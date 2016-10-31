@@ -5,7 +5,6 @@ class Client::OutcomesController < Client::ApplicationController
   def new
     @quiz = find_quiz
     @outcome_form = Client::OutcomeForm.new(@quiz.outcomes.new)
-    # @outcome_form.prepopulate!
   end
 
   def index
@@ -56,7 +55,7 @@ class Client::OutcomesController < Client::ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def find_quiz
-      Quiz.find(params[:quiz_id])
+      current_user.quizzes.find_by(url_name:params[:quiz_id])
     end
 
     def set_outcome

@@ -4,7 +4,7 @@ class Client::QuizzesController < Client::ApplicationController
 
 
   def index
-    @quizzes = Quiz.all
+    @quizzes = current_user.quizzes.all
   end
 
   def new
@@ -23,6 +23,7 @@ class Client::QuizzesController < Client::ApplicationController
   def create
     quiz = Quiz.new
     quiz.build_image
+    quiz.user = current_user
     @quiz_form = Client::QuizForm.new(quiz)
 
     if @quiz_form.validate(quiz_params)
@@ -57,7 +58,7 @@ class Client::QuizzesController < Client::ApplicationController
 
   private
     def set_quiz
-      @quiz = Quiz.find(params[:id])
+      @quiz = current_user.quizzes.find_by(url_name:params[:id])
     end
 
     def quiz_params

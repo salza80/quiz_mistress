@@ -9,9 +9,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,  :confirmable
   devise :omniauthable, :omniauth_providers => [:facebook]
   has_many :providers, dependent: :destroy
+  has_many :quizzes, dependent: :nullify
 
   def self.from_omniauth(auth)
-    puts auth
     provider = Provider.find_by(provider:auth.provider, uid: auth.uid)
     return provider.user if provider
     user = register_oauth_with_matching_email(auth)

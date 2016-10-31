@@ -56,7 +56,7 @@ class Client::QuestionsController < Client::ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def find_quiz
-      Quiz.find(params[:quiz_id])
+      current_user.quizzes.find_by(url_name:params[:quiz_id])
     end
 
     def set_question

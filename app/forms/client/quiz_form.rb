@@ -6,6 +6,7 @@ class Client::QuizForm  < Reform::Form
   property :title
   property :description
   property :url_name
+  property :user_id
 
   def url_name=(value)
     super value.parameterize

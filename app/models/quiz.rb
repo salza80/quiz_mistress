@@ -2,6 +2,7 @@ class Quiz < ApplicationRecord
   has_many :questions, dependent: :destroy
   has_many :outcomes, dependent: :destroy
   has_one :image, as: :imageable, dependent: :destroy
+  belongs_to :user
   validates :title, :description, :url_name, presence: true
   validates_format_of :url_name, :without => /^\d/, :multiline => true, uniqueness:true
 
