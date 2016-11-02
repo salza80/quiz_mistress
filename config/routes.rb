@@ -18,7 +18,6 @@ Rails.application.routes.draw do
 
   scope 'manage', module: :client, as: 'client' do
     patch 'quizzes/:id/publish/', to: 'quizzes#publish', as: 'publish_quiz'
-    get 'quizzes/:id/preview' , to: 'quizzes#preview',  as: 'preview_quiz'
     resources :quizzes do
       resources :questions
       resources :outcomes

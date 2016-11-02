@@ -11,6 +11,10 @@
       .card-text
         = @outcome.description
     .card-footer.text-md-center
-      = button_tag 'Share on facebook!', style: 'button', onclick: "Social.share(this)", class:"btn btn-primary", data:{ 's-href': request.original_url, 's-redirect-url': quiz_url(@quiz) }
-      = link_to "Play Again!", @quiz, class: "btn"
+      -unless @preview
+        = button_tag 'Share on facebook!', style: 'button', onclick: "Social.share(this)", class:"btn btn-primary", data:{ 's-href': request.original_url, 's-redirect-url': quiz_url(@quiz) }
+      -if @preview
+        = link_to 'Play Again', quiz_path(@quiz, preview: true )
+      -else
+        = link_to "Play Again!", @quiz, class: "btn"
 

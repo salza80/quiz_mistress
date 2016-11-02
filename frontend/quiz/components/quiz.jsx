@@ -27,7 +27,7 @@ var Quiz = React.createClass({
   },
   componentDidMount: function() {
       this.unsubscribe = QuizStore.listen(this.onStoreChange);
-      QuizActions.Load(this.props.url_name)
+      QuizActions.Load(this.props.url_name, this.props.preview)
     },
   componentWillUnmount: function() {
     this.unsubscribe();

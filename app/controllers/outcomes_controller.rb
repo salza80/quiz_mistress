@@ -1,8 +1,10 @@
 class OutcomesController < ApplicationController
   before_action :set_outcome, only: [:show]
+  layout :set_layout, only:[:show] 
 
   
   def show
+      @preview = params[:preview] ? true : false
       points = ResultEncoder.new(params[:result_code]).decoded
       @quiz =  Quiz.published.find_by(url_name: params[:quiz_url_name])
       @result = @quiz.get_result_by_points(points)
@@ -26,5 +28,8 @@ class OutcomesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def quiz_params
       params.fetch(:outcome, {})
+    end
+    def set_layout
+      params['preview'] ? "client/application" : "application"
     end
 end

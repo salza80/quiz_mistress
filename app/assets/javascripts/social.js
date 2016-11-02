@@ -1,7 +1,6 @@
 
 (function() {
   this.Social || (this.Social = {});
-
   Social.share = function(btn){
     FB.ui({
     method: 'share',
@@ -11,5 +10,4 @@
     console.log(response)
   });
   }
-
 }).call(this);

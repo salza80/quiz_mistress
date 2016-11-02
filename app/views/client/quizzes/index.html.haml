@@ -14,7 +14,7 @@
             No Questions:
             = quiz.questions.count
           .col-md-2
-            = link_to 'Edit', client_quiz_path(quiz)
-            = link_to 'Preview', client_preview_quiz_path(quiz)
-            = link_to 'publish', client_publish_quiz_path(quiz), method: :patch, remote:true
+            = link_to 'Edit', client_quiz_path(quiz) 
+            = link_to 'Preview', quiz_path(quiz, preview:true)
+            = link_to 'Publish', client_publish_quiz_path(quiz), method: :patch, remote:true
             = link_to 'Remove', client_quiz_path(quiz), data: {confirm: 'Are you sure?'}, method: :delete

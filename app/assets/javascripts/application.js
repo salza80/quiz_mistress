@@ -15,8 +15,9 @@
 //= require turbolinks
 //= require bootstrap
 //= require fbAPI
-//= require social
 //= require cocoon
 //= require jquery.remotipart
+//= require social
+//= require general
 
 

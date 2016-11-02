@@ -445,7 +445,7 @@
 	  conponentWillMount: function conponentWillMount() {},
 	  componentDidMount: function componentDidMount() {
 	    this.unsubscribe = QuizStore.listen(this.onStoreChange);
-	    QuizActions.Load(this.props.url_name);
+	    QuizActions.Load(this.props.url_name, this.props.preview);
 	  },
 	  componentWillUnmount: function componentWillUnmount() {
 	    this.unsubscribe();
@@ -20199,25 +20199,32 @@
 	      return this.getQuestion();
 	    }else {return undefined;}
 	  },
-	  onLoad: function(url_name){
-	   backend.fetch('quizzes/' + url_name + '.json?')
-	    .then(this.onLoadCompleted)
-	    .catch( this.onLoadFailed );
+	  onLoad: function(url_name, preview){
+	    this.preview = preview
+	    backend.fetch('quizzes/' + url_name + '.json?')
+	      .then(this.onLoadCompleted)
+	      .catch( this.onLoadFailed );
 	  },
-	   onLoadCompleted: function(data){
-	      images = this.getImages(data)
-	      this.answers = [];
-	      this.data.title=data.title;
-	      this.data.url_name = data.url_name;
-	      this.questions = data.questions;
-	      this.current_question=0;
-	      this.data.question = this.getQuestion();
-	      this.trigger(this.data);
-	      Preload.preloadImages(images)
-	      .then(function(data){
+	  onLoadCompleted: function(data){
+	    images = this.getImages(data)
+	    this.answers = [];
+	    this.data.title=data.title;
+	    this.data.url_name = data.url_name;
+	    this.questions = data.questions;
+	    this.current_question=0;
+	    this.data.question = this.getQuestion();
+	    this.trigger(this.data);
+	    Preload.preloadImages(images)
+	    .then(function(data){
 	       // console.log('imagesloaded')
-	      })
-	      .catch(function(){console.log("error")})
+	    })
+	    .catch(function(){console.log("error")})
+	  },
+	  getPreviewParam: function(){
+	    if(this.preview){
+	      return 'preview=true'
+	    }
+	    return ''
 	  },
 	  getImages: function(data){
 	    var images = [];
@@ -20229,8 +20236,8 @@
 	    return images;
 	  },
 	  finishQuiz: function(){
-	    console.log(this.answers)
-	    backend.updateJSON('quizzes/' + this.data.url_name + '.json?', 
+	    
+	    backend.updateJSON('quizzes/' + this.data.url_name + '.json?' + this.getPreviewParam(), 
 	    {
 	      result: {
 	        answers: this.answers
