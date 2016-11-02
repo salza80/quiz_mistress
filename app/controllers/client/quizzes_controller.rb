@@ -1,6 +1,6 @@
 class Client::QuizzesController < Client::ApplicationController
   before_action :authenticate_user!
-  before_action :set_quiz, only: [:show, :edit, :update, :destroy, :publish]
+  before_action :set_quiz, only: [:show, :edit, :update, :destroy, :publish,:preview]
 
 
   def index
@@ -9,6 +9,10 @@ class Client::QuizzesController < Client::ApplicationController
 
   def new
     @quiz_form = Client::QuizForm.new(Quiz.new)
+  end
+
+  def preview
+
   end
 
   def show

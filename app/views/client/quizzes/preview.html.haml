@@ -10,9 +10,10 @@
       .card-text
         = @quiz.description
     .card-footer.text-xs-center
-      = link_to "Play Now", @quiz, remote:true, class: "btn btn-success"
+      = link_to "Play Now", @quiz, remote:true, class: "btn btn-success",
+        data:{ toggle:"collapse", target:".start-quiz"}
       = button_tag 'share on facebook', style: 'button', onclick: "Social.share(this)", class:"btn btn-primary", data:{ 's-href': quiz_url(@quiz) , 's-redirect-url': quiz_url(@quiz) }
 
-= content_tag :div, nil, id: "renderer", class: 'hidden', data: {props: {url_name: @quiz.url_name}}
+= content_tag :div, nil, id: "renderer", class: "collapse start-quiz", data: {props: {url_name: @quiz.url_name}}
 = javascript_include_tag 'bundles/quiz-bundle'
 

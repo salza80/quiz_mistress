@@ -16,7 +16,6 @@ class Quiz < ApplicationRecord
     input.to_i == 0 ? where(url_name:input).first : super
   end
 
-
   def max_points
     total = 0
     questions.each do |q|
