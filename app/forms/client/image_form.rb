@@ -17,7 +17,6 @@ module Client::ImageForm
 
     def image!(fragment:, **)
       fragment[:ref_url] = fragment[:remote_image_file_url] if !fragment[:remote_image_file_url].empty?
-      puts fragment.inspect
       model.image ? model.image : self.image = model.build_image
     end
   end

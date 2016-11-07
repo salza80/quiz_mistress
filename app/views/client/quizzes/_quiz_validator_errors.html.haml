@@ -1,0 +1,24 @@
+#quiz_errors.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4#myModalLabel.modal-title Quiz Validation Errors
+      .modal-body
+        %p The following errors need to be fixed before the quiz can be published:
+        - if quiz_validator.errors.any?
+          #error_explanation
+            %h4= "#{pluralize(quiz_validator.errors.count, "errors")}:"
+            %ul
+              - quiz_validator.errors.full_messages.each do |msg|
+                %li= msg
+        - quiz_validator.questions.each do |q|
+          - if q.errors.any?
+            #error_explanation
+              %h4= "#{pluralize(q.errors.count, "errors for question #{q.question.order_by}")}:"
+              %ul
+                - q.errors.full_messages.each do | msg |
+                  %li= msg
+      .modal-footer
+        %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Close

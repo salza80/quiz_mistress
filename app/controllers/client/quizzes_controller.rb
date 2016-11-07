@@ -16,8 +16,10 @@ class Client::QuizzesController < Client::ApplicationController
   end
 
   def publish
-    @publish = Publishers::Quiz.new(@quiz)
-    @publish.publish
+    @quiz_validator = Validators::QuizValidator.new(@quiz)
+    if @quiz_validator.valid?
+      @quiz_validator.publish
+    end
   end
 
   def create

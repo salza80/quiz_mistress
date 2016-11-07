@@ -1,1 +1,7 @@
-alert("<%= escape_javascript(render partial: 'errors') %>")
+var errors = $("<%= escape_javascript(render partial: 'quiz_validator_errors', locals: {quiz_validator: @quiz_validator}) %>")
+// console.log(errors)
+// console.log($("<div id='quiz_errors'></div>").append(errors))
+$('#quiz_errors_wrapper').remove();
+$('body').append($("<div id='quiz_errors_wrapper'></div>").append(errors))
+console.log($('#quiz_errors'))
+$('#quiz_errors ').modal();
