@@ -32,6 +32,25 @@ module ApplicationHelper
     image_tag(image.image_file.url, opts)
   end
 
-
-
+  def modal_alert(opts={}, &block)
+    opts[:id] = "modal" unless opts[:id]
+    opts[:title] = "" unless opts[:title]
+    content = capture(&block)  
+    content_tag(:div, class: ["modal", "fade"], id: opts[:id], "aria-hidden": "true", "aria-labelledby": "myModalLabel", role: "dialog", tabindex: "-1"  ) do
+      content_tag(:div,class: "modal-dialog", role:"document") do
+        content_tag(:div, class:"modal-content") do
+          content_tag(:div, class:"modal-header") do
+            content_tag(:button, class:"close","aria-label": "Close", "data-dismiss": "modal", type: "button") do
+              content_tag(:span, "x", "aria-hidden": "true" )
+            end +
+            content_tag(:h4, opts[:title], class:"modal-title", id: "myModalLabel" )
+          end +
+          content_tag(:div, content, class:"modal-body")  +
+          content_tag(:div, class:"modal-footer") do
+            content_tag(:button,"Close", class: "btn btn-secondary", "data-dismiss": "modal", type: "button")
+          end
+        end
+      end
+    end
+  end
 end
