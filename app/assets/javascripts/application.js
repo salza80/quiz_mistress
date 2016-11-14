@@ -17,6 +17,7 @@
 //= require fbAPI
 //= require cocoon
 //= require jquery.remotipart
+//= require jquery.scrollTo.min
 //= require social
 //= require general
 

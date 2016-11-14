@@ -1,16 +1,4 @@
 .question-list
   %ul.list-group
     - questions.each do |question|
-      %li.list-group-item.list-group-item-action
-        %div{ id:"question_#{question.id}" }
-          .row
-            .col-md-2
-              = image_full question.image
-            .col-md-4
-              = question.title
-            .col-md-4
-              No Answers:
-              = question.answers.count
-            .col-md-2
-              = link_to 'Edit', edit_client_quiz_question_path(question.quiz,question), remote: true
-              = link_to 'Remove', client_quiz_question_path(question.quiz, question), data: {confirm: 'Are you sure?'}, method: :delete, remote: true
+      =render partial: 'client/questions/question_item', locals: {question: question}

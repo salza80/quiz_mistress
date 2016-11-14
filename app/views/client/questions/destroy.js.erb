@@ -1,1 +1,1 @@
-$("#question_list").html("<%= escape_javascript(render partial:'question_list', locals: { questions: @quiz.questions })%>")
+General.replaceContentWithFade("#question_list", "<%= escape_javascript(render partial:'question_list', locals: { questions: @quiz.questions })%>")

@@ -42,8 +42,8 @@ class Client::OutcomesController < Client::ApplicationController
     else
       # handle validation errors.
     end
-    @quiz = find_quiz
     @outcome_form.prepopulate!
+    @outcome = @outcome_form.model
   end
 
   def destroy

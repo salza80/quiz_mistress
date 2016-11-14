@@ -43,8 +43,9 @@ class Client::QuestionsController < Client::ApplicationController
     else
       # handle validation errors.
     end
-    @quiz = find_quiz
+    # @quiz = find_quiz
     @question_form.prepopulate!
+    @question = @question_form.model
   end
 
   def destroy

@@ -1,0 +1,9 @@
+-if @quiz_validator.valid?
+  var quiz = $("#{ escape_javascript(render( partial: 'quiz_item', locals: {quiz: @quiz_validator.quiz}))}")
+  General.replaceWithFade('#quiz_#{@quiz_validator.quiz.id}',quiz)
+- else
+  var errors = $("<%= escape_javascript(render partial: 'quiz_validator_errors', locals: {quiz_validator: @quiz_validator}) %>")
+  $('#quiz_errors_wrapper').remove();
+  $('body').append($("<div id='quiz_errors_wrapper'></div>").append(errors))
+  $('#quiz_errors ').modal();
+

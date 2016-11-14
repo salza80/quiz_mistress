@@ -1,3 +1,3 @@
-$('<%= "#question_#{@question.id}" %>').html("<%= escape_javascript(render partial: 'form') %>");
-  
+General.replaceContentWithFade('<%= "#question_#{@question.id}" %>', "<%= escape_javascript(render partial: 'form') %>")
+
   
