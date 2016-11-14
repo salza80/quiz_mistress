@@ -1,7 +1,6 @@
 -if @quiz_validator.valid?
   var quiz = $("#{ escape_javascript(render( partial: 'quiz_item', locals: {quiz: @quiz_validator.quiz}))}")
   General.replaceWithFade('#quiz_#{@quiz_validator.quiz.id}',quiz)
-  alert('here')
 - else
   var errors_modal = $("#{ escape_javascript(render partial: 'quiz_validator_errors', locals: {quiz_validator: @quiz_validator}) }")
   console.log(errors_modal)

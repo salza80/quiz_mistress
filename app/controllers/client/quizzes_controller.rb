@@ -1,6 +1,6 @@
 class Client::QuizzesController < Client::ApplicationController
   before_action :authenticate_user!
-  before_action :set_quiz, only: [:show, :edit, :update, :destroy, :publish]
+  before_action :set_quiz, only: [:show, :edit, :update, :destroy, :publish, :unpublish]
 
 
   def index
@@ -20,6 +20,10 @@ class Client::QuizzesController < Client::ApplicationController
     if @quiz_validator.valid?
       @quiz_validator.publish
     end
+  end
+
+  def unpublish
+    @quiz.update_attribute(:status, :draft)
   end
 
   def create
