@@ -27,6 +27,9 @@ General.replaceContentWithFade = function(selector, replace){
 
 General.showFormErrors=function(modelName, formSelector, errors){
   form = $(formSelector)
+  console.log(form)
+  console.log(modelName)
+  console.log(errors)
   $.each(errors, function(field, messages){
     if(messages.length == 0){return true;}
     var input = form.find('input, select, textarea').filter(function(){
@@ -35,13 +38,17 @@ General.showFormErrors=function(modelName, formSelector, errors){
         return name.match(new RegExp(modelName + '\\[' + field + '\\(?'))
       }
     })
-    if(input.length ==0){return true;}
+    if(input.length ==0){return form;}
     input.closest('.form-group').addClass('has-warning')
     input.addClass('form-control-warning')
+
     $.each(messages, function(index,message){
+      console.log(messages)
        input.parent().append($("<div style='margin-bottom:10px' class='form-control-feedback'></div>").html(message))
     })
   })
+
+  return form
 }
 
 

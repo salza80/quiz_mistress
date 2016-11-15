@@ -26,7 +26,7 @@ class Client::QuestionsController < Client::ApplicationController
       @question_form.save 
       @quiz.reload
      else
-      # handle validation errors.
+      render :new
     end
     
   end
@@ -40,12 +40,13 @@ class Client::QuestionsController < Client::ApplicationController
     @question_form = Client::QuestionForm.new(@question)
     if @question_form.validate(question_params)
       @question_form.save 
+      # @quiz = find_quiz
+      @question_form.prepopulate!
+      @question = @question_form.model
     else
-      # handle validation errors.
+      render :edit
     end
-    # @quiz = find_quiz
-    @question_form.prepopulate!
-    @question = @question_form.model
+    
   end
 
   def destroy

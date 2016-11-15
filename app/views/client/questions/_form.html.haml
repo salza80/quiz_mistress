@@ -3,12 +3,7 @@
     %h3 Edit Question
   -else
     %h3 New Question
-  - if @question_form.errors.any?
-    #error_explanation
-      %h4= "#{pluralize(@question_form.errors.count, "Fehler")}:"
-      %ul
-        - @question_form.errors.full_messages.each do |msg|
-          %li= msg
+  = render partial: 'form_errors_base', locals: {errors: @question_form.errors}
   .form-group
     = f.label :title, class: "col-sm-2"
     .col-sm-10
