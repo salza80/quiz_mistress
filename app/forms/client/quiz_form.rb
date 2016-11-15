@@ -1,3 +1,4 @@
+require "reform/form/validation/unique_validator"
 class Client::QuizForm  < Reform::Form
   include Reform::Form::ActiveRecord
   include Client::ImageForm
@@ -12,8 +13,8 @@ class Client::QuizForm  < Reform::Form
     super value.parameterize
   end
 
-  # validates :title, :description, :url_name, presence: true
-  # validates_format_of :url_name, :without => /^\d/, :multiline => true
-  # validates :url_name, unique: true
-  # validates_presence_of :image
+  validates :title, :description, :url_name, presence: true
+  validates :url_name, format:{ without: /^\d/, multiline: true, message: "can't begin with a number"}
+  validates :url_name, unique: true
+
 end

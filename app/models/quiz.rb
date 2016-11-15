@@ -4,7 +4,8 @@ class Quiz < ApplicationRecord
   has_one :image, as: :imageable, dependent: :destroy
   belongs_to :user
   validates :title, :description, :url_name, presence: true
-  validates_format_of :url_name, :without => /^\d/, :multiline => true, uniqueness:true
+  validates :url_name, format:{ without: /^\d/, multiline: true, message: "can't begin with a number"}
+  # validates :url_name, uniqueness:true
 
   enum status: { draft:0, published:1 }
  

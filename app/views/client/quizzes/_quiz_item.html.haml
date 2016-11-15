@@ -10,8 +10,6 @@
     .col-md-2
       = quiz.status
     .col-md-2
-      
-      
       -if quiz.published?
         = link_to 'View', quiz_path(quiz), :target => '_blank' 
         = link_to 'Unpublish', client_unpublish_quiz_path(quiz), method: :patch, remote:true

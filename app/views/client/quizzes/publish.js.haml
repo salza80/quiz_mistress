@@ -3,7 +3,6 @@
   General.replaceWithFade('#quiz_#{@quiz_validator.quiz.id}',quiz)
 - else
   var errors_modal = $("#{ escape_javascript(render partial: 'quiz_validator_errors', locals: {quiz_validator: @quiz_validator}) }")
-  console.log(errors_modal)
   $('#quiz_errors').remove();
   $('body').append(errors_modal)
   $('#quiz_errors').modal();

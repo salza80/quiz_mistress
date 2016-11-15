@@ -25,6 +25,18 @@ General.replaceContentWithFade = function(selector, replace){
   });
 }
 
+General.showFormErrors=function(modelName, form, errors){
+  $.each(errors, function(field, messages){
+    var input = $(form).find('input, select, textarea').filter(function(){
+      var name = $(this).attr('name')
+      if(name !==undefined){
+        name.match(new RegExp(model_name + '\\[' + field + '\\(?'))
+      }
+    })
+    input.closest('.form-group').addClass('danger')
+  })
+}
+
 
 
 
