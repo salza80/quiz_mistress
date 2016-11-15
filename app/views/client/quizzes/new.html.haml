@@ -1,3 +1,6 @@
 %h3
   Create a new Quiz
 =render 'form'
+-if @quiz_form.errors.any?
+  :javascript
+    General.showFormErrors('quiz', '#new_quiz', #{@quiz_form.errors.to_json})

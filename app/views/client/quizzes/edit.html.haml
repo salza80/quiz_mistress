@@ -2,4 +2,7 @@
   Edit Quiz
 #quiz_form
   =render partial:'form'
+-if @quiz_form.errors.any?
+  :javascript
+    General.showFormErrors('quiz', '#edit_quiz', #{@quiz_form.errors.to_json})
 

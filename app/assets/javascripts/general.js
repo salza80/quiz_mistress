@@ -25,15 +25,22 @@ General.replaceContentWithFade = function(selector, replace){
   });
 }
 
-General.showFormErrors=function(modelName, form, errors){
+General.showFormErrors=function(modelName, formSelector, errors){
+  form = $(formSelector)
   $.each(errors, function(field, messages){
-    var input = $(form).find('input, select, textarea').filter(function(){
+    if(messages.length == 0){return true;}
+    var input = form.find('input, select, textarea').filter(function(){
       var name = $(this).attr('name')
       if(name !==undefined){
-        name.match(new RegExp(model_name + '\\[' + field + '\\(?'))
+        return name.match(new RegExp(modelName + '\\[' + field + '\\(?'))
       }
     })
-    input.closest('.form-group').addClass('danger')
+    if(input.length ==0){return true;}
+    input.closest('.form-group').addClass('has-warning')
+    input.addClass('form-control-warning')
+    $.each(messages, function(index,message){
+       input.parent().append($("<div style='margin-bottom:10px' class='form-control-feedback'></div>").html(message))
+    })
   })
 }
 

@@ -53,8 +53,6 @@ class Client::QuizzesController < Client::ApplicationController
     else
       render :edit
     end
-
-    
   end
 
   def destroy

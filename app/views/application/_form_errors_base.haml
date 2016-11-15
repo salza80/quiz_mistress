@@ -1,0 +1,8 @@
+- if errors.any?
+  #error_explanation.text-warning
+    %h4= "#{pluralize(errors.count, "error")}:" 
+
+- if errors[:base].any?
+  %ul
+    - errors[:base].full_messages.each do |msg|
+      %li= msg

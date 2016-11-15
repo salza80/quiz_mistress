@@ -1,10 +1,5 @@
-= form_for [:client, @quiz_form],html:{ multipart: :true }, authenticity_token: true, class: 'project', remote: @quiz_form.persisted? do |f|
-  - if @quiz_form.errors.any?
-    #error_explanation
-      %h4= "#{pluralize(@quiz_form.errors.count, "errors")}:"
-      %ul
-        - @quiz_form.errors.full_messages.each do |msg|
-          %li= msg
+= form_for [:client, @quiz_form],html:{ multipart: :true }, authenticity_token: true, class: 'project' do |f|
+  = render partial: 'form_errors_base', locals: {errors: @quiz_form.errors}
   .form-group
     = f.label :title, class: "col-sm-2"
     .col-sm-10
