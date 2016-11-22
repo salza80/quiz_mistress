@@ -3,7 +3,7 @@ class Client::QuizForm  < Reform::Form
   include Reform::Form::ActiveRecord
   include Client::ImageForm
 
-  model :Quiz
+  model :quiz
   property :title
   property :description
   property :url_name

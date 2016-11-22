@@ -1,2 +1,3 @@
-var f = General.showFormErrors('question', "<%= escape_javascript(render partial: 'form') %>", <%=@question_form.errors.to_json.html_safe %>)
-General.replaceContentWithFade("#question_form",f)
+//var f = General.showFormErrors('question', "<%= escape_javascript(render partial: 'form') %>", <%=@question_form.errors.to_json.html_safe %>)
+General.replaceContentWithFade("#new_question","<%= escape_javascript(render partial: 'form') %>")
+

@@ -1,14 +1,9 @@
-= form_for [:client, @quiz, @outcome_form], html:{ multipart: :true }, authenticity_token: true, class: 'project', remote: true  do |f|
+= form_for [:client, @quiz, @outcome_form], html:{ multipart: :true, id: "outcome_form" }, authenticity_token: true, remote: true  do |f|
   -if @outcome_form.persisted?
     %h3 Edit Outcome
   -else
     %h3 New Outcome
-  - if @outcome_form.errors.any?
-    #error_explanation
-      %h4= "#{pluralize(@outcome_form.errors.count, "Errors")}:"
-      %ul
-        - @outcome_form.errors.full_messages.each do |msg|
-          %li= msg
+  = render partial: 'form_errors_base', locals: {the_model: @outcome_form, form_id: "outcome_form"}
   .form-group
     = f.label :title, class: "col-sm-2"
     .col-sm-10

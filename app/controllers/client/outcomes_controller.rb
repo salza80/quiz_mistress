@@ -25,7 +25,7 @@ class Client::OutcomesController < Client::ApplicationController
       @outcome_form.save 
       @quiz.reload
      else
-      # handle validation errors.
+      render :new
     end
     
   end
@@ -38,12 +38,12 @@ class Client::OutcomesController < Client::ApplicationController
   def update
     @outcome_form = Client::OutcomeForm.new(@outcome)
     if @outcome_form.validate(outcome_params)
-      @outcome_form.save 
+      @outcome_form.save
+      @outcome_form.prepopulate!
+      @outcome = @outcome_form.model
     else
-      # handle validation errors.
+      render :edit
     end
-    @outcome_form.prepopulate!
-    @outcome = @outcome_form.model
   end
 
   def destroy

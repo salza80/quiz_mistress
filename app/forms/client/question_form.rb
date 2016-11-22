@@ -4,11 +4,11 @@ class Client::QuestionForm  < Reform::Form
   include Reform::Form::ActiveModel::ModelReflections
   include Client::ImageForm
 
-  model :Question
+  model :question
   property :title
   property :description
   property :order_by
-  validates :title, :order_by, presence: true
+  validates :title, :description, :order_by, presence: true
   validates :title, unique: true
   
   

@@ -1,4 +1,6 @@
-.outcome-list
-  %ul.list-group
-    - outcomes.each do |outcome|
-      = render partial: 'client/outcomes/outcome_item', locals: { outcome: outcome}
+#new_outcome
+#outcome_list
+  .outcome-list
+    %ul.list-group
+      - outcomes.each do |outcome|
+        = render partial: 'client/outcomes/outcome_item', locals: { outcome: outcome}

@@ -1,4 +1,6 @@
-.question-list
-  %ul.list-group
-    - questions.each do |question|
-      =render partial: 'client/questions/question_item', locals: {question: question}
+#new_question
+#question_list
+  .question-list
+    %ul.list-group
+      - questions.each do |question|
+        =render partial: 'client/questions/question_item', locals: {question: question}

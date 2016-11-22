@@ -1,5 +1,5 @@
-= form_for [:client, @quiz_form],html:{ multipart: :true }, authenticity_token: true, class: 'project' do |f|
-  = render partial: 'form_errors_base', locals: {errors: @quiz_form.errors}
+= form_for [:client, @quiz_form],html:{ multipart: :true, id: "quiz_form" }, authenticity_token: true, class: 'project' do |f|
+  = render partial: 'form_errors_base', locals: {the_model: @quiz_form, form_id: "quiz_form"}
   .form-group
     = f.label :title, class: "col-sm-2"
     .col-sm-10

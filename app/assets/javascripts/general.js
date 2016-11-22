@@ -31,9 +31,12 @@ General.showFormErrors=function(modelName, formSelector, errors){
   console.log(modelName)
   console.log(errors)
   $.each(errors, function(field, messages){
+    console.log(field)
     if(messages.length == 0){return true;}
+    console.log(form.find('input'))
     var input = form.find('input, select, textarea').filter(function(){
       var name = $(this).attr('name')
+      console.log(name)
       if(name !==undefined){
         return name.match(new RegExp(modelName + '\\[' + field + '\\(?'))
       }
@@ -43,8 +46,7 @@ General.showFormErrors=function(modelName, formSelector, errors){
     input.addClass('form-control-warning')
 
     $.each(messages, function(index,message){
-      console.log(messages)
-       input.parent().append($("<div style='margin-bottom:10px' class='form-control-feedback'></div>").html(message))
+      input.parent().append($("<div style='margin-bottom:10px' class='form-control-feedback'></div>").html(message))
     })
   })
 
