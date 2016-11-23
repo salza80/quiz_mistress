@@ -19,6 +19,7 @@
 //= require jquery.remotipart
 //= require jquery.scrollTo.min
 //= require social
+//= require utility
 //= require general
 
 

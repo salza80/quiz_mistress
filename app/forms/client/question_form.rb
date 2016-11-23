@@ -1,6 +1,6 @@
 require "reform/form/validation/unique_validator"
 class Client::QuestionForm  < Reform::Form
-  include Reform::Form::ActiveRecord
+  # include Reform::Form::ActiveRecord
   include Reform::Form::ActiveModel::ModelReflections
   include Client::ImageForm
 
@@ -9,7 +9,6 @@ class Client::QuestionForm  < Reform::Form
   property :description
   property :order_by
   validates :title, :description, :order_by, presence: true
-  validates :title, unique: true
   
   
   AnswerPopulator = -> (options) {
@@ -34,6 +33,7 @@ class Client::QuestionForm  < Reform::Form
     property :title
     property :points
     validates :title, :points,  presence: true
+    validates :title, unique: true
   end
 
 end

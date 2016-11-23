@@ -32,12 +32,15 @@ General.showFormErrors=function(modelName, formSelector, errors){
   console.log(errors)
   $.each(errors, function(field, messages){
     console.log(field)
+    field=Util.replaceAll(field,".",".*")
+    console.log(field)
     if(messages.length == 0){return true;}
     console.log(form.find('input'))
     var input = form.find('input, select, textarea').filter(function(){
       var name = $(this).attr('name')
       console.log(name)
       if(name !==undefined){
+        console.log(modelName + '\\[' + field + '\\(?')
         return name.match(new RegExp(modelName + '\\[' + field + '\\(?'))
       }
     })

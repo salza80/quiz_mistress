@@ -1,5 +1,5 @@
 class Client::OutcomeForm  < Reform::Form
-  include Reform::Form::ActiveRecord
+  # include Reform::Form::ActiveRecord
   include Reform::Form::ActiveModel::ModelReflections
   include Client::ImageForm
 

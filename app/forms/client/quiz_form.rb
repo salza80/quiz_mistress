@@ -1,6 +1,5 @@
 require "reform/form/validation/unique_validator"
 class Client::QuizForm  < Reform::Form
-  include Reform::Form::ActiveRecord
   include Client::ImageForm
 
   model :quiz
