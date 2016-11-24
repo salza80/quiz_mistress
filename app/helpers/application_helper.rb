@@ -53,4 +53,48 @@ module ApplicationHelper
       end
     end
   end
+
+  def display_errors(the_model,form_id,opts={})
+
+    return unless the_model.errors.any?
+    model_name = the_model.model_name.name.downcase
+    errors= []
+    errors << {model: model_name, errors: the_model.errors.to_json}
+    nested = the_model.public_methods.map{|m| m.to_s.chomp("=")  if m.to_s.ends_with?("attributes=") }.compact
+    nested.each do |att_field|
+      field = att_field.chomp("_attributes")
+      nested_forms = the_model.send(field)
+      next unless nested_forms.kind_of?(Array)
+      nested_forms.each_index do | i |
+        errors << {model: model_name + "\\[" + att_field + "\\]\\[" + i.to_s + "\\]", errors:  nested_forms[i].errors.to_json}
+      end
+    end
+
+    errors = JSON.generate(errors)
+    content_tag(:div, id: "errors", "data-form-selector": "##{form_id}", "data-errors": errors) do
+      content_tag(:div, id:"error_explanation", class:"text-warning") do
+        content_tag(:h4) do
+          pluralize(the_model.errors.count, "error")
+        end +
+        if the_model.errors[:base].any?
+          content_tag(:ul) do
+            the_model.errors[:base].full_messages.collect do |msg|
+              concat(
+                content_tag(:li) do
+                  msg
+                end
+              )
+            end
+          end
+        end
+        content_tag(:script) do
+          p %{
+            $(function () {
+              General.doFormErrors()
+            });
+          }
+        end
+      end
+    end
+  end
 end

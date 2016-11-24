@@ -25,34 +25,31 @@ General.replaceContentWithFade = function(selector, replace){
   });
 }
 
+General.doFormErrors = function(){
+  var e = $("#errors")
+  jQuery.each(e.data("errors"), function(index){
+   General.showFormErrors(this.model,e.data("form-selector"),jQuery.parseJSON(this.errors))
+  });
+}
+
+  
 General.showFormErrors=function(modelName, formSelector, errors){
-  form = $(formSelector)
-  console.log(form)
-  console.log(modelName)
-  console.log(errors)
-  $.each(errors, function(field, messages){
-    console.log(field)
-    field=Util.replaceAll(field,".",".*")
-    console.log(field)
+  var form = $(formSelector)
+  $.each(errors, function(field, messages){   
     if(messages.length == 0){return true;}
-    console.log(form.find('input'))
     var input = form.find('input, select, textarea').filter(function(){
       var name = $(this).attr('name')
-      console.log(name)
       if(name !==undefined){
-        console.log(modelName + '\\[' + field + '\\(?')
         return name.match(new RegExp(modelName + '\\[' + field + '\\(?'))
       }
     })
     if(input.length ==0){return form;}
     input.closest('.form-group').addClass('has-warning')
     input.addClass('form-control-warning')
-
     $.each(messages, function(index,message){
-      input.parent().append($("<div style='margin-bottom:10px' class='form-control-feedback'></div>").html(message))
+      input.parent().append($("<div class='form-control-feedback'></div>").html(message))
     })
   })
-
   return form
 }
 

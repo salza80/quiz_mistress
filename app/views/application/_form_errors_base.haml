@@ -1,16 +1,21 @@
-- if the_model.errors.any?
-  #error_explanation.text-warning
-    %h4= "#{pluralize(the_model.errors.count, "error")}:" 
+= display_errors(the_model, form_id)
+-# - if the_model.errors.any?
+-#   #error_explanation.text-warning
+-#     %h4= "#{pluralize(the_model.errors.count, "error")}:" 
 
-- if the_model.errors[:base].any?
-  %ul
-    - the_model.errors[:base].full_messages.each do |msg|
-      %li= msg
+-# - if the_model.errors[:base].any?
+-#   %ul
+-#     - the_model.errors[:base].full_messages.each do |msg|
+-#       %li= msg
 
--if the_model.errors.any?
-  :javascript
-    $(function () {
-      General.showFormErrors("#{the_model.model.class.name.downcase}", "##{form_id}", #{the_model.errors.to_json})
-    });
+-# -if the_model.errors.any?
+-#   -errors << the_model.errors
+-#   -the_model.fields.each do |field|
+-#     -if field
+-#   :javascript
+-#     $(function () {
+-#       console.log(#{the_model.to_json})
+-#       General.showFormErrors("#{the_model.model.class.name.downcase}", "##{form_id}", #{the_model.errors.to_json})
+-#     });
     
 
