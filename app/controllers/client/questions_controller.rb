@@ -44,6 +44,7 @@ class Client::QuestionsController < Client::ApplicationController
       @question_form.prepopulate!
       @question = @question_form.model
     else
+    
       render :edit
     end
     

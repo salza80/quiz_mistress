@@ -28,8 +28,7 @@
           Points
         .col-md-1
       = f.fields_for :answers do |a|  
-        -if a.object.persisted?
-          =render partial: 'answer_form', locals: { f:a }
+        =render partial: 'answer_form', locals: { f:a }
       %li.answer.list-group-item.list-group-item-action.clearfix
         = link_to_add_association 'add answer', f, :answers, partial: 'answer_form',force_non_association_create: true, class: 'btn btn-primary pull-right', data_association_insertion_method: 'append'
   .actions.clearfix
