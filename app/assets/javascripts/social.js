@@ -1,5 +1,6 @@
 
 (function() {
+  console.log("social called")
   this.Social || (this.Social = {});
   Social.share = function(btn){
     FB.ui({
