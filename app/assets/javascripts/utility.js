@@ -1,4 +1,3 @@
-console.log("util")
 (function() {
   this.Util || (this.Util = {});
 
