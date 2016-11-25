@@ -28,7 +28,7 @@ class Client::QuestionForm  < Reform::Form
     end
   }
 
-  collection :answers, prepopulator: ->(*) { self.answers << Answer.new(order_by:1) }, populator: AnswerPopulator do
+  collection :answers, populator: AnswerPopulator do
     include NestedForm
     property :title
     property :points

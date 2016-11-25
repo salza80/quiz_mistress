@@ -1,6 +1,7 @@
 module Client::ImageForm
   extend ActiveSupport::Concern
 
+
   included do
     property :image, populator: :image! do
       property :title
@@ -8,6 +9,8 @@ module Client::ImageForm
       property :ref_url
       property :ref_title
       property :remote_image_file_url
+
+      validates :ref_title, unique: true
     end
 
 

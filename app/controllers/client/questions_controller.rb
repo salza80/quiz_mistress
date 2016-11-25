@@ -33,14 +33,13 @@ class Client::QuestionsController < Client::ApplicationController
 
   def edit
     @question_form = Client::QuestionForm.new(@question)
-    @question_form.prepopulate!
+    # @question_form.prepopulate!
   end
 
   def update
     @question_form = Client::QuestionForm.new(@question)
     if @question_form.validate(question_params)
       @question_form.save 
-      # @quiz = find_quiz
       @question_form.prepopulate!
       @question = @question_form.model
     else

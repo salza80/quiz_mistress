@@ -55,7 +55,6 @@ module ApplicationHelper
   end
 
   def display_errors(the_model,form_id,opts={})
-
     return unless the_model.errors.any?
     model_name = the_model.model_name.name.downcase
     errors= []
@@ -64,12 +63,15 @@ module ApplicationHelper
     nested.each do |att_field|
       field = att_field.chomp("_attributes")
       nested_forms = the_model.send(field)
-      next unless nested_forms.kind_of?(Array)
-      nested_forms.each_index do | i |
-        errors << {model: model_name + "\\[" + att_field + "\\]\\[" + i.to_s + "\\]", errors:  nested_forms[i].errors.to_json}
+      if nested_forms.kind_of?(Array)
+        nested_forms.each_index do | i |
+          next unless nested_forms[i].errors.any?
+          errors << {model: model_name + "\\[" + att_field + "\\]\\[" + i.to_s + "\\]", errors:  nested_forms[i].errors.to_json}
+        end
+      else
+        errors << {model: model_name + "\\[" + att_field + "\\]", errors:  nested_forms.errors.to_json}
       end
     end
-
     errors = JSON.generate(errors)
     content_tag(:div, id: "errors", "data-form-selector": "##{form_id}", "data-errors": errors) do
       content_tag(:div, id:"error_explanation", class:"text-warning") do
@@ -86,7 +88,7 @@ module ApplicationHelper
               )
             end
           end
-        end
+        end +
         content_tag(:script) do
           p %{
             $(function () {
