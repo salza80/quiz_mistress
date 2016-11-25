@@ -28,6 +28,9 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 
 gem 'haml'
+source 'https://rails-assets.org' do
+  gem 'rails-assets-tether', '>= 1.1.0'
+end
 gem 'bootstrap', '~> 4.0.0.alpha5'
 gem 'font-awesome-rails'
 gem 'meta-tags'
