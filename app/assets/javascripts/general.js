@@ -6,7 +6,7 @@
     $("#renderer").removeClass('hidden');
   }
 
-  var General = General || {};
+  this.General || (this.General = {});
 
   General.replaceWithFade = function (selector, replace){
     $(selector).fadeOut('slow', function(){

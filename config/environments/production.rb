@@ -20,7 +20,9 @@ Rails.application.configure do
 
   # Compress JavaScripts and CSS.
   # config.assets.js_compressor = :uglifier
-  config.assets.js_compressor = Uglifier.new(:mangle => false)
+
+  # sally - default :uglifier  was shortening js namespaces called in view js.
+  # config.assets.js_compressor = Uglifier.new(:mangle => false)
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
