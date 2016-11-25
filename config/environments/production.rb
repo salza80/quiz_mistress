@@ -19,7 +19,7 @@ Rails.application.configure do
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
   # Compress JavaScripts and CSS.
-  # config.assets.js_compressor = :uglifier
+  config.assets.js_compressor = :uglifier
 
   # sally - default :uglifier  was shortening js namespaces called in view js.
   # config.assets.js_compressor = Uglifier.new(:mangle => false)

@@ -42,7 +42,7 @@ gem 'reform', '~> 2.2'
 gem 'cocoon'
 gem "reform-rails"
 gem 'carrierwave-aws'
-# gem "fog-aws"
+# gem "fog-aws" 
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
