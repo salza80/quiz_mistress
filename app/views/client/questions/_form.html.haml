@@ -33,5 +33,5 @@
         = link_to_add_association 'add answer', f, :answers, partial: 'answer_form',force_non_association_create: true, class: 'btn btn-primary pull-right', data_association_insertion_method: 'append'
   .actions.clearfix
     %span.pull-right
-      = link_to 'cancel', client_quiz_questions_path(@quiz), class: "btn btn-default", remote: true
+      = link_to 'cancel', client_quiz_question_path(@quiz, @question_form.model), class: "btn btn-default", remote: true
       = f.submit 'Save', class: "btn btn-primary"

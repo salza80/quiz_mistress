@@ -3,8 +3,9 @@
     %button.navbar-toggler.pull-right.hidden-sm-up{"aria-controls" => "navCollapse", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navCollapse", "data-toggle" => "collapse", :type => "button"}
       \☰
     = link_to root_path, class: 'navbar-brand' do
-      %span.fa.fa-home
-        Quiz Mistress
+      %span.logo
+    = link_to root_path, class: 'navbar-brand' do
+      Quiz Mistress
     #navCollapse.collapse.navbar-collapse.navbar-toggleable-xs
       = render :partial => 'layouts/navmenu'
       = render :partial => 'layouts/login'

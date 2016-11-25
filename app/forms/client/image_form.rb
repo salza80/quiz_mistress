@@ -10,7 +10,6 @@ module Client::ImageForm
       property :ref_title
       property :remote_image_file_url
 
-      validates :ref_title, unique: true
     end
 
 

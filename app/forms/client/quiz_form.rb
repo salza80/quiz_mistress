@@ -14,7 +14,7 @@ class Client::QuizForm  < Reform::Form
 
   validates :title, :description, :url_name, presence: true
   validates :url_name, format:{ without: /^\d/, multiline: true, message: "can't begin with a number"}
-  # validates :url_name, unique: true
-  validates_uniqueness_of :url_name
+  validates :url_name, unique: true
+
 
 end

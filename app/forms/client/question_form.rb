@@ -33,7 +33,6 @@ class Client::QuestionForm  < Reform::Form
     property :title
     property :points
     validates :title, :points,  presence: true
-    validates :title, unique: true
   end
 
 end
