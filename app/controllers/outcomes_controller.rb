@@ -6,7 +6,7 @@ class OutcomesController < ApplicationController
   def show
       @preview = params[:preview] ? true : false
       points = ResultEncoder.new(params[:result_code]).decoded
-      @quiz =  Quiz.published.find_by(url_name: params[:quiz_url_name])
+      @quiz =  Quiz.find_by(url_name: params[:quiz_url_name])
       @result = @quiz.get_result_by_points(points)
       @outcome = @result[:outcome]
       set_tags(@quiz, @outcome)
