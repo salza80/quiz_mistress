@@ -33,7 +33,9 @@ class QuizImageUploader < CarrierWave::Uploader::Base
     # For Rails 3.1+ asset pipeline compatibility:
     # ActionController::Base.helpers.asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
   
-    "/assets/images/defaults/"  + [version_name, "fallback.jpg"].compact.join('_')
+    # "/assets/images/defaults/"  + [version_name, "fallback.jpg"].compact.join('_')
+    ActionController::Base.helpers.image_url("defaults/fallback.jpg")
+    # ActionController::Base.helpers.asset_path("images/defaults/" + [version_name, image_url("fallback.png")].compact.join('_'))
   end
 
   # Process files as they are uploaded:
