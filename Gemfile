@@ -36,12 +36,13 @@ gem 'font-awesome-rails'
 gem 'meta-tags'
 gem 'devise'
 gem 'omniauth-facebook'
-gem 'carrierwave', '>= 1.0.0.beta', '< 2.0'
+gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
 gem 'remotipart', '~> 1.2'
 gem 'reform', '~> 2.2'
 gem 'cocoon'
 gem "reform-rails"
 gem 'carrierwave-aws'
+gem "mini_magick"
 # gem "fog-aws" 
 
 # Use Capistrano for deployment

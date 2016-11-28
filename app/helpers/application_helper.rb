@@ -29,7 +29,13 @@ module ApplicationHelper
     return unless image
     opts[:class] = "img-fluid" unless opts[:class]
     opts[:alt] =image.title unless opts[:class]
-    image_tag(image.image_file.url, opts)
+    version = opts.delete(:version)
+
+    if version and image.image_file.respond_to? version
+      image_tag(image.image_file.send(version).url, opts)
+    else
+      image_tag(image.image_file.url, opts)
+    end
   end
 
   def modal_alert(opts={}, &block)
