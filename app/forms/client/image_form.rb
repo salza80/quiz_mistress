@@ -10,6 +10,8 @@ module Client::ImageForm
       property :ref_title
       property :remote_image_file_url
 
+      validates :image_file, file_size: {less_than: 3.megabytes}
+
     end
 
 

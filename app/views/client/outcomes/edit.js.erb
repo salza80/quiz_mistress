@@ -1,1 +1,6 @@
-General.replaceContentWithFade('<%= "#outcome_#{@outcome.id}" %>', "<%= escape_javascript(render partial: 'form') %>");
+<% if remotipart_submitted? %>
+  General.replaceContentWithFade('<%= "#outcome_#{@outcome.id}" %>', "<%= j "#{render partial: 'form'}" %>")
+<% else %>
+  General.replaceContentWithFade('<%= "#outcome_#{@outcome.id}" %>', "<%= escape_javascript(render partial: 'form') %>");
+<% end %>
+

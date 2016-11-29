@@ -1,1 +1,5 @@
-General.replaceContentWithFade('<%= "#question_#{@question.id}" %>', "<%= escape_javascript(render partial: 'form') %>")
+<% if remotipart_submitted? %>
+    General.replaceContentWithFade('<%= "#question_#{@question.id}" %>', "<%= j "#{render partial: 'form'}" %>")
+<% else %>
+    General.replaceContentWithFade('<%= "#question_#{@question.id}" %>', "<%= escape_javascript(render partial: 'form') %>")
+<% end %>

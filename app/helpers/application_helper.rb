@@ -34,7 +34,11 @@ module ApplicationHelper
     if version and image.image_file.respond_to? version
       image_tag(image.image_file.send(version).url, opts)
     else
-      image_tag(image.image_file.url, opts)
+      begin
+        image_tag(image.image_file.url, opts)
+      rescue
+        image_tag("defaults/fallback.jpg", opts)
+      end
     end
   end
 
