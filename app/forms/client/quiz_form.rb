@@ -7,6 +7,11 @@ class Client::QuizForm  < Reform::Form
   property :description
   property :url_name
   property :user_id
+  property :topic_list
+
+  def topic_list=(value)
+    super value
+  end
 
   def url_name=(value)
     super value.parameterize

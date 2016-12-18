@@ -19,8 +19,8 @@
 //= require cocoon
 //= require jquery.remotipart
 //= require jquery.scrollTo.min
+//= require select2
 //= require social
 //= require utility
 //= require general
-
-
+//= require_tree ./client
