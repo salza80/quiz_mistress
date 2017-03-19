@@ -23,6 +23,7 @@ module Validators
     end
 
     def validate!
+      @errors.clear
       has_answers
       # has_image
       

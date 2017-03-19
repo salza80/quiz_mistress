@@ -1,21 +1,22 @@
 %li.list-group-item.list-group-item-action{ id:"quiz_#{quiz.id}" }
-  .row
-    .col-md-2
-      = image_full quiz.image, version: "thumb"
-    .col-md-3
-      = quiz.title
-    .col-md-3
-      No Questions:
-      = quiz.questions.count
-    .col-md-2
-      = quiz.status
-    .col-md-2
-      -if quiz.published?
-        = link_to 'View', quiz_path(quiz), :target => '_blank' 
-        = link_to 'Unpublish', client_unpublish_quiz_path(quiz), method: :patch, remote:true
-      -else
-        = link_to 'Edit', client_quiz_path(quiz) 
-        = link_to 'Preview', quiz_path(quiz, preview:true)
-        = link_to 'Publish', client_publish_quiz_path(quiz), method: :patch, remote:true
-        = link_to 'Delete', client_quiz_path(quiz), data: {confirm: 'Are you sure?'}, method: :delete
+  .container
+    .row
+      .col-md-2
+        = image_full quiz.image, version: "thumb"
+      .col-md-3
+        = quiz.title
+      .col-md-3
+        No Questions:
+        = quiz.questions.count
+      .col-md-2
+        = quiz.status
+      .col-md-2.links-block
+        -if quiz.published?
+          = link_to 'View', quiz_path(quiz), :target => '_blank' 
+          = link_to 'Unpublish', client_unpublish_quiz_path(quiz), method: :patch, remote:true
+        -else
+          = link_to 'Edit', client_quiz_path(quiz) 
+          = link_to 'Preview', quiz_path(quiz, preview:true)
+          = link_to 'Publish', client_publish_quiz_path(quiz), method: :patch, remote:true
+          = link_to 'Delete', client_quiz_path(quiz), data: {confirm: 'Are you sure?'}, method: :delete
 

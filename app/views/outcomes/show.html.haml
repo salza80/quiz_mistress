@@ -5,7 +5,7 @@
         = "You scored #{@result[:percentage]}%! - "
         = @outcome.title
     .card-block
-      = image_full @outcome.image, class: "img-fluid img-rounded  m-x-auto d-block"
+      = image_full @outcome.image, class: "img-fluid rounded  mx-auto d-block"
       = img_reference(@outcome.image)
     .card-block
       .card-text
@@ -14,7 +14,7 @@
       -unless @preview
         = button_tag 'Share on facebook!', style: 'button', onclick: "Social.share(this)", class:"btn btn-primary", data:{ 's-href': request.original_url, 's-redirect-url': quiz_url(@quiz) }
       -if @preview
-        = link_to 'Play Again', quiz_path(@quiz, preview: true )
+        = link_to 'Play Again', quiz_path(@quiz, preview: true ), class: "btn"
       -else
         = link_to "Play Again!", @quiz, class: "btn"
 

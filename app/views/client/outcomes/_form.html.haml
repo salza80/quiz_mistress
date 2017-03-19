@@ -4,22 +4,22 @@
   -else
     %h3 New Outcome
   = render partial: 'form_errors_base', locals: {the_model: @outcome_form, form_id: "outcome_form"}
-  .form-group
+  .form-group.row
     = f.label :title, class: "col-sm-2"
     .col-sm-10
       = f.text_field :title, class: "form-control", required: true
-  .form-group
+  .form-group.row
     = f.label :description, class: "col-sm-2"
     .col-sm-10
       = f.text_field :description, class: "form-control"
-  .form-group
+  .form-group.row
     = f.label :percentage_to, class: "col-sm-2"
     .col-sm-10
       = f.number_field :percentage_to, class: "form-control"
   =f.fields_for :image do |ff|
     =render partial:'image_form', locals: { f: ff }
   .actions.clearfix
-    %span.pull-right
+    %span.float-right
       -if @outcome_form.model.persisted?
         = link_to 'cancel', client_quiz_outcome_path(@quiz, @outcome_form.model), class: "btn btn-default", remote: true
       -else

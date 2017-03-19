@@ -19,7 +19,7 @@
   = f.fields_for :image do |ff|
     =render partial:'image_form', locals: { f: ff }
   .actions.clearfix
-    %span.pull-right
+    %span.float-right
       -if @quiz_form.persisted?
         = link_to 'Cancel', client_quiz_path(@quiz_form), class: "btn btn-default"
       -else

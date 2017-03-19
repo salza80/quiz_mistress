@@ -1,9 +1,9 @@
-%ul.nav.navbar-nav
+%ul.navbar-nav.mr-auto
   -if current_user
     %li.nav-item
-      = link_to client_quizzes_path, class: 'nav-link'  do
+      = link_to client_quizzes_path, class: 'nav-link navbar-text'  do
         My Content
   -else
     %li.nav-item
-      = link_to quizzes_path, class: 'nav-link'  do
+      = link_to quizzes_path, class: 'nav-link navbar-text'  do
         Quizzes

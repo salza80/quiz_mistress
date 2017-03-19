@@ -4,15 +4,15 @@
   -else
     %h3 New Question
   = render partial: 'form_errors_base', locals: {the_model: @question_form, form_id: "question_form"}
-  .form-group
-    = f.label :title, class: "col-sm-2"
+  .form-group.row
+    = f.label :title, class: "col-sm-2 col-form-label"
     .col-sm-10
       = f.text_field :title, class: "form-control", required: true
-  .form-group
+  .form-group.row
     = f.label :description, class: "col-sm-2"
     .col-sm-10
       = f.text_field :description, class: "form-control"
-  .form-group
+  .form-group.row
     = f.label :order_by, class: "col-sm-2"
     .col-sm-10
       = f.number_field :order_by, class: "form-control"
@@ -20,7 +20,7 @@
     =render partial:'image_form', locals: { f: ff }
   #answers
     %h4 Answers
-    %ul.list-group.answer-list
+    %ul.list-group.answer-list  
       %li.answer.list-group-item.list-group-item-action.clearfix
         .col-md-8
           Answer Text
@@ -30,9 +30,9 @@
       = f.fields_for :answers do |a|  
         =render partial: 'answer_form', locals: { f:a }
       %li.answer.list-group-item.list-group-item-action.clearfix
-        = link_to_add_association 'add answer', f, :answers, partial: 'answer_form',force_non_association_create: true, class: 'btn btn-primary pull-right', data_association_insertion_method: 'append'
+        = link_to_add_association 'add answer', f, :answers, partial: 'answer_form',force_non_association_create: true, class: 'btn btn-primary float-right', data_association_insertion_method: 'append'
   .actions.clearfix
-    %span.pull-right
+    %span.float-right
       -if @question_form.model.persisted?
         = link_to 'cancel', client_quiz_question_path(@quiz, @question_form.model), class: "btn btn-default", remote: true
       -else

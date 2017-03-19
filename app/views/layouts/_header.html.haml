@@ -1,11 +1,11 @@
-%nav.navbar.navbar-light.bg-faded
+%nav.navbar.navbar-light.bg-faded.navbar-toggleable-sm
   .container
-    %button.navbar-toggler.pull-right.hidden-sm-up{"aria-controls" => "navCollapse", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navCollapse", "data-toggle" => "collapse", :type => "button"}
-      \☰
+    %button.navbar-toggler.navbar-toggler-right{"aria-controls" => "navCollapse", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navCollapse", "data-toggle" => "collapse", :type => "button"}
+      %span.navbar-toggler-icon
     = link_to root_path, class: 'navbar-brand' do
       %span.logo
     = link_to root_path, class: 'navbar-brand' do
       Quiz Mistress
-    #navCollapse.collapse.navbar-collapse.navbar-toggleable-xs
+    #navCollapse.collapse.navbar-collapse
       = render :partial => 'layouts/navmenu'
       = render :partial => 'layouts/login'

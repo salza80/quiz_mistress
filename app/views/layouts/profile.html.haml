@@ -6,11 +6,11 @@
     .row
       .col-xs-3.col-md-2
         %nav
-          %ul.nav.nav-sidebar
-            %li
-              =link_to 'My Profile', edit_users_path
-            %li
-              =link_to 'Change Password', edit_user_registration_path
+          %ul.nav.flex-column.nav-sidebar
+            %li.nav-item
+              =active_link_to 'My Profile', edit_users_path, class:"nav-link"
+            %li.nav-item
+              =active_link_to 'Change Password', edit_user_registration_path, class:"nav-link "
       .col-xs-9.col-md-10
         = render '/layouts/notice'
         = yield

@@ -1,3 +1,14 @@
+form{
+  width:100%;
+}
+.row{
+  width:100%
+}
+.links-block>a{
+
+  display:block;
+}
+
 .logo{
   display: block;
   text-indent: -9999px;
@@ -9,12 +20,18 @@
 
 
 .img-thumbnail{
-  max-height: 150px;
+  max-height: 150px; 
 }
 
 .hidden{
   display: none;
 }
+
+.nav-link.active{
+  background-color: $dropdown-link-hover-bg;
+
+}
+
 .img-ref{
   font-size: 10px;
   color: #BDBDBD;
@@ -69,11 +86,18 @@
       @extend .fa-minus !optional;
       margin-right: 10px;
     }
-    li:hover {
+    li:hover  {
       background-color: $dropdown-link-hover-bg;
       .fa{
-        color: green;
-        @extend .fa-check !optional;
+        color: $link-color;
+        font-weight: bold;
+      }
+    }
+    li:active {
+      background-color: $dropdown-link-hover-bg;
+      .fa{
+        color: $link-color;
+        @extend .fa-circle !optional;
       }
     }
   }

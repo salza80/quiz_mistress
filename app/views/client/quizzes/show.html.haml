@@ -1,10 +1,10 @@
 .quiz-start
-  .card.text-xs-center.card-outline-primary
+  .card.text-center.card-outline-primary
     .card-header.heading-bk
       %h4.card-title
         = @quiz.title
     .card-block
-      = image_full @quiz.image, version: "mid", class: "img-fluid img-rounded img-thumbnail mx-auto d-block"
+      = image_full @quiz.image, version: "mid", class: "img-fluid rounded img-thumbnail mx-auto d-block"
       = img_reference(@quiz.image)
     .card-block
       .card-text

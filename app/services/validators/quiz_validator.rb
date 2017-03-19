@@ -37,6 +37,7 @@ module Validators
     end
 
     def validate!
+      @errors.clear
       @questions_valid = true
       @questions.each do |q|
         next if q.valid?

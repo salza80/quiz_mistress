@@ -18,6 +18,13 @@ module ApplicationHelper
   }
   end
 
+  def active_link_to(name = nil, options = nil, html_options = nil, &block)
+    active_class = html_options[:active] || "active"
+    html_options.delete(:active)
+    html_options[:class] = "#{html_options[:class]} #{active_class}" if current_page?(options)
+    link_to(name, options, html_options, &block)
+  end
+
   def img_reference(image)
     return unless image
     return unless image.ref_url
@@ -50,10 +57,10 @@ module ApplicationHelper
       content_tag(:div,class: "modal-dialog", role:"document") do
         content_tag(:div, class:"modal-content") do
           content_tag(:div, class:"modal-header") do
+            content_tag(:h4, opts[:title], class:"modal-title", id: "myModalLabel" ) +
             content_tag(:button, class:"close","aria-label": "Close", "data-dismiss": "modal", type: "button") do
               content_tag(:span, "x", "aria-hidden": "true" )
-            end +
-            content_tag(:h4, opts[:title], class:"modal-title", id: "myModalLabel" )
+            end 
           end +
           content_tag(:div, content, class:"modal-body")  +
           content_tag(:div, class:"modal-footer") do
