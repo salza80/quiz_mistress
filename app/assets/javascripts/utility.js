@@ -6,10 +6,11 @@
 		var body = $("body")
 	  if (body.length == 0){return false}
 		var fnName = Util.replaceAll(body.data("controller"), '/', '_')
-		var fn1 = window['PageEvents']['onLoad'][fnName];
-		var fn2 = window['PageEvents']['onLoad'][fnName][ body.data("action")];
+		var fn1 = PageEvents.onLoad[fnName]
+    var fn2 
 		if(typeof fn1 === 'function') {
 		  fn1()
+      fn2 =fn1[body.data("action")];
 		}
 		if(typeof fn2 === 'function') {
 		  fn2()
