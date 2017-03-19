@@ -1,8 +1,16 @@
 require 'nokogiri'
 namespace :db do
   desc 'Load Quiz Data'
+  
+
   task load_quizzes: :environment do
 
+    mainUser = User.find_or_initialize_by(email: "smclean17@gmail.com") do |u|
+      u.name = "Sally Mclean"
+      u.password = 'password'
+    end
+    mainUser.skip_confirmation!
+    mainUser.save!
 
     Dir.foreach(Rails.root + 'db/data') do |dir|
       next if dir == '.' or dir == '..'
@@ -10,7 +18,8 @@ namespace :db do
         loadquiz = Nokogiri::XML(f).xpath('root')
         puts "loading quiz directory #{dir}"
         quiz = Quiz.find_or_initialize_by( 
-          url_name: loadquiz.xpath('url_name').text
+          url_name: loadquiz.xpath('url_name').text,
+          user: mainUser
         )
         quiz.title = loadquiz.xpath('title').text
         quiz.description = loadquiz.xpath('description').text
@@ -65,7 +74,6 @@ namespace :db do
             title: q.xpath('title').text,
             description: q.xpath('description').text,
             percentage_to: q.xpath('percentage_to').text.to_i,
-            order_by:  q.xpath('order_by').empty? ? loadoutcomes.children.index(q) : q.xpath('order_by').text.to_i 
           )
           new_outcome.save!
           new_outcome.reload  

@@ -12,6 +12,10 @@
     = f.label :description, class: "col-sm-2"
     .col-sm-10
       = f.text_field :description, class: "form-control"
+  .form-group
+    = f.label :topics, class: "col-sm-2"
+    .col-sm-10
+      = f.select :topic_list, f.object.topic_list.map{|t| [t, t]},{}, { multiple: true, class: "form-control",  style: "width: 100%"}
   = f.fields_for :image do |ff|
     =render partial:'image_form', locals: { f: ff }
   .actions.clearfix

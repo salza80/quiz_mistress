@@ -44,6 +44,8 @@ gem 'file_validators'
 gem 'reform-rails'
 gem 'carrierwave-aws'
 gem 'mini_magick'
+gem 'acts-as-taggable-on', '~> 4.0'
+gem 'select2-rails'
 # gem "fog-aws" 
 
 # Use Capistrano for deployment
