@@ -13,7 +13,7 @@ module Api
       result = quiz.get_result_by_answers(answers)
       points= result[:points]
       result_code = ResultEncoder.new(points).encoded
-      @path = quiz_outcome_path(result_code: result_code, quiz_url_name: params[:url_name], format: 'html' )
+      @path = quiz_outcome_path(result_code: result_code, quiz_url_name: params[:url_name])
       if params[:preview]
         @path += "?preview=true"
       end
