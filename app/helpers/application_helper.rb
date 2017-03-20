@@ -14,7 +14,7 @@ module ApplicationHelper
       image: request.base_url + "/assets/images/" + "quiz_mistress.jpg"
     },
     viewport:"width=device-width, initial-scale=1, shrink-to-fit=no",
-    charset: "utf-8",
+    charset: "utf-8"
   }
   end
 

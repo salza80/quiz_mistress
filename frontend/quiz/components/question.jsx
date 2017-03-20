@@ -23,7 +23,7 @@ var Question = React.createClass({
   render: function() {
    
     return (
-      <div className="question card text-md-center">
+      <div className="question card text-center">
         <div className="card-header">
           <div className="question-title">
             <div className="row">

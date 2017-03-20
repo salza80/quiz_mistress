@@ -1,5 +1,5 @@
 .quiz-start
-  .card.text-md-center.card-outline-primary
+  .card.text-center.card-outline-primary
     .card-header.heading-bk
       %h4.card-title
         = @quiz.title
@@ -9,7 +9,7 @@
     .card-block
       .card-text
         = @quiz.description
-    .card-footer.text-xs-center
+    .card-footer.text-center
       = link_to "Play Now", "#", onclick: "Quiz.start();return false;", class: "btn btn-success"
       -unless @preview
         = button_tag 'share on facebook', style: 'button', onclick: "Social.share(this)", class:"btn btn-primary", data:{ 's-href': quiz_url(@quiz) , 's-redirect-url': quiz_url(@quiz) }

@@ -1,5 +1,5 @@
 !!!
-%html
+%html{"lang" => "en"}
   %head
     = csrf_meta_tags
     = display_meta_tags default_meta_tags
@@ -18,12 +18,13 @@
         = yield :header
       -else
         = render :partial => '/layouts/header'
-    .container
-      .row
-        .col-md-12
-          -if content_for?(:content)
-            = yield :content
-          -else
+
+    -if content_for?(:content)
+      = yield :content
+    -else
+      .container
+        .row
+          .col-md-12
             = render  :partial => '/layouts/notice'
             = yield
 = yield :script

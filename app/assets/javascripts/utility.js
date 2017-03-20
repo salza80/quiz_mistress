@@ -1,3 +1,4 @@
+// page events executed with one turbolinks trigger
 (function() {
 	this.PageEvents || (this.PageEvents = {});
 	PageEvents.onLoad = {};

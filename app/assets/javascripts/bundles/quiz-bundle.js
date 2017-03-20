@@ -584,7 +584,7 @@
 	  render: function render() {
 	    return React.createElement(
 	      'div',
-	      { className: 'quiz-container card' },
+	      { className: 'quiz-container card text-center' },
 	      React.createElement(
 	        'div',
 	        { className: 'quiz card-header heading-bk' },
@@ -8701,7 +8701,7 @@
 
 	    return React.createElement(
 	      'div',
-	      { className: 'question card text-md-center' },
+	      { className: 'question card text-center' },
 	      React.createElement(
 	        'div',
 	        { className: 'card-header' },
