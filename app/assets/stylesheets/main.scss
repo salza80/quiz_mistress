@@ -70,6 +70,15 @@ form{
   .question-container{
     padding:0px;
   }
+  :not(.can-touch).quiz-answers {
+    li:hover  {
+      background-color: $dropdown-link-hover-bg;
+      .fa{
+        color: $link-color;
+        font-weight: bold;
+      }
+    }
+  }
 
   .quiz-answers {
     .answer-box{
@@ -84,15 +93,7 @@ form{
       @extend .fa-minus !optional;
       margin-right: 10px;
     }
-    @media screen{
-      li:hover  {
-        background-color: $dropdown-link-hover-bg;
-        .fa{
-          color: $link-color;
-          font-weight: bold;
-        }
-      }
-    }
+    
     li:active {
       background-color: $dropdown-link-hover-bg;
       .fa{
