@@ -28,7 +28,7 @@
     return str.replace(new RegExp(this.escapeRegExp(find), 'g'), replace);
   }
 }).call(this);
-$(document).on('turbolinks:load', PageEvents.load)
+$(document).on('turbolinks:load', PageEvents.load);
 
 
 
@@ -52,11 +52,11 @@ $(document).on('turbolinks:load', PageEvents.load)
         if (!isTouch && curRootClass == 'can-touch'){ //remove 'can-touch' class if not triggered by a touch event and class is present
             isTouch = false
             curRootClass = ''
-             $(document).removeClass('can-touch'))
+             $(document).removeClass('can-touch')
         }
     }
 
     $(document).on('touchstart', addtouchclass) //this event only gets called when input type is touch
     $(document).on('mouseover', removetouchclass) //this event gets called when input type is everything from touch to mouse/ trackpad
-})();
+}).call(this);
 
