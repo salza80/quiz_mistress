@@ -35,24 +35,27 @@ $(document).on('turbolinks:load', PageEvents.load);
 //touch devices to manage stick hover issue
 (function(){
     var isTouch = false //var to indicate current input type (is touch versus no touch) 
+    
+    $("html").addClass('no-touch')
     var isTouchTimer 
-    var curRootClass = '' //var indicating current document root class ("can-touch" or "")
 
     function addtouchclass(e){
         clearTimeout(isTouchTimer)
         isTouch = true
-        if (curRootClass != 'can-touch'){ //add "can-touch' class if it's not already present
-            curRootClass = 'can-touch'
-            $(document).addClass(curRootClass)
-        }
-        isTouchTimer = setTimeout(function(){isTouch = false}, 500) //maintain "istouch" state for 500ms so removetouchclass doesn't get fired immediately following a touch event
+          if($("html").hasClass('no-touch')){
+            $("html").addClass('can-touch')
+            $("html").removeClass('no-touch')
+            console.log('can-touch')
+          }
+        isTouchTimer = setTimeout(function(){isTouch = false}, 500) //maintain "istouch" state for 500ms so removetouchclass doesn't get fired immediately following a touch event   
     }
 
     function removetouchclass(e){
-        if (!isTouch && curRootClass == 'can-touch'){ //remove 'can-touch' class if not triggered by a touch event and class is present
+        if (!isTouch && $("html").hasClass('can-touch')){ //remove 'can-touch' class if not triggered by a touch event and class is present
             isTouch = false
-            curRootClass = ''
-             $(document).removeClass('can-touch')
+             $("html").removeClass('can-touch')
+             $("html").addClass('no-touch')
+            console.log('no-touch')
         }
     }
 

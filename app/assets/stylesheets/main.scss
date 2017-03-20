@@ -66,11 +66,9 @@ form{
   }
 }
 
-.quiz-container{
-  .question-container{
-    padding:0px;
-  }
-  :not(.can-touch).quiz-answers {
+
+.no-touch{
+  .quiz-answers {
     li:hover  {
       background-color: $dropdown-link-hover-bg;
       .fa{
@@ -78,6 +76,11 @@ form{
         font-weight: bold;
       }
     }
+  }
+}
+.quiz-container{
+  .question-container{
+    padding:0px;
   }
 
   .quiz-answers {
