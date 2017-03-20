@@ -1,3 +1,14 @@
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
 form{
   width:100%;
 }
@@ -7,14 +18,7 @@ form{
   display:block;
 }
 
-// .logo{
-//   display: block;
-//   text-indent: -9999px;
-//   width: 30px;
-//   height: 30px;
-//   background:  image-url("smart-woman.svg");
-//   background-size: 30px 30px;
-// }
+
 
 
 .img-thumbnail{
@@ -79,6 +83,7 @@ form{
   }
 }
 .quiz-container{
+  @extend .noselect;
   .question-container{
     padding:0px;
   }
