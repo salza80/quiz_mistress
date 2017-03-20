@@ -7,14 +7,14 @@ form{
   display:block;
 }
 
-.logo{
-  display: block;
-  text-indent: -9999px;
-  width: 30px;
-  height: 30px;
-  background:  image-url("smart-woman.svg");
-  background-size: 30px 30px;
-}
+// .logo{
+//   display: block;
+//   text-indent: -9999px;
+//   width: 30px;
+//   height: 30px;
+//   background:  image-url("smart-woman.svg");
+//   background-size: 30px 30px;
+// }
 
 
 .img-thumbnail{
@@ -84,11 +84,13 @@ form{
       @extend .fa-minus !optional;
       margin-right: 10px;
     }
-    li:hover  {
-      background-color: $dropdown-link-hover-bg;
-      .fa{
-        color: $link-color;
-        font-weight: bold;
+    @media screen{
+      li:hover  {
+        background-color: $dropdown-link-hover-bg;
+        .fa{
+          color: $link-color;
+          font-weight: bold;
+        }
       }
     }
     li:active {
