@@ -11,6 +11,10 @@ Rails.application.routes.draw do
     resources :outcomes, only: [:show], param: :result_code
   end
 
+  resources :games, only: [:show] , param: :url_name do
+
+  end
+
   
   scope '/api', module: 'api', constraints: { format: 'json' } do
     resources :quizzes, only: [:index, :show, :update], param: :url_name 
