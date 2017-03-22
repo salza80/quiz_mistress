@@ -53,8 +53,8 @@ var GameStore = Reflux.createStore({
 
     question["title"] = coloursCopy[0].title
     question["hex"] = coloursCopy[1].hex
-    question["match"] = "word"
-
+    question["correcthex"] =  coloursCopy[0].hex
+    return question
 
   },
                    
@@ -68,7 +68,15 @@ var GameStore = Reflux.createStore({
     
   },
   onStartLevel: function(){
-    this.data.running=true;
+    this.data.level.running=true;
+    this.trigger(this.data);  
+  },
+  onColourClick: function(i){
+    var c = this.data.level.colours[i]
+    if (c.hex = this.data.level.question.correcthex){
+      c.complete = true;
+    }
+    this.trigger(this.data)
   },
   shuffleArray:function(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;

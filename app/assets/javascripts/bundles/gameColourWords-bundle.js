@@ -552,6 +552,7 @@
 	var React = __webpack_require__(5);
 	var GameStore = __webpack_require__(36);
 	var GameActions = __webpack_require__(56);
+	var GameBoard = __webpack_require__(219);
 	var LevelStart = __webpack_require__(57);
 
 	var Game = React.createClass({
@@ -563,7 +564,11 @@
 	        no: 1,
 	        running: false,
 	        title: "",
-	        question: {},
+	        question: {
+	          title: "",
+	          hex: "",
+	          match: ""
+	        },
 	        colours: []
 	      }
 	    };
@@ -583,6 +588,14 @@
 	    this.unsubscribe();
 	  },
 	  render: function render() {
+
+	    var content = null;
+
+	    if (this.state.level.running == false) {
+	      content = React.createElement(LevelStart, null);
+	    } else {
+	      content = React.createElement(GameBoard, { level: this.state.level });
+	    }
 	    return React.createElement(
 	      'div',
 	      { className: 'game-container card text-center' },
@@ -601,8 +614,22 @@
 	      ),
 	      React.createElement(
 	        'div',
-	        { className: 'game-content card-block' },
-	        React.createElement(LevelStart, { level: this.state.level })
+	        { className: 'levelStart card text-center' },
+	        React.createElement(
+	          'div',
+	          { className: 'card-header' },
+	          React.createElement(
+	            'div',
+	            { className: 'question-title' },
+	            React.createElement(
+	              'h4',
+	              { className: 'card-title' },
+	              ' ',
+	              this.state.level.title
+	            )
+	          )
+	        ),
+	        content
 	      )
 	    );
 	  }
@@ -4723,8 +4750,8 @@
 
 	    question["title"] = coloursCopy[0].title
 	    question["hex"] = coloursCopy[1].hex
-	    question["match"] = "word"
-
+	    question["correcthex"] =  coloursCopy[0].hex
+	    return question
 
 	  },
 	                   
@@ -4738,7 +4765,15 @@
 	    
 	  },
 	  onStartLevel: function(){
-	    this.data.running=true;
+	    this.data.level.running=true;
+	    this.trigger(this.data);  
+	  },
+	  onColourClick: function(i){
+	    var c = this.data.level.colours[i]
+	    if (c.hex = this.data.level.question.correcthex){
+	      c.complete = true;
+	    }
+	    this.trigger(this.data)
 	  },
 	  shuffleArray:function(array) {
 	    var currentIndex = array.length, temporaryValue, randomIndex;
@@ -6232,29 +6267,11 @@
 
 	    return React.createElement(
 	      'div',
-	      { className: 'levelStart card text-center' },
+	      { className: 'card-block' },
 	      React.createElement(
-	        'div',
-	        { className: 'card-header' },
-	        React.createElement(
-	          'div',
-	          { className: 'question-title' },
-	          React.createElement(
-	            'h4',
-	            { className: 'card-title' },
-	            ' ',
-	            this.props.level.title
-	          )
-	        )
-	      ),
-	      React.createElement(
-	        'div',
-	        { className: 'card-block' },
-	        React.createElement(
-	          'button',
-	          { className: 'btn btn-primary', onClick: this.StartLevel },
-	          'Start Level'
-	        )
+	        'button',
+	        { className: 'btn btn-primary', onClick: this.StartLevel },
+	        'Start Level'
 	      )
 	    );
 	  }
@@ -33891,6 +33908,161 @@
 	return jQuery;
 	} );
 
+
+/***/ },
+/* 205 */,
+/* 206 */,
+/* 207 */,
+/* 208 */,
+/* 209 */,
+/* 210 */,
+/* 211 */,
+/* 212 */,
+/* 213 */,
+/* 214 */,
+/* 215 */,
+/* 216 */,
+/* 217 */,
+/* 218 */,
+/* 219 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(5);
+	var GameActions = __webpack_require__(56);
+	var AnswerList = __webpack_require__(220);
+
+	var GameBoard = React.createClass({
+	  displayName: 'GameBoard',
+
+	  getInitialState: function getInitialState() {
+	    return {};
+	  },
+
+	  conponentWillMount: function conponentWillMount() {},
+	  componentDidMount: function componentDidMount() {},
+	  componentWillUnmount: function componentWillUnmount() {},
+	  wordStyle: function wordStyle() {
+	    return {
+	      color: this.props.level.question.hex
+	    };
+	  },
+	  render: function render() {
+
+	    return React.createElement(
+	      'div',
+	      { className: 'card-block game-board' },
+	      React.createElement(
+	        'div',
+	        { className: 'row' },
+	        React.createElement(
+	          'div',
+	          { className: 'col-6' },
+	          React.createElement(
+	            'span',
+	            { style: this.wordStyle() },
+	            this.props.level.question.title
+	          )
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'col-6' },
+	          'timer'
+	        )
+	      ),
+	      React.createElement(
+	        'div',
+	        { className: 'row' },
+	        React.createElement(
+	          'div',
+	          { className: 'col-12' },
+	          React.createElement(AnswerList, { colours: this.props.level.colours })
+	        )
+	      )
+	    );
+	  }
+	});
+
+	module.exports = React.createFactory(GameBoard);
+
+/***/ },
+/* 220 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(5);
+	var AnswerBlock = __webpack_require__(221);
+
+	var AnswerList = React.createClass({
+	  displayName: 'AnswerList',
+
+	  getInitialState: function getInitialState() {
+	    return {};
+	  },
+
+	  conponentWillMount: function conponentWillMount() {},
+	  componentDidMount: function componentDidMount() {},
+	  componentWillUnmount: function componentWillUnmount() {},
+	  render: function render() {
+	    var aList = this.props.colours.map(function (colour, i) {
+	      return React.createElement(
+	        AnswerBlock,
+	        { index: i, colour: colour, key: i },
+	        ' '
+	      );
+	    });
+	    return React.createElement(
+	      'div',
+	      { className: 'answers-list well' },
+	      aList
+	    );
+	  }
+	});
+
+	module.exports = React.createFactory(AnswerList);
+
+/***/ },
+/* 221 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(5);
+	var GameActions = __webpack_require__(56);
+
+	var AnswerBlock = React.createClass({
+	  displayName: 'AnswerBlock',
+
+	  getInitialState: function getInitialState() {
+	    return {};
+	  },
+
+	  conponentWillMount: function conponentWillMount() {},
+	  componentDidMount: function componentDidMount() {},
+	  componentWillUnmount: function componentWillUnmount() {},
+	  colourClick: function colourClick() {
+	    GameActions.colourClick(this.props.index);
+	  },
+	  blockStyle: function blockStyle() {
+	    var blockcolour = "#FFFFFF";
+	    if (this.props.colour.complete == false) {
+	      blockcolour = this.props.colour.hex;
+	    }
+	    return {
+	      backgroundColor: blockcolour,
+	      minWidth: "10px",
+	      minHeight: "10px"
+	    };
+	  },
+	  render: function render() {
+
+	    return React.createElement('div', { className: 'answer-block', style: this.blockStyle(), onClick: this.colourClick() });
+	  }
+	});
+
+	module.exports = React.createFactory(AnswerBlock);
 
 /***/ }
 /******/ ]);

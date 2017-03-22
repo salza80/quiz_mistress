@@ -26,16 +26,10 @@ var LevelStart = React.createClass({
   render: function() {
    
     return (
-      <div className="levelStart card text-center">
-        <div className="card-header">
-          <div className="question-title">
-            <h4 className="card-title"> {this.props.level.title}</h4>
-          </div>
-        </div>
         <div className="card-block">
           <button className="btn btn-primary" onClick={this.StartLevel}>Start Level</button>
        </div>
-      </div>
+
     );
   }
 });

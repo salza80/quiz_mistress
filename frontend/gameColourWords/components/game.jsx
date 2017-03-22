@@ -1,7 +1,8 @@
 const React = require('react');
 const GameStore = require('../stores/game_store')
 const GameActions= require('../actions/game_actions')
-const LevelStart= require('./levelStart.jsx')
+const GameBoard= require('./gameBoard.jsx')
+const LevelStart = require('./levelStart.jsx')
 
 var Game = React.createClass({
   getInitialState: function() {
@@ -10,7 +11,11 @@ var Game = React.createClass({
               no:1,
               running: false,
               title:"",
-              question: {},
+              question: {
+                title: "",
+                hex: "",
+                match: ""
+              },
               colours: []
             }
           }
@@ -34,6 +39,14 @@ var Game = React.createClass({
     this.unsubscribe();
   },
   render: function() {
+
+    let content = null;
+
+    if (this.state.level.running==false){
+      content = <LevelStart/>;
+    }else{
+      content=  <GameBoard level={this.state.level}></GameBoard>
+    }
     return (
       <div className="game-container card text-center">
         <div className="game card-header heading-bk">
@@ -41,10 +54,15 @@ var Game = React.createClass({
             <h2 className="card-title"> Word Colour Game</h2>
           </div>
         </div>
-        <div className="game-content card-block">
-          <LevelStart level={this.state.level}></LevelStart>
+      <div className="levelStart card text-center">
+        <div className="card-header">
+          <div className="question-title">
+            <h4 className="card-title"> {this.state.level.title}</h4>
+          </div>
         </div>
+        {content}
       </div>
+    </div>
     );
   }
 });
