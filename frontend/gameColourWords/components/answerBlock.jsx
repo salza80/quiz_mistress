@@ -20,10 +20,13 @@ var AnswerBlock = React.createClass({
 
   },
   colourClick: function(){
-    GameActions.colourClick(this.props.index)
+    if(this.props.colour.complete==false){
+      GameActions.colourClick(this.props.index)
+    }
   },
   blockStyle: function(){
-    var blockcolour = "#FFFFFF"
+    var blockcolour = "#D3D0D0"
+    console.log(this.props.colour)
     if (this.props.colour.complete ==false){
       blockcolour=this.props.colour.hex
     }
@@ -37,8 +40,7 @@ var AnswerBlock = React.createClass({
 
    
     return (
-      <div className="answer-block" style={this.blockStyle()} onClick={this.colourClick()}></div>
-
+      <div className="answer-block" style={this.blockStyle()} onClick={this.colourClick}></div>
     );
   }
 });

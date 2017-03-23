@@ -41,19 +41,39 @@ var GameStore = Reflux.createStore({
     this.data.level.colours.push(this.all_colours.pop()) 
     for( var i=0; i<this.data.level.colours.length; i++){
       try{
-        this.data.colours[i]["complete"] = false;
+        this.data.level.colours[i]["complete"] = false;
       }catch(e){}
     }
     this.data.level.colours = this.shuffleArray(this.data.level.colours)
     this.data.level.question=this.getNextQuestion()
   },
   getNextQuestion: function(){
-    var coloursCopy = this.shuffleArray(this.data.level.colours.slice());
-    var question = {}
+    var coloursCopy = this.getRemainigColours();
+    if (coloursCopy.length ==0){
+      this.setNextLevel()
+      return this.getNextQuestion()
+    }else{
+      colorsCopy = this.shuffleArray(coloursCopy);
+      var c1 = coloursCopy[0]
+      var c2
+      if (coloursCopy.length<=1){
+        c2 = this.data.level.colours[0]
+      }
+      else {c2 = coloursCopy[1]}
+      var question = {}
+      question["match"] = this.getRandomMatchOn();
 
-    question["title"] = coloursCopy[0].title
-    question["hex"] = coloursCopy[1].hex
-    question["correcthex"] =  coloursCopy[0].hex
+      if(question["match"]=="Word"){
+        question["title"] = c1.title
+        question["answer"] =  c1.title
+        question["hex"] = c2.hex
+      }else{
+        question["hex"] = c1.hex
+        question["answer"] =  c1.hex
+        question["title"] = c2.title
+      }     
+    }
+
     return question
 
   },
@@ -73,10 +93,23 @@ var GameStore = Reflux.createStore({
   },
   onColourClick: function(i){
     var c = this.data.level.colours[i]
-    if (c.hex = this.data.level.question.correcthex){
+    if (c.hex == this.data.level.question.answer || c.title == this.data.level.question.answer ){
       c.complete = true;
+      
     }
+    this.data.level.question=this.getNextQuestion();
     this.trigger(this.data)
+    
+  },
+  getRemainigColours: function(){
+    return this.data.level.colours.filter(function(colour){
+      return colour.complete == false
+    })
+  },
+  getRandomMatchOn: function(){
+    if(Math.random() >.5){
+      return "Word"
+    } else {return "Colour"}
   },
   shuffleArray:function(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -95,6 +128,6 @@ var GameStore = Reflux.createStore({
     }
 
       return array;
-  },
+  }
 });
 module.exports = GameStore;

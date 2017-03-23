@@ -1,7 +1,7 @@
 const React = require('react');
 const GameActions = require('../actions/game_actions.js'); 
 const AnswerList = require('./answerList.jsx')
-
+const GameTimer = require('./gameTimer.jsx')
 
 var GameBoard = React.createClass({
   getInitialState: function() {
@@ -20,6 +20,9 @@ var GameBoard = React.createClass({
   componentWillUnmount: function() {
 
   },
+  timeout: function(){
+    GameActions.TimedOut();
+  },
   wordStyle: function(){
     return {
       color: this.props.level.question.hex
@@ -32,10 +35,11 @@ var GameBoard = React.createClass({
       <div className="card-block game-board">
         <div className="row">
           <div className="col-6">
+            Match on  <span>{this.props.level.question.match} </span>:
             <span style={this.wordStyle()} >{this.props.level.question.title}</span>
           </div>
             <div className="col-6">
-            timer 
+              <GameTimer onTimeout={this.timeout()} seconds={60} />
           </div>
 
         </div>

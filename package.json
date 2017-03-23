@@ -34,6 +34,7 @@
     "react-timer-mixin": "^0.13.3",
     "reflux": "^0.4.1",
     "style-loader": "^0.13.1",
+    "react-progressbar": "^1.4.6",
     "underscore": "^1.8.3"
   }
 }

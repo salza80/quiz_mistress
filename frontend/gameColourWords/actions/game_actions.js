@@ -4,7 +4,7 @@ const Reflux = require('reflux');
 var GameActions = Reflux.createActions([
   "startLevel",
   "colourClick",
-  "levelOver",
+  "TimedOut",
   "gameOver",
   "Load"
 ]);
