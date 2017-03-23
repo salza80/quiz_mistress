@@ -2,8 +2,6 @@
 const Game = require('./components/game');
 const React = require("react");
 const ReactDOM = require("react-dom");
-const $ = require("jquery");
-const Reflux = require("reflux");
 
 
 var pEle = $('#renderer')

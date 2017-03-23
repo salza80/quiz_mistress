@@ -1,5 +1,6 @@
 const Reflux = require('reflux');
 const GameActions = require('../actions/game_actions.js');
+const _ = require('underscore')
 //const backend = require('../../modules/backend.js');
 
 var GameStore = Reflux.createStore({
@@ -18,6 +19,7 @@ var GameStore = Reflux.createStore({
               no:0,
               running: false,
               title:"Level 1",
+              seconds:60,
               question: {},
               colours: []
             }
@@ -37,6 +39,7 @@ var GameStore = Reflux.createStore({
     }
     this.data.level.no +=1
     this.data.level.running=false
+    this.data.seconds
     this.data.level.title = "Level " + String(this.data.level.no)
     this.data.level.colours.push(this.all_colours.pop()) 
     for( var i=0; i<this.data.level.colours.length; i++){
@@ -44,16 +47,17 @@ var GameStore = Reflux.createStore({
         this.data.level.colours[i]["complete"] = false;
       }catch(e){}
     }
-    this.data.level.colours = this.shuffleArray(this.data.level.colours)
+    this.data.level.colours = _.shuffle(this.data.level.colours)
     this.data.level.question=this.getNextQuestion()
   },
   getNextQuestion: function(){
-    var coloursCopy = this.getRemainigColours();
+    var coloursCopy = this.getRemainingColours();
     if (coloursCopy.length ==0){
       this.setNextLevel()
       return this.getNextQuestion()
     }else{
-      colorsCopy = this.shuffleArray(coloursCopy);
+      coloursCopy = _.shuffle(coloursCopy);
+
       var c1 = coloursCopy[0]
       var c2
       if (coloursCopy.length<=1){
@@ -62,7 +66,8 @@ var GameStore = Reflux.createStore({
       else {c2 = coloursCopy[1]}
       var question = {}
       question["match"] = this.getRandomMatchOn();
-
+      console.log(c1)
+      console.log()
       if(question["match"]=="Word"){
         question["title"] = c1.title
         question["answer"] =  c1.title
@@ -101,7 +106,7 @@ var GameStore = Reflux.createStore({
     this.trigger(this.data)
     
   },
-  getRemainigColours: function(){
+  getRemainingColours: function(){
     return this.data.level.colours.filter(function(colour){
       return colour.complete == false
     })
@@ -110,24 +115,6 @@ var GameStore = Reflux.createStore({
     if(Math.random() >.5){
       return "Word"
     } else {return "Colour"}
-  },
-  shuffleArray:function(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
-
-    // While there remain elements to shuffle...
-    while (0 !== currentIndex) {
-
-      // Pick a remaining element...
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-
-      // And swap it with the current element.
-      temporaryValue = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temporaryValue;
-    }
-
-      return array;
   }
 });
 module.exports = GameStore;

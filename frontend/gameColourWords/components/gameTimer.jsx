@@ -1,5 +1,5 @@
 const React = require('react');
-
+const _ = require('underscore')
 // const Progress = require('react-progressbar');
 import Progress from 'react-progressbar';
 

@@ -39,7 +39,7 @@ var GameBoard = React.createClass({
             <span style={this.wordStyle()} >{this.props.level.question.title}</span>
           </div>
             <div className="col-6">
-              <GameTimer onTimeout={this.timeout()} seconds={60} />
+              <GameTimer onTimeout={this.timeout()} seconds={this.props.level.seconds} />
           </div>
 
         </div>

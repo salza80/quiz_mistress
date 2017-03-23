@@ -26,7 +26,6 @@ var AnswerBlock = React.createClass({
   },
   blockStyle: function(){
     var blockcolour = "#D3D0D0"
-    console.log(this.props.colour)
     if (this.props.colour.complete ==false){
       blockcolour=this.props.colour.hex
     }

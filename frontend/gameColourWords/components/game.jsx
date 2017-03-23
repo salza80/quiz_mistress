@@ -11,6 +11,7 @@ var Game = React.createClass({
               no:1,
               running: false,
               title:"",
+              seconds:0,
               question: {
                 title: "",
                 hex: "",
@@ -45,7 +46,7 @@ var Game = React.createClass({
     if (this.state.level.running==false){
       content = <LevelStart/>;
     }else{
-      content =  <GameBoard level={this.state.level}></GameBoard>
+      content = <GameBoard level={this.state.level}></GameBoard>
     }
     return (
       <div className="game-container card text-center">
