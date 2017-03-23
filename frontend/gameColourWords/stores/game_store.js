@@ -6,9 +6,7 @@ const _ = require('underscore')
 var GameStore = Reflux.createStore({
 // this will set up listeners to all publishers in SearchActiions, using onKeyname (or keyname) as callbacks
   listenables: [GameActions],
-  level: {},
   all_colours: [],
-  question: {},
   init: function(){
     this.data = this.getInitialState();
   },
@@ -19,9 +17,13 @@ var GameStore = Reflux.createStore({
               no:0,
               running: false,
               title:"Level 1",
-              seconds:60,
+              seconds:16,
               question: {},
-              colours: []
+              colours: [],
+              strikes:{
+                    no:0,
+                    total:3
+                  }
             }
           }    
   },
@@ -29,19 +31,27 @@ var GameStore = Reflux.createStore({
     this.all_colours.push({ hex: "#FF0000", title:"Red"})
     this.all_colours.push({ hex: "#FFFF00", title:"Yellow"})
     this.all_colours.push({ hex: "#00FF00", title:"Green"})
-    this.all_colours.push({ hex: "#00FFFF", title:"Light blue"})
-    this.all_colours.push({ hex: "#0000FF", title:"Dark blue"})
+    this.all_colours.push({ hex: "#0000ff", title:"Blue"})
+    this.all_colours.push({ hex: "#660099", title:"Purple"})
+    this.all_colours.push({ hex: "#ff6600", title:"Orange"})
+    this.all_colours.push({ hex: "#ff33ff", title:"Pink"})
+    this.all_colours.push({ hex: "#663300", title:"Brown"})
+    this.all_colours.push({ hex: "#000000", title:"Black"})
+    this.all_colours.push({ hex: "#99ff00", title:"Lime"})
+    this.all_colours.push({ hex: "#0099FF", title:"Light blue"})
+    this.all_colours.push({ hex: "#000099", title:"Dark blue"})
   },
   setNextLevel: function(){
     //add one if empty
     if(this.data.level.colours.length==0){
-      this.data.level.colours.push(this.all_colours.pop()) 
+      this.data.level.colours.push(this.all_colours.shift()) 
     }
     this.data.level.no +=1
     this.data.level.running=false
-    this.data.seconds
+    this.data.level.seconds = this.data.level.seconds - Math.ceil(this.data.level.seconds * .1)
+    this.data.level.strikes.no=0;
     this.data.level.title = "Level " + String(this.data.level.no)
-    this.data.level.colours.push(this.all_colours.pop()) 
+    this.data.level.colours.push(this.all_colours.shift()) 
     for( var i=0; i<this.data.level.colours.length; i++){
       try{
         this.data.level.colours[i]["complete"] = false;
@@ -64,10 +74,10 @@ var GameStore = Reflux.createStore({
         c2 = this.data.level.colours[0]
       }
       else {c2 = coloursCopy[1]}
-      var question = {}
+      var question = {
+        key: Math.random()
+      }
       question["match"] = this.getRandomMatchOn();
-      console.log(c1)
-      console.log()
       if(question["match"]=="Word"){
         question["title"] = c1.title
         question["answer"] =  c1.title
@@ -82,7 +92,13 @@ var GameStore = Reflux.createStore({
     return question
 
   },
-                   
+  isGameOver(){
+    return this.data.level.strikes.no >= this.data.level.strikes.total
+  },
+  addStrike(){
+    this.data.level.strikes.no += 1
+   
+  },                   
   onLoad: function(){
     this.initGameData()
     this.setNextLevel()
@@ -99,12 +115,28 @@ var GameStore = Reflux.createStore({
   onColourClick: function(i){
     var c = this.data.level.colours[i]
     if (c.hex == this.data.level.question.answer || c.title == this.data.level.question.answer ){
-      c.complete = true;
+      c.complete = true;  
+    }else(
+      this.addStrike()
+    )
+    if (this.isGameOver()){
+      this.trigger(this.data)
       
+    }else{
+      this.data.level.question=this.getNextQuestion();
+      this.trigger(this.data)
     }
-    this.data.level.question=this.getNextQuestion();
-    this.trigger(this.data)
     
+  },
+  onTimedOut: function(){
+    this.addStrike()
+    if (this.isGameOver()){
+      this.trigger(this.data)
+      
+    }else{
+      this.data.level.question=this.getNextQuestion();
+      this.trigger(this.data)
+    }
   },
   getRemainingColours: function(){
     return this.data.level.colours.filter(function(colour){

@@ -13,6 +13,7 @@ var Game = React.createClass({
               title:"",
               seconds:0,
               question: {
+                key:"",
                 title: "",
                 hex: "",
                 match: ""

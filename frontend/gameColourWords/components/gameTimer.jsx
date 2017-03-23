@@ -4,7 +4,7 @@ const _ = require('underscore')
 import Progress from 'react-progressbar';
 
 var GameTimer = React.createClass({
-  increment: 500,
+  increment: 200,
   msRemaining:600000,
   msTotal:600000,
   getInitialState: function() {
