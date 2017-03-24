@@ -35,14 +35,15 @@ var GameBoard = React.createClass({
     return (
       <div className="card-block game-board">
         <div className="row">
-          <div className="col-6">
+          <div className="col-12">
+              <GameTimer key={this.props.level.question.key} onTimeout={this.timeout} seconds={this.props.level.seconds} />
+          </div>
+        </div>
+        <div className="row">      
+          <div className="col-12">
             Match on  <span>{this.props.level.question.match} </span>:
             <span style={this.wordStyle()} >{this.props.level.question.title}</span>
           </div>
-            <div className="col-6">
-              <GameTimer key={this.props.level.question.key} onTimeout={this.timeout} seconds={this.props.level.seconds} />
-          </div>
-
         </div>
          <div className="row">
           <div className="col-12">

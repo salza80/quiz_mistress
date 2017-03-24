@@ -51,7 +51,9 @@ var GameStore = Reflux.createStore({
     this.data.level.seconds = this.data.level.seconds - Math.ceil(this.data.level.seconds * .1)
     this.data.level.strikes.no=0;
     this.data.level.title = "Level " + String(this.data.level.no)
-    this.data.level.colours.push(this.all_colours.shift()) 
+    if(this.all_colours.length>=1){
+      this.data.level.colours.push(this.all_colours.shift()) 
+    }
     for( var i=0; i<this.data.level.colours.length; i++){
       try{
         this.data.level.colours[i]["complete"] = false;
