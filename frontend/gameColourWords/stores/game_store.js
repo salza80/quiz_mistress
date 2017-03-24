@@ -1,5 +1,7 @@
 const Reflux = require('reflux');
 const GameActions = require('../actions/game_actions.js');
+const ResultActions = require('../actions/result_actions.js');
+
 const _ = require('underscore')
 //const backend = require('../../modules/backend.js');
 
@@ -7,6 +9,7 @@ var GameStore = Reflux.createStore({
 // this will set up listeners to all publishers in SearchActiions, using onKeyname (or keyname) as callbacks
   listenables: [GameActions],
   all_colours: [],
+  timeMS:0,
   init: function(){
     this.data = this.getInitialState();
   },
@@ -100,7 +103,10 @@ var GameStore = Reflux.createStore({
   addStrike(){
     this.data.level.strikes.no += 1
    
-  },                   
+  },  
+  onTimeUpdated(ms){
+    this.timeMS=ms
+  },                 
   onLoad: function(){
     this.initGameData()
     this.setNextLevel()
@@ -117,17 +123,18 @@ var GameStore = Reflux.createStore({
   onColourClick: function(i){
     var c = this.data.level.colours[i]
     if (c.hex == this.data.level.question.answer || c.title == this.data.level.question.answer ){
-      c.complete = true;  
+      c.complete = true;
+      ResultActions.AddResult(this.data.level.no, this.timeMS)
     }else(
       this.addStrike()
     )
     if (this.isGameOver()){
-      this.trigger(this.data)
+      //end game
       
     }else{
       this.data.level.question=this.getNextQuestion();
-      this.trigger(this.data)
     }
+    this.trigger(this.data)
     
   },
   onTimedOut: function(){

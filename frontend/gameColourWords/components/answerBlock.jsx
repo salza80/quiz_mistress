@@ -21,7 +21,7 @@ var AnswerBlock = React.createClass({
   },
   colourClick: function(){
     if(this.props.colour.complete==false){
-      GameActions.colourClick(this.props.index)
+      GameActions.ColourClick(this.props.index)
     }
   },
   blockStyle: function(){

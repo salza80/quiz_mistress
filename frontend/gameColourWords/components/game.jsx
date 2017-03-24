@@ -3,6 +3,8 @@ const GameStore = require('../stores/game_store')
 const GameActions= require('../actions/game_actions')
 const GameBoard= require('./gameBoard.jsx')
 const LevelStart = require('./levelStart.jsx')
+const ScoreList = require('./scoreList.jsx')
+
 
 var Game = React.createClass({
   getInitialState: function() {
@@ -63,7 +65,9 @@ var Game = React.createClass({
           </div>
         </div>
         {content}
+        <ScoreList />
       </div>
+      
     </div>
     );
   }

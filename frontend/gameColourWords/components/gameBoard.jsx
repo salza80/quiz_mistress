@@ -4,7 +4,9 @@ const AnswerList = require('./answerList.jsx')
 const StrikeList = require('./strikeList.jsx')
 const GameTimer = require('./gameTimer.jsx')
 
+
 var GameBoard = React.createClass({
+  currentMS:0,
   getInitialState: function() {
     return {
            
@@ -29,6 +31,9 @@ var GameBoard = React.createClass({
       color: this.props.level.question.hex
     }
   },
+  onTimerChange: function(ms){
+    GameActions.TimeUpdated(ms)
+  },
   render: function() {
 
    
@@ -36,7 +41,7 @@ var GameBoard = React.createClass({
       <div className="card-block game-board">
         <div className="row">
           <div className="col-12">
-              <GameTimer key={this.props.level.question.key} onTimeout={this.timeout} seconds={this.props.level.seconds} />
+              <GameTimer key={this.props.level.question.key} onTimerChange={this.onTimerChange} onTimeout={this.timeout} seconds={this.props.level.seconds} />
           </div>
         </div>
         <div className="row">      
@@ -45,7 +50,7 @@ var GameBoard = React.createClass({
             <span style={this.wordStyle()} >{this.props.level.question.title}</span>
           </div>
         </div>
-         <div className="row">
+        <div className="row">
           <div className="col-12">
             <AnswerList colours={this.props.level.colours}></AnswerList>
           </div>
@@ -56,6 +61,7 @@ var GameBoard = React.createClass({
           </div>
         </div>
       </div>
+
     );
   }
 });

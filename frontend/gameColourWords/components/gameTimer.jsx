@@ -25,15 +25,19 @@ var GameTimer = React.createClass({
     
   },
   componentDidMount: function() {
-    this.msRemaining=this.props.seconds * 1000
-    this.msTotal=this.props.seconds * 1000
+    this.resetTimer(this.props.seconds)
     this.timeout = setInterval(this.incrementTimer, this.increment)
       
   },
   componentWillUnmount: function() {
     this.unmountTimer()
   },
-  fadeToColor: function(ratio) {
+  resetTimer: function(seconds){
+    this.msRemaining=seconds * 1000
+    this.onTimerChange(0)
+    this.msTotal=seconds * 1000
+  },
+  fadeToColour: function(ratio) {
     var  difference,
         newColour = [];
 
@@ -51,18 +55,32 @@ var GameTimer = React.createClass({
   },
   incrementTimer(){
     this.msRemaining = this.msRemaining - this.increment
+    var seconds, percent, colour
+
     if(this.msRemaining <=0){
-      this.setState({percent:100, color:this.color2})
       this.unmountTimer()
-      if(_.isFunction(this.props.onTimeout)){
-        this.props.onTimeout();
-      }
+      percent = 100
+      colour = this.colour2
+      seconds = 0
+      this.setState({percent: percent, seconds: seconds, colour:colour})
+      this.onTimeout();
     }else{
-      var seconds = Math.ceil(this.msRemaining/1000)
-      var percent = 100-((this.msRemaining/this.msTotal)*100)
-      var colour = this.fadeToColor(percent/100)
+      seconds = Math.ceil(this.msRemaining/1000)
+      percent = 100-((this.msRemaining/this.msTotal)*100)
+      colour = this.fadeToColour(percent/100)
+      this.onTimerChange(this.msTotal - this.msRemaining)
       this.setState({percent: percent, seconds: seconds, colour:colour})
     }
+  },
+  onTimeout: function(){
+    if(_.isFunction(this.props.onIncrement)){
+        this.props.onIncrement();
+      }
+  },
+  onTimerChange: function(durationMS){
+    if(_.isFunction(this.props.onTimerChange)){
+        this.props.onTimerChange(durationMS);
+      }
   },
   render: function() {
 

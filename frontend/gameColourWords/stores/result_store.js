@@ -1,11 +1,10 @@
 const Reflux = require('reflux');
-const GameActions = require('../actions/game_actions.js');
-const _ = require('underscore')
+const ResultActions = require('../actions/result_actions.js');
 //const backend = require('../../modules/backend.js');
 
 var ResultStore = Reflux.createStore({
-// this will set up listeners to all publishers in SearchActiions, using onKeyname (or keyname) as callbacks
-  listenables: [GameActions],
+// this will set up listeners to all publishers in ResultActions
+  listenables: [ResultActions],
   init: function(){
     this.data = this.getInitialState();
   },
@@ -21,8 +20,17 @@ var ResultStore = Reflux.createStore({
    
     
   },
+
   onLoadCompleted: function(){
     
+  },
+  onAddResult(levelNo,ms){
+    var score ={};
+    score["levelNo"] = levelNo
+    score["reactionTime"] = ms
+    score["points"] = levelNo * ms
+    this.data.results.push(score)
+    this.trigger(this.data)
   }
 });
 module.exports = ResultStore;

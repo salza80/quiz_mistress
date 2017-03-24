@@ -21,7 +21,7 @@ var LevelStart = React.createClass({
   },
   StartLevel: function(e){
     e.preventDefault();
-    GameActions.startLevel()
+    GameActions.StartLevel()
   },
   render: function() {
    
