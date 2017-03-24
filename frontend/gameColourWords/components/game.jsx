@@ -5,7 +5,6 @@ const GameBoard= require('./gameBoard.jsx')
 const LevelStart = require('./levelStart.jsx')
 const ScoreList = require('./scoreList.jsx')
 
-
 var Game = React.createClass({
   getInitialState: function() {
     return {
@@ -17,7 +16,7 @@ var Game = React.createClass({
               question: {
                 key:"",
                 title: "",
-                hex: "",
+                hex: "",  
                 match: ""
               },
               colours: []

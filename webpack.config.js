@@ -47,7 +47,8 @@ config.module = {
         }
       },
       { test: /\.coffee$/, loader: 'coffee-loader' },
-      { test: /\.css$/, loader: "style-loader!css-loader" }
+      { test: /\.css$/, loader: "style-loader!css-loader" },
+      { test: /\.mp3$/,  loader: 'file-loader'}
     ]
 };
 
