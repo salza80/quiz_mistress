@@ -11,7 +11,8 @@ var ResultStore = Reflux.createStore({
   getInitialState: function() {
     
     return {
-      results: []
+      results: [],
+      totalScore:0
     }    
   },
   
@@ -27,8 +28,9 @@ var ResultStore = Reflux.createStore({
   onAddResult(levelNo,ms){
     var score ={};
     score["levelNo"] = levelNo
-    score["reactionTime"] = ms
-    score["points"] = levelNo * ms
+    score["reactionTime"] = ms/1000
+    score["points"] = Math.round(5/(ms/1000),2)
+    this.data.totalScore +=score["points"]
     this.data.results.push(score)
     this.trigger(this.data)
   }

@@ -8146,7 +8146,7 @@
 	var GameTimer = React.createClass({
 	  displayName: 'GameTimer',
 
-	  increment: 200,
+	  increment: 50,
 	  msRemaining: 600000,
 	  msTotal: 600000,
 	  colour1: [0, 180, 0],
@@ -8392,13 +8392,15 @@
 
 	  getInitialState: function getInitialState() {
 	    return {
-	      results: []
+	      results: [],
+	      totalScore: 0
 	    };
 	  },
 
 	  onStoreChange: function onStoreChange(data) {
 	    this.setState({
-	      results: data.results
+	      results: data.results,
+	      totalScore: data.totalScore
 	    }, this.onStateUpdated);
 	  },
 	  onStateUpdated: function onStateUpdated() {},
@@ -8420,7 +8422,13 @@
 	    return React.createElement(
 	      'div',
 	      { className: 'card-block score-list' },
-	      aList
+	      aList,
+	      React.createElement(
+	        'div',
+	        null,
+	        'Total Score: ',
+	        this.state.totalScore
+	      )
 	    );
 	  }
 	});
@@ -8497,7 +8505,8 @@
 	  getInitialState: function() {
 	    
 	    return {
-	      results: []
+	      results: [],
+	      totalScore:0
 	    }    
 	  },
 	  
@@ -8513,8 +8522,9 @@
 	  onAddResult(levelNo,ms){
 	    var score ={};
 	    score["levelNo"] = levelNo
-	    score["reactionTime"] = ms
-	    score["points"] = levelNo * ms
+	    score["reactionTime"] = ms/1000
+	    score["points"] = Math.round(5/(ms/1000),2)
+	    this.data.totalScore +=score["points"]
 	    this.data.results.push(score)
 	    this.trigger(this.data)
 	  }

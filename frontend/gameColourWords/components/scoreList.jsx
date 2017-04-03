@@ -6,13 +6,15 @@ const ResultStore = require('../stores/result_store')
 var ScoreList = React.createClass({
   getInitialState: function() {
     return {
-            results: []
+            results: [],
+            totalScore:0
             }
   },
 
  onStoreChange: function(data){
     this.setState({
-      results: data.results
+      results: data.results,
+      totalScore: data.totalScore
     }, this.onStateUpdated);
   },
   onStateUpdated: function(){
@@ -36,6 +38,7 @@ var ScoreList = React.createClass({
     return (
     <div className="card-block score-list">
        {aList}
+        <div>Total Score: {this.state.totalScore}</div>
     </div>
     );
   }
