@@ -124,10 +124,12 @@ var GameStore = Reflux.createStore({
     var c = this.data.level.colours[i]
     if (c.hex == this.data.level.question.answer || c.title == this.data.level.question.answer ){
       c.complete = true;
+      ResultActions.CorrectAnswer()
       ResultActions.AddResult(this.data.level.no, this.timeMS)
-    }else(
+    }else{
+      ResultActions.WrongAnswer()
       this.addStrike()
-    )
+    }
     if (this.isGameOver()){
       //end game
       

@@ -21,7 +21,7 @@ config/database.yml
 /public/assets/*
 /public/uploads
 !/public/assets/images/defaults/*
-
+!/public/assets/webpack/webpack-assets/*
 
 node_modules
 

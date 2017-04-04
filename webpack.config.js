@@ -13,7 +13,7 @@ var config = module.exports = {
 
 config.output = {
     // this is our app/assets/javascripts directory, which is part of the Sprockets pipeline
-    path: path.join(__dirname, 'app', 'assets', 'javascripts', 'bundles'),
+    path: path.join(__dirname, 'app', 'assets', 'javascripts','webpack'),
     // the filename of the compiled bundle, e.g. app/assets/javascripts/bundle.js
     filename: "[name]-bundle.js",
     // if the webpack code-splitting feature is enabled, this is the path it'll use to download bundles
@@ -22,7 +22,7 @@ config.output = {
 config.resolve = {
     // tell webpack which extensions to auto search when it resolves modules. With this,
     // you'll be able to do `require('./utils')` snstead of `require('./utils.js')`
-    extensions: ['', '.js', '.coffee', '.jsx'],
+    extensions: ['', '.js', '.coffee', '.jsx', '.wav'],
     // by default, webpack will search in `web_modules` and `node_modules`. Because we're using
     // Bower, we want it to look in there too
     //modulesDirectories: [ 'node_modules', 'bower_components' ],
@@ -43,12 +43,20 @@ config.module = {
         loader : 'babel',
         exclude : /node_modules/,
         query : {
-          presets : ['es2015', 'react']
+          presets : ['es2015', 'react'],
         }
       },
       { test: /\.coffee$/, loader: 'coffee-loader' },
       { test: /\.css$/, loader: "style-loader!css-loader" },
-      { test: /\.mp3$/,  loader: 'file-loader'}
+      { 
+        test: /\.wav$/,  
+        loader: 'file-loader', 
+        query: {
+              name: '[name][md5:hash].[ext]', // Name of bundled asset
+              outputPath: '../../../../public/assets/webpack/webpack-assets/',  // Output location for assets. Final: `app/assets/webpack/webpack-assets/`
+              publicPath: '/assets/webpack/webpack-assets/' // Endpoint asset can be found at on Rails server
+            }
+        }
     ]
 };
 

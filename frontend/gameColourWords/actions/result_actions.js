@@ -2,7 +2,9 @@ const Reflux = require('reflux');
 
 
 var ResultActions = Reflux.createActions([
-  "AddResult"
+  "AddResult",
+  "CorrectAnswer",
+  "WrongAnswer"
 ]);
 
 

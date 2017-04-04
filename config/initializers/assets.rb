@@ -11,5 +11,9 @@ Rails.application.config.assets.version = '1.0'
 # Rails.application.config.assets.precompile += %w( search.js )
 
 
-Rails.application.config.assets.precompile += %w( bundles/quiz-bundle.js )
-Rails.application.config.assets.precompile += %w( bundles/gameColourWords-bundle.js )
+Rails.application.config.assets.precompile += %w( webpack/quiz-bundle.js )
+Rails.application.config.assets.precompile += %w( webpack/gameColourWords-bundle.js )
+
+
+# Rails.application.config.assets.precompile += %w( bundles/quiz-bundle.js )
+# Rails.application.config.assets.precompile += %w( bundles/gameColourWords-bundle.js )

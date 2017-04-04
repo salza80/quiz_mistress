@@ -6,7 +6,7 @@ var GameActions = Reflux.createActions([
   "ColourClick",
   "TimedOut",
   "TimeUpdated",
-  "Load"
+  "Load",
 ]);
 
 

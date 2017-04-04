@@ -32,9 +32,10 @@
     "jquery": "^3.0.0",
     "react": "^15.4.0",
     "react-dom": "^15.4.0",
+    "react-progressbar": "^1.4.6",
+    "react-sound": "^0.5.2",
     "react-timer-mixin": "^0.13.3",
     "reflux": "^0.4.1",
-    "react-progressbar": "^1.4.6",
     "underscore": "^1.8.3"
   }
 }

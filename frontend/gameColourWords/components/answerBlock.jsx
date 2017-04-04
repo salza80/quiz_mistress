@@ -1,11 +1,10 @@
 const React = require('react');
 const GameActions = require('../actions/game_actions.js'); 
 
-
 var AnswerBlock = React.createClass({
   getInitialState: function() {
     return {
-           
+
           };
   },
 
@@ -39,7 +38,8 @@ var AnswerBlock = React.createClass({
 
    
     return (
-      <div className="answer-block" style={this.blockStyle()} onClick={this.colourClick}></div>
+      <div className="answer-block" style={this.blockStyle()} onClick={this.colourClick}>
+      </div>
     );
   }
 });
