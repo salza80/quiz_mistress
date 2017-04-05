@@ -22,17 +22,17 @@ var SoundStore = Reflux.createStore({
   
             
 
-  onCorrectAnswer(){
+  onCorrectAnswer: function(){
     this.data.soundFile =  CorrectSound;
     this.data.playStatus="PLAYING";
     this.trigger(this.data)
   },
-  onWrongAnswer(){
+  onWrongAnswer: function(){
     this.data.soundFile= WrongSound;
     this.data.playStatus="PLAYING";
     this.trigger(this.data)
   },
-  onTimedOut(){
+  onTimedOut: function(){
     this.data.soundFile =  CorrectSound;
     this.data.playStatus="PLAYING";
     this.trigger(this.data)

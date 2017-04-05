@@ -47,12 +47,12 @@ var GameTimer = React.createClass({
 
     return 'rgb(' + newColour + ')';
   },
-  unmountTimer:function(){
+  unmountTimer: function(){
     if(this.timeout){
       clearTimeout(this.timeout)
     }
   },
-  incrementTimer:function(){
+  incrementTimer: function(){
     this.msRemaining = this.msRemaining - this.increment
     var seconds, percent, colour
 

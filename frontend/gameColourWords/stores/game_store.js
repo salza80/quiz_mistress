@@ -98,14 +98,14 @@ var GameStore = Reflux.createStore({
     return question
 
   },
-  isGameOver(){
+  isGameOver: function(){
     return this.data.level.strikes.no >= this.data.level.strikes.total
   },
-  addStrike(){
+  addStrike: function(){
     this.data.level.strikes.no += 1
    
   },  
-  onTimeUpdated(ms){
+  onTimeUpdated: function(ms){
     this.timeMS=ms
   },                 
   onLoad: function(){

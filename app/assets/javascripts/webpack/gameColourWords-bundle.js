@@ -4818,14 +4818,14 @@
 	    return question
 
 	  },
-	  isGameOver(){
+	  isGameOver: function(){
 	    return this.data.level.strikes.no >= this.data.level.strikes.total
 	  },
-	  addStrike(){
+	  addStrike: function(){
 	    this.data.level.strikes.no += 1
 	   
 	  },  
-	  onTimeUpdated(ms){
+	  onTimeUpdated: function(ms){
 	    this.timeMS=ms
 	  },                 
 	  onLoad: function(){
@@ -7911,17 +7911,17 @@
 	  
 	            
 
-	  onCorrectAnswer(){
+	  onCorrectAnswer: function(){
 	    this.data.soundFile =  CorrectSound;
 	    this.data.playStatus="PLAYING";
 	    this.trigger(this.data)
 	  },
-	  onWrongAnswer(){
+	  onWrongAnswer: function(){
 	    this.data.soundFile= WrongSound;
 	    this.data.playStatus="PLAYING";
 	    this.trigger(this.data)
 	  },
-	  onTimedOut(){
+	  onTimedOut: function(){
 	    this.data.soundFile =  CorrectSound;
 	    this.data.playStatus="PLAYING";
 	    this.trigger(this.data)
