@@ -1,5 +1,5 @@
-const CorrectSound = require("../sounds/correct");
-const WrongSound = require("../sounds/correct");
+const CorrectSound = require("../sounds/correct.wav");
+const WrongSound = require("../sounds/correct.wav");
 
 
 const Reflux = require('reflux');

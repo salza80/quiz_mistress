@@ -63,8 +63,8 @@ var Game = React.createClass({
     if (this.state.sound.playStatus=="PLAYING"){
       sound = <Sound url={this.state.sound.soundFile} playStatus={Sound.status.PLAYING} />
     }
-    if( this.state.gameover){
-      content=<GameOver />
+    if(this.state.gameover==true){
+      content = <GameOver />
     }else if (this.state.level.running==false){
       content = <LevelStart/>;
     }else{

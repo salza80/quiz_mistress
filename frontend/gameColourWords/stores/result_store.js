@@ -25,7 +25,7 @@ var ResultStore = Reflux.createStore({
   onLoadCompleted: function(){
     
   },
-  onAddResult(levelNo,ms){
+  onAddResult: function(levelNo,ms){
     var score ={};
     score["levelNo"] = levelNo
     score["reactionTime"] = ms/1000

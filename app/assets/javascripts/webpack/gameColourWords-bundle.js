@@ -610,7 +610,7 @@
 	    if (this.state.sound.playStatus == "PLAYING") {
 	      sound = React.createElement(Sound, { url: this.state.sound.soundFile, playStatus: Sound.status.PLAYING });
 	    }
-	    if (this.state.gameover) {
+	    if (this.state.gameover == true) {
 	      content = React.createElement(GameOver, null);
 	    } else if (this.state.level.running == false) {
 	      content = React.createElement(LevelStart, null);
@@ -8611,7 +8611,7 @@
 	  onLoadCompleted: function(){
 	    
 	  },
-	  onAddResult(levelNo,ms){
+	  onAddResult: function(levelNo,ms){
 	    var score ={};
 	    score["levelNo"] = levelNo
 	    score["reactionTime"] = ms/1000
