@@ -57,7 +57,7 @@ var GameTimer = React.createClass({
     var seconds, percent, colour
 
     if(this.msRemaining <=0){
-      this.unmountTimer()
+      this.unmountTimer();
       percent = 100
       colour = this.fadeToColour(100/100)
       seconds = 0

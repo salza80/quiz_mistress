@@ -139,6 +139,7 @@ var GameStore = Reflux.createStore({
   onWrongAnswer: function(){
     this.addStrike()
     if (this.isGameOver()){
+      GameActions.GameOver();
       this.data.gameover=true;
     }else{
       this.data.level.question=this.getNextQuestion();

@@ -29,7 +29,7 @@ var ResultStore = Reflux.createStore({
     var score ={};
     score["levelNo"] = levelNo
     score["reactionTime"] = ms/1000
-    score["points"] = Math.round(5/(ms/1000),2)
+    score["points"] = Math.round((5/(ms/1000)) *10,2)
     this.data.totalScore +=score["points"]
     this.data.results.push(score)
     this.trigger(this.data)

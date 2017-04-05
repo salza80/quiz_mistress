@@ -35,8 +35,7 @@ var GameBoard = React.createClass({
     GameActions.TimeUpdated(ms)
   },
   render: function() {
-
-   
+ 
     return (
       <div className="card-block game-board">
         <div className="row">
@@ -46,8 +45,10 @@ var GameBoard = React.createClass({
         </div>
         <div className="row">      
           <div className="col-12">
+            <span className="question-box">
             Match on  <span>{this.props.level.question.match} </span>:
-            <span style={this.wordStyle()} >{this.props.level.question.title}</span>
+            <span style={this.wordStyle()} > {this.props.level.question.title}</span>
+            </span>
           </div>
         </div>
         <div className="row">

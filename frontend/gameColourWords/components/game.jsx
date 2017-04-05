@@ -14,7 +14,7 @@ var Game = React.createClass({
             gameover:false,
             sound:{
               soundFile:"",
-              playStatus:"STOPPED"
+              playing:false
             },
             level: {
               no:1,
@@ -45,6 +45,9 @@ var Game = React.createClass({
       sound: data 
     }, this.onStateUpdated);
   },
+  onSoundFinished: function(){
+    GameActions.SoundFinished()
+  },
   conponentWillMount: function(){
     
   },
@@ -60,8 +63,8 @@ var Game = React.createClass({
 
     let content = null;
     let sound = null;
-    if (this.state.sound.playStatus=="PLAYING"){
-      sound = <Sound url={this.state.sound.soundFile} playStatus={Sound.status.PLAYING} />
+    if (this.state.sound.playing){
+      sound = <Sound url={this.state.sound.soundFile} onFinishedPlaying={this.onSoundFinished} playStatus={Sound.status.PLAYING} />
     }
     if(this.state.gameover==true){
       content = <GameOver />
@@ -71,7 +74,7 @@ var Game = React.createClass({
       content = <GameBoard level={this.state.level}></GameBoard>
     }
     return (
-      <div className="game-container card text-center">
+      <div className="gamecolourwords game-container card text-center">
         <div className="game card-header heading-bk">
           <div className="game-title">
             <h2 className="card-title"> Word Colour Game</h2>

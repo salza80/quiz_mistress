@@ -9,7 +9,9 @@ var GameActions = Reflux.createActions([
   "Load",
   "AddResult",
   "CorrectAnswer",
-  "WrongAnswer"
+  "WrongAnswer",
+  "SoundFinished",
+  "GameOver"
 ]);
 
 

@@ -49,7 +49,7 @@ config.module = {
       { test: /\.coffee$/, loader: 'coffee-loader' },
       { test: /\.css$/, loader: "style-loader!css-loader" },
       { 
-        test: /\.wav$/,  
+        test: /\.mp3$/,
         loader: 'file-loader', 
         query: {
               name: '[name][md5:hash].[ext]', // Name of bundled asset

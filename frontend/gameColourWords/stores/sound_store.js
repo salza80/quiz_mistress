@@ -1,5 +1,6 @@
-const CorrectSound = require("../sounds/correct.wav");
-const WrongSound = require("../sounds/correct.wav");
+const CorrectSound = require("../sounds/correct.mp3");
+const WrongSound = require("../sounds/wrong.mp3");
+const GameOver = require("../sounds/gameover.mp3");
 
 
 const Reflux = require('reflux');
@@ -15,26 +16,29 @@ var SoundStore = Reflux.createStore({
   getInitialState: function() {
     
     return {
-      soundFile:"STOPPED",
-      playStatus:true
+      soundFile:"",
+      playing:true
     }    
   },
   
             
-
+  onSoundFinished: function(){
+    this.data.playing=false;
+    this.trigger(this.data)
+  }, 
   onCorrectAnswer: function(){
     this.data.soundFile =  CorrectSound;
-    this.data.playStatus="PLAYING";
+    this.data.playing=true;
     this.trigger(this.data)
   },
   onWrongAnswer: function(){
     this.data.soundFile= WrongSound;
-    this.data.playStatus="PLAYING";
+    this.data.playing=true;
     this.trigger(this.data)
   },
-  onTimedOut: function(){
-    this.data.soundFile =  CorrectSound;
-    this.data.playStatus="PLAYING";
+  onGameOver: function(){
+    this.data.soundFile =  GameOver;
+    this.data.playing=true;
     this.trigger(this.data)
   },
 });
