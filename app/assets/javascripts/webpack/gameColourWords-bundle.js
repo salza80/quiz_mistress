@@ -549,11 +549,11 @@
 
 	var React = __webpack_require__(5);
 	var GameStore = __webpack_require__(36);
-	var SoundStore = __webpack_require__(59);
+	var SoundStore = __webpack_require__(58);
 	var GameActions = __webpack_require__(56);
-	var GameBoard = __webpack_require__(61);
-	var LevelStart = __webpack_require__(68);
-	var GameOver = __webpack_require__(236);
+	var GameBoard = __webpack_require__(60);
+	var LevelStart = __webpack_require__(67);
+	var GameOver = __webpack_require__(68);
 	var ScoreList = __webpack_require__(69);
 	var Sound = __webpack_require__(72);
 
@@ -590,7 +590,6 @@
 	  },
 	  onStateUpdated: function onStateUpdated() {},
 	  onSoundChange: function onSoundChange(data) {
-	    console.log(data);
 	    this.setState({
 	      sound: data
 	    }, this.onStateUpdated);
@@ -654,8 +653,6 @@
 	        content,
 	        React.createElement(ScoreList, null)
 	      ),
-	      'here',
-	      this.state.soundFile,
 	      sound
 	    );
 	  }
@@ -4725,7 +4722,7 @@
 	const GameActions = __webpack_require__(56);
 
 
-	const _ = __webpack_require__(58)
+	const _ = __webpack_require__(57)
 	//const backend = require('../../modules/backend.js');
 
 	var GameStore = Reflux.createStore({
@@ -6333,8 +6330,7 @@
 
 
 /***/ },
-/* 57 */,
-/* 58 */
+/* 57 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;//     Underscore.js 1.8.3
@@ -7888,11 +7884,11 @@
 
 
 /***/ },
-/* 59 */
+/* 58 */
 /***/ function(module, exports, __webpack_require__) {
 
-	const CorrectSound = __webpack_require__(60);
-	const WrongSound = __webpack_require__(60);
+	const CorrectSound = __webpack_require__(59);
+	const WrongSound = __webpack_require__(59);
 
 
 	const Reflux = __webpack_require__(37);
@@ -7935,22 +7931,22 @@
 
 
 /***/ },
-/* 60 */
+/* 59 */
 /***/ function(module, exports) {
 
 	module.exports = "/assets/webpack/webpack-assets/correct25763938e6f8009263e032edb322fbde.wav";
 
 /***/ },
-/* 61 */
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(5);
 	var GameActions = __webpack_require__(56);
-	var AnswerList = __webpack_require__(62);
-	var StrikeList = __webpack_require__(64);
-	var GameTimer = __webpack_require__(66);
+	var AnswerList = __webpack_require__(61);
+	var StrikeList = __webpack_require__(63);
+	var GameTimer = __webpack_require__(65);
 
 	var GameBoard = React.createClass({
 	  displayName: 'GameBoard',
@@ -8034,13 +8030,13 @@
 	module.exports = React.createFactory(GameBoard);
 
 /***/ },
-/* 62 */
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(5);
-	var AnswerBlock = __webpack_require__(63);
+	var AnswerBlock = __webpack_require__(62);
 
 	var AnswerList = React.createClass({
 	  displayName: 'AnswerList',
@@ -8071,7 +8067,7 @@
 	module.exports = React.createFactory(AnswerList);
 
 /***/ },
-/* 63 */
+/* 62 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8113,13 +8109,13 @@
 	module.exports = React.createFactory(AnswerBlock);
 
 /***/ },
-/* 64 */
+/* 63 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(5);
-	var Strike = __webpack_require__(65);
+	var Strike = __webpack_require__(64);
 
 	var StrikeList = React.createClass({
 	  displayName: 'StrikeList',
@@ -8154,7 +8150,7 @@
 	module.exports = React.createFactory(StrikeList);
 
 /***/ },
-/* 65 */
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -8192,19 +8188,19 @@
 	module.exports = React.createFactory(Strike);
 
 /***/ },
-/* 66 */
+/* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _reactProgressbar = __webpack_require__(67);
+	var _reactProgressbar = __webpack_require__(66);
 
 	var _reactProgressbar2 = _interopRequireDefault(_reactProgressbar);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var React = __webpack_require__(5);
-	var _ = __webpack_require__(58);
+	var _ = __webpack_require__(57);
 	// const Progress = require('react-progressbar');
 
 
@@ -8273,7 +8269,6 @@
 	      this.setState({ percent: percent, seconds: seconds, colour: colour });
 	    }
 	  },
-
 	  onTimeout: function onTimeout() {
 	    if (_.isFunction(this.props.onTimeout)) {
 	      this.props.onTimeout();
@@ -8304,7 +8299,7 @@
 	module.exports = React.createFactory(GameTimer);
 
 /***/ },
-/* 67 */
+/* 66 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8404,7 +8399,7 @@
 	exports.default = Progress;
 
 /***/ },
-/* 68 */
+/* 67 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8441,6 +8436,38 @@
 	});
 
 	module.exports = React.createFactory(LevelStart);
+
+/***/ },
+/* 68 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(5);
+	var GameActions = __webpack_require__(56);
+
+	var GameOver = React.createClass({
+	  displayName: 'GameOver',
+
+	  getInitialState: function getInitialState() {
+	    return {};
+	  },
+
+	  conponentWillMount: function conponentWillMount() {},
+	  componentDidMount: function componentDidMount() {},
+	  componentWillUnmount: function componentWillUnmount() {},
+
+	  render: function render() {
+
+	    return React.createElement(
+	      'div',
+	      { className: 'card-block' },
+	      'GAME OVER!'
+	    );
+	  }
+	});
+
+	module.exports = React.createFactory(GameOver);
 
 /***/ },
 /* 69 */
@@ -32557,53 +32584,6 @@
 
 	module.exports = ReactDOMInvalidARIAHook;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
-
-/***/ },
-/* 221 */,
-/* 222 */,
-/* 223 */,
-/* 224 */,
-/* 225 */,
-/* 226 */,
-/* 227 */,
-/* 228 */,
-/* 229 */,
-/* 230 */,
-/* 231 */,
-/* 232 */,
-/* 233 */,
-/* 234 */,
-/* 235 */,
-/* 236 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(5);
-	var GameActions = __webpack_require__(56);
-
-	var GameOver = React.createClass({
-	  displayName: 'GameOver',
-
-	  getInitialState: function getInitialState() {
-	    return {};
-	  },
-
-	  conponentWillMount: function conponentWillMount() {},
-	  componentDidMount: function componentDidMount() {},
-	  componentWillUnmount: function componentWillUnmount() {},
-
-	  render: function render() {
-
-	    return React.createElement(
-	      'div',
-	      { className: 'card-block' },
-	      'GAME OVER!'
-	    );
-	  }
-	});
-
-	module.exports = React.createFactory(GameOver);
 
 /***/ }
 /******/ ]);

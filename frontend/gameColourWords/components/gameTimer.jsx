@@ -38,8 +38,7 @@ var GameTimer = React.createClass({
     this.msTotal=seconds * 1000
   },
   fadeToColour: function(ratio) {
-    var  difference,
-        newColour = [];
+    var  difference, newColour = [];
 
     for (var i = 0; i < this.colour1.length; i++) {
         difference = this.colour2[i] - this.colour1[i];
@@ -48,12 +47,12 @@ var GameTimer = React.createClass({
 
     return 'rgb(' + newColour + ')';
   },
-  unmountTimer(){
+  unmountTimer:function(){
     if(this.timeout){
       clearTimeout(this.timeout)
     }
   },
-  incrementTimer(){
+  incrementTimer:function(){
     this.msRemaining = this.msRemaining - this.increment
     var seconds, percent, colour
 

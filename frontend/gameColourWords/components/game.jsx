@@ -41,7 +41,6 @@ var Game = React.createClass({
    
   },
   onSoundChange: function(data){
-    console.log(data)
     this.setState({
       sound: data 
     }, this.onStateUpdated);
@@ -87,7 +86,6 @@ var Game = React.createClass({
         {content}
         <ScoreList />
       </div>
-      here{this.state.soundFile}
       {sound}
     </div>
     );
