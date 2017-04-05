@@ -60,7 +60,7 @@ var GameTimer = React.createClass({
     if(this.msRemaining <=0){
       this.unmountTimer()
       percent = 100
-      colour = this.colour2
+      colour = this.fadeToColour(100/100)
       seconds = 0
       this.setState({percent: percent, seconds: seconds, colour:colour})
       this.onTimeout();
@@ -73,8 +73,8 @@ var GameTimer = React.createClass({
     }
   },
   onTimeout: function(){
-    if(_.isFunction(this.props.onIncrement)){
-        this.props.onIncrement();
+    if(_.isFunction(this.props.onTimeout)){
+        this.props.onTimeout();
       }
   },
   onTimerChange: function(durationMS){

@@ -4,14 +4,18 @@ const SoundStore = require('../stores/sound_store')
 const GameActions= require('../actions/game_actions')
 const GameBoard= require('./gameBoard.jsx')
 const LevelStart = require('./levelStart.jsx')
+const GameOver = require('./gameOver.jsx')
 const ScoreList = require('./scoreList.jsx')
 const Sound = require('react-sound');
 
 var Game = React.createClass({
   getInitialState: function() {
     return {
-            soundFile:"",
-            playStatus:"STOPPED",
+            gameover:false,
+            sound:{
+              soundFile:"",
+              playStatus:"STOPPED"
+            },
             level: {
               no:1,
               running: false,
@@ -29,6 +33,7 @@ var Game = React.createClass({
   },
   onStoreChange: function(data){
     this.setState({
+      gameover: data.gameover,
       level: data.level
     }, this.onStateUpdated);
   },
@@ -36,9 +41,9 @@ var Game = React.createClass({
    
   },
   onSoundChange: function(data){
+    console.log(data)
     this.setState({
-      soundFile: data.soundFile,
-      playStatus:data.playStatus
+      sound: data 
     }, this.onStateUpdated);
   },
   conponentWillMount: function(){
@@ -56,11 +61,12 @@ var Game = React.createClass({
 
     let content = null;
     let sound = null;
-    if (this.state.playStatus=="PLAYING"){
-      sound = <Sound url={this.state.soundFile} playStatus={Sound.status.PLAYING} />
+    if (this.state.sound.playStatus=="PLAYING"){
+      sound = <Sound url={this.state.sound.soundFile} playStatus={Sound.status.PLAYING} />
     }
-
-    if (this.state.level.running==false){
+    if( this.state.gameover){
+      content=<GameOver />
+    }else if (this.state.level.running==false){
       content = <LevelStart/>;
     }else{
       content = <GameBoard level={this.state.level}></GameBoard>

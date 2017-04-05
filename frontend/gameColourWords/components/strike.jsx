@@ -20,7 +20,6 @@ var Strike = React.createClass({
   
   blockStyle: function(){
     var blockcolour = "#f2f2f2"
-    console.log(this.props.striked)
     if (this.props.striked ==true){
       blockcolour= "#ff0000"
     }

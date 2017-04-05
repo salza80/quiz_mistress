@@ -553,6 +553,7 @@
 	var GameActions = __webpack_require__(56);
 	var GameBoard = __webpack_require__(61);
 	var LevelStart = __webpack_require__(68);
+	var GameOver = __webpack_require__(236);
 	var ScoreList = __webpack_require__(69);
 	var Sound = __webpack_require__(72);
 
@@ -561,8 +562,11 @@
 
 	  getInitialState: function getInitialState() {
 	    return {
-	      soundFile: "",
-	      playStatus: "STOPPED",
+	      gameover: false,
+	      sound: {
+	        soundFile: "",
+	        playStatus: "STOPPED"
+	      },
 	      level: {
 	        no: 1,
 	        running: false,
@@ -580,14 +584,15 @@
 	  },
 	  onStoreChange: function onStoreChange(data) {
 	    this.setState({
+	      gameover: data.gameover,
 	      level: data.level
 	    }, this.onStateUpdated);
 	  },
 	  onStateUpdated: function onStateUpdated() {},
 	  onSoundChange: function onSoundChange(data) {
+	    console.log(data);
 	    this.setState({
-	      soundFile: data.soundFile,
-	      playStatus: data.playStatus
+	      sound: data
 	    }, this.onStateUpdated);
 	  },
 	  conponentWillMount: function conponentWillMount() {},
@@ -603,11 +608,12 @@
 
 	    var content = null;
 	    var sound = null;
-	    if (this.state.playStatus == "PLAYING") {
-	      sound = React.createElement(Sound, { url: this.state.soundFile, playStatus: Sound.status.PLAYING });
+	    if (this.state.sound.playStatus == "PLAYING") {
+	      sound = React.createElement(Sound, { url: this.state.sound.soundFile, playStatus: Sound.status.PLAYING });
 	    }
-
-	    if (this.state.level.running == false) {
+	    if (this.state.gameover) {
+	      content = React.createElement(GameOver, null);
+	    } else if (this.state.level.running == false) {
 	      content = React.createElement(LevelStart, null);
 	    } else {
 	      content = React.createElement(GameBoard, { level: this.state.level });
@@ -4717,7 +4723,7 @@
 
 	const Reflux = __webpack_require__(37);
 	const GameActions = __webpack_require__(56);
-	const ResultActions = __webpack_require__(57);
+
 
 	const _ = __webpack_require__(58)
 	//const backend = require('../../modules/backend.js');
@@ -4733,6 +4739,7 @@
 	  getInitialState: function() {
 	    
 	    return {
+	      gameover: false,
 	      level: {
 	              no:0,
 	              running: false,
@@ -4840,31 +4847,30 @@
 	  onColourClick: function(i){
 	    var c = this.data.level.colours[i]
 	    if (c.hex == this.data.level.question.answer || c.title == this.data.level.question.answer ){
-	      c.complete = true;
-	      ResultActions.CorrectAnswer()
-	      ResultActions.AddResult(this.data.level.no, this.timeMS)
+	      GameActions.CorrectAnswer(i)   
 	    }else{
-	      ResultActions.WrongAnswer()
-	      this.addStrike()
-	    }
+	      GameActions.WrongAnswer()
+	    }   
+	  },
+	  onCorrectAnswer: function(i){
+	    var c = this.data.level.colours[i]
+	    c.complete = true;
+	    GameActions.AddResult(this.data.level.no, this.timeMS)
+	    this.data.level.question=this.getNextQuestion();
+	    this.trigger(this.data)
+	  },
+	  onWrongAnswer: function(){
+	    this.addStrike()
 	    if (this.isGameOver()){
-	      //end game
-	      
+	      this.data.gameover=true;
 	    }else{
 	      this.data.level.question=this.getNextQuestion();
 	    }
 	    this.trigger(this.data)
-	    
 	  },
+
 	  onTimedOut: function(){
-	    this.addStrike()
-	    if (this.isGameOver()){
-	      this.trigger(this.data)
-	      
-	    }else{
-	      this.data.level.question=this.getNextQuestion();
-	      this.trigger(this.data)
-	    }
+	    this.onWrongAnswer()
 	  },
 	  getRemainingColours: function(){
 	    return this.data.level.colours.filter(function(colour){
@@ -6317,6 +6323,9 @@
 	  "TimedOut",
 	  "TimeUpdated",
 	  "Load",
+	  "AddResult",
+	  "CorrectAnswer",
+	  "WrongAnswer"
 	]);
 
 
@@ -6324,24 +6333,7 @@
 
 
 /***/ },
-/* 57 */
-/***/ function(module, exports, __webpack_require__) {
-
-	const Reflux = __webpack_require__(37);
-
-
-	var ResultActions = Reflux.createActions([
-	  "AddResult",
-	  "CorrectAnswer",
-	  "WrongAnswer"
-	]);
-
-
-
-	module.exports = ResultActions;
-
-
-/***/ },
+/* 57 */,
 /* 58 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -7904,12 +7896,12 @@
 
 
 	const Reflux = __webpack_require__(37);
-	const ResultActions = __webpack_require__(57);
+	const GameActions = __webpack_require__(56);
 	//const backend = require('../../modules/backend.js');
 
 	var SoundStore = Reflux.createStore({
 	// this will set up listeners to all publishers in ResultActions
-	  listenables: [ResultActions],
+	  listenables: [GameActions],
 	  init: function(){
 	    this.data = this.getInitialState();
 	  },
@@ -7932,7 +7924,12 @@
 	    this.data.soundFile= WrongSound;
 	    this.data.playStatus="PLAYING";
 	    this.trigger(this.data)
-	  }
+	  },
+	  onTimedOut(){
+	    this.data.soundFile =  CorrectSound;
+	    this.data.playStatus="PLAYING";
+	    this.trigger(this.data)
+	  },
 	});
 	module.exports = SoundStore;
 
@@ -8104,8 +8101,7 @@
 	    }
 	    return {
 	      backgroundColor: blockcolour,
-	      minWidth: "10px",
-	      minHeight: "10px"
+	      minHeight: "2em"
 	    };
 	  },
 	  render: function render() {
@@ -8178,7 +8174,6 @@
 
 	  blockStyle: function blockStyle() {
 	    var blockcolour = "#f2f2f2";
-	    console.log(this.props.striked);
 	    if (this.props.striked == true) {
 	      blockcolour = "#ff0000";
 	    }
@@ -8266,7 +8261,7 @@
 	    if (this.msRemaining <= 0) {
 	      this.unmountTimer();
 	      percent = 100;
-	      colour = this.colour2;
+	      colour = this.fadeToColour(100 / 100);
 	      seconds = 0;
 	      this.setState({ percent: percent, seconds: seconds, colour: colour });
 	      this.onTimeout();
@@ -8280,8 +8275,8 @@
 	  },
 
 	  onTimeout: function onTimeout() {
-	    if (_.isFunction(this.props.onIncrement)) {
-	      this.props.onIncrement();
+	    if (_.isFunction(this.props.onTimeout)) {
+	      this.props.onTimeout();
 	    }
 	  },
 	  onTimerChange: function onTimerChange(durationMS) {
@@ -8563,12 +8558,12 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	const Reflux = __webpack_require__(37);
-	const ResultActions = __webpack_require__(57);
+	const GameActions = __webpack_require__(56);
 	//const backend = require('../../modules/backend.js');
 
 	var ResultStore = Reflux.createStore({
-	// this will set up listeners to all publishers in ResultActions
-	  listenables: [ResultActions],
+	// this will set up listeners to all publishers in GameActions
+	  listenables: [GameActions],
 	  init: function(){
 	    this.data = this.getInitialState();
 	  },
@@ -32562,6 +32557,53 @@
 
 	module.exports = ReactDOMInvalidARIAHook;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
+
+/***/ },
+/* 221 */,
+/* 222 */,
+/* 223 */,
+/* 224 */,
+/* 225 */,
+/* 226 */,
+/* 227 */,
+/* 228 */,
+/* 229 */,
+/* 230 */,
+/* 231 */,
+/* 232 */,
+/* 233 */,
+/* 234 */,
+/* 235 */,
+/* 236 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(5);
+	var GameActions = __webpack_require__(56);
+
+	var GameOver = React.createClass({
+	  displayName: 'GameOver',
+
+	  getInitialState: function getInitialState() {
+	    return {};
+	  },
+
+	  conponentWillMount: function conponentWillMount() {},
+	  componentDidMount: function componentDidMount() {},
+	  componentWillUnmount: function componentWillUnmount() {},
+
+	  render: function render() {
+
+	    return React.createElement(
+	      'div',
+	      { className: 'card-block' },
+	      'GAME OVER!'
+	    );
+	  }
+	});
+
+	module.exports = React.createFactory(GameOver);
 
 /***/ }
 /******/ ]);

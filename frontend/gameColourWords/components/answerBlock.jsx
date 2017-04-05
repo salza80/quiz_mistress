@@ -30,8 +30,7 @@ var AnswerBlock = React.createClass({
     }
     return {
       backgroundColor:blockcolour,
-      minWidth: "10px",
-      minHeight: "10px"
+      minHeight: "2em"
     }
   },
   render: function() {

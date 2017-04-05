@@ -1,10 +1,10 @@
 const Reflux = require('reflux');
-const ResultActions = require('../actions/result_actions.js');
+const GameActions = require('../actions/game_actions.js');
 //const backend = require('../../modules/backend.js');
 
 var ResultStore = Reflux.createStore({
-// this will set up listeners to all publishers in ResultActions
-  listenables: [ResultActions],
+// this will set up listeners to all publishers in GameActions
+  listenables: [GameActions],
   init: function(){
     this.data = this.getInitialState();
   },

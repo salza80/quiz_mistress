@@ -7,6 +7,9 @@ var GameActions = Reflux.createActions([
   "TimedOut",
   "TimeUpdated",
   "Load",
+  "AddResult",
+  "CorrectAnswer",
+  "WrongAnswer"
 ]);
 
 
