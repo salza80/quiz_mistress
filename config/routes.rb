@@ -5,15 +5,20 @@ Rails.application.routes.draw do
     resource :users, only: [:edit, :update]
   end
 
-  root 'quizzes#index'
+  root 'public/quiz_group/quizzes#index'
 
-  resources :quizzes, only: [:index, :show] , param: :url_name do
-    resources :outcomes, only: [:show], param: :result_code
+  scope module: 'public' do
+    scope module: 'quiz_group' do
+      resources :quizzes, only: [:index, :show] , param: :url_name do
+        resources :outcomes, only: [:show], param: :result_code
+      end
+    end
+    resources :games, only: [:show] , param: :url_name do
+      resources :outcomes, only: [:show], param: :result_code
+    end
   end
 
-  resources :games, only: [:show] , param: :url_name do
-
-  end
+  
 
   
   scope '/api', module: 'api', constraints: { format: 'json' } do
