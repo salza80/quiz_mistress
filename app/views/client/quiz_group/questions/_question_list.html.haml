@@ -3,4 +3,4 @@
   .question-list
     %ul.list-group
       - questions.each do |question|
-        =render partial: 'client/questions/question_item', locals: {question: question}
+        = render partial: 'client/quiz_group/questions/question_item', locals: {question: question}

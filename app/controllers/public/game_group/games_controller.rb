@@ -14,7 +14,7 @@ module Public
       # GET /quizzes/1
       # GET /quizzes/1.json
       def show
-        template = "public/game_group/games/#{params[:url_name]}"
+        template = "public/game_group/#{params[:url_name]}/show"
         if template_exists? template
           render template: template
         else

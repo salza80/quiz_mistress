@@ -21,9 +21,9 @@
     #questions
       %h4.text-sm-center  Questions
       =link_to 'New Question', new_client_quiz_question_path(@quiz), remote: :true, class: "btn btn-primary"
-      =render partial:'client/questions/question_list', locals: { questions: @quiz.questions }
+      =render partial: 'client/quiz_group/questions/question_list', locals: { questions: @quiz.questions }
   .tab-pane{id:"outcomes_tab"}
     #outcomes
       %h4.text-sm-center Outcomes
       =link_to 'New Outcome', new_client_quiz_outcome_path(@quiz), remote: :true, class: "btn btn-primary"
-      =render partial:'client/outcomes/outcome_list', locals: { outcomes: @quiz.outcomes }
+      =render partial:'client/quiz_group/outcomes/outcome_list', locals: { outcomes: @quiz.outcomes }

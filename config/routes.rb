@@ -28,11 +28,13 @@ Rails.application.routes.draw do
   end
 
   scope 'manage', module: :client, as: 'client' do
-    patch 'quizzes/:id/publish/', to: 'quizzes#publish', as: 'publish_quiz'
-    patch 'quizzes/:id/unpublish/', to: 'quizzes#unpublish', as: 'unpublish_quiz'
-    resources :quizzes do
-      resources :questions
-      resources :outcomes
+    scope module: 'quiz_group' do
+      patch 'quizzes/:id/publish/', to: 'quizzes#publish', as: 'publish_quiz'
+      patch 'quizzes/:id/unpublish/', to: 'quizzes#unpublish', as: 'unpublish_quiz'
+      resources :quizzes do
+        resources :questions
+        resources :outcomes
+      end
     end
   end
 

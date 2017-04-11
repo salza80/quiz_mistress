@@ -18,6 +18,17 @@ class Quiz < ApplicationRecord
     input.to_i == 0 ? where(url_name:input).first : super
   end
 
+  def self.get_result_code(url_name, answers)
+    quiz = Quiz.find_by(url_name: url_name)
+    result = quiz.get_result_by_answers(answers)
+    result_code = ResultEncoder.new(result[:points]).encoded
+  end
+
+  def get_result_by_result_code(result_code)
+     points = ResultEncoder.new(result_code).decoded
+     result = get_result_by_points(points)
+  end
+
   def max_points
     total = 0
     questions.each do |q|
@@ -37,6 +48,8 @@ class Quiz < ApplicationRecord
     total
   end
 
+    
+
   def get_result_by_answers(answers)
     get_result_by_points(calc_points(answers))
   end
@@ -50,6 +63,8 @@ class Quiz < ApplicationRecord
     result
 
   end
+
+
 
   def get_outcome_by_percentage(percentage)
     outcomes.find_by_percentage(percentage)
