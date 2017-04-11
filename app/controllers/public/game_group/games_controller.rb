@@ -2,7 +2,7 @@ module Public
   module GameGroup
     class GamesController < ApplicationController
       # before_action :set_quiz, only: [:show]
-      layout :set_layout, only:[:show]
+
 
 
       # GET /quizzes
@@ -14,7 +14,12 @@ module Public
       # GET /quizzes/1
       # GET /quizzes/1.json
       def show
-        @preview = params[:preview] ? true : false
+        template = "public/game_group/games/#{params[:url_name]}"
+        if template_exists? template
+          render template: template
+        else
+          render file: "public/404.html", status: :not_found
+        end
       end
 
       # private
@@ -38,9 +43,7 @@ module Public
       #     set_meta_tags og:{ type: "article", title: quiz.title, url: quiz_url(quiz), description: quiz.description, image: quiz.image.image_file.url }
       #   end
 
-        def set_layout
-          params['preview'] ? "client/application" : "application"
-        end
+
     end
   end
 end

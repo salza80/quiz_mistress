@@ -13,8 +13,10 @@ Rails.application.routes.draw do
         resources :outcomes, only: [:show], param: :result_code
       end
     end
-    resources :games, only: [:show] , param: :url_name do
-      resources :outcomes, only: [:show], param: :result_code
+    scope module: 'game_group' do
+      resources :games, only: [:show] , param: :url_name do
+        resources :outcomes, only: [:show], param: :result_code
+      end
     end
   end
 
