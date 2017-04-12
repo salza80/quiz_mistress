@@ -1,5 +1,5 @@
 module Api
-  class QuizzesController < ApplicationController
+  class QuizzesController < Api::ApplicationController
 
     def show
       @quiz = Quiz.includes(questions: [:answers]).find_by(url_name: params[:url_name])

@@ -4863,13 +4863,17 @@
 	    this.addStrike()
 	    if (this.isGameOver()){
 	      GameActions.GameOver();
-	      this.data.gameover=true;
+	      
 	    }else{
 	      this.data.level.question=this.getNextQuestion();
 	    }
 	    this.trigger(this.data)
-	  },
 
+	  },
+	  onGameOver: function(){
+	    this.data.gameover=true;
+	    this.trigger(this.data)
+	  },
 	  onTimedOut: function(){
 	    this.onWrongAnswer()
 	  },
@@ -8613,7 +8617,8 @@
 
 	const Reflux = __webpack_require__(37);
 	const GameActions = __webpack_require__(56);
-	//const backend = require('../../modules/backend.js');
+	const backend = __webpack_require__(228);
+
 
 	var ResultStore = Reflux.createStore({
 	// this will set up listeners to all publishers in GameActions
@@ -8646,6 +8651,22 @@
 	    this.data.totalScore +=score["points"]
 	    this.data.results.push(score)
 	    this.trigger(this.data)
+	  },
+	  onGameOver: function(){
+	    backend.updateJSON('games/word_colour_game.json', 
+	    {
+	      result: {
+	        totalScore: this.data.totalScore
+	      }
+	    }).then(this.onResultEncodeCompleted)
+	    .catch( this.onFinishQuizFailed );
+	  },
+	  onResultEncodeCompleted: function(data){
+	    window.location = data.redirect_to
+
+	  },
+	  onResultEncodeFailed: function(){
+
 	  }
 	});
 	module.exports = ResultStore;
@@ -32611,6 +32632,100 @@
 
 	module.exports = ReactDOMInvalidARIAHook;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
+
+/***/ },
+/* 223 */,
+/* 224 */,
+/* 225 */,
+/* 226 */,
+/* 227 */,
+/* 228 */
+/***/ function(module, exports) {
+
+	
+	var backend = {
+	  path: '/api/'
+	};
+
+	backend.getPath = function(url){
+	  return this.path.concat(url);
+	};
+
+	backend.status = function(response) {
+	  if (response.status === 200) {
+	    return Promise.resolve(response);
+	  } else {
+	    return Promise.reject(new Error(response.statusText));
+	  }
+	};
+
+	backend.json = function(response) {
+	  return response.json();
+	};
+
+	backend.error = function(response) {};
+
+	backend.fetch = function(url) {
+	  return fetch(this.getPath(url), {credentials: 'include'})
+	  .then(this.status)
+	  .then(this.json)
+	  .then(function(data) {
+	    return Promise.resolve(data);
+	  }).catch(this.error);
+	};
+	backend.updateJSON = function(url, jsonData) {
+	  return fetch(this.getPath(url), {
+	    credentials: 'include',
+	    method: 'PUT',
+	    headers: {
+	      'Accept': 'application/json',
+	      'Content-Type': 'application/json',
+	      'X-CSRF-Token' : QM.CONST.CSRF_TOKEN
+	    },
+	    body: JSON.stringify(jsonData)
+	  })
+	  .then(this.json)
+	  .then(function (data) {
+	    return Promise.resolve(data);
+	  }).catch(this.error);
+	}; 
+	backend.postJSON = function(url, jsonData) {
+	  return fetch(this.getPath(url), {
+	    credentials: 'include',
+	    method: 'post',
+	    headers: {
+	      'Accept': 'application/json',
+	      'Content-Type': 'application/json',
+	      'X-CSRF-Token' : QM.CONST.CSRF_TOKEN
+	    },
+	    body: JSON.stringify(jsonData)
+	  })
+	  .then(this.json)
+	  .then(function (data) {
+	    return Promise.resolve(data);
+	  }).catch(this.error);
+	}; 
+
+	backend.delete = function(url, jsonData) {
+	  return fetch(this.getPath(url), {
+	    credentials: 'include',
+	    method: 'delete',
+	    headers: {
+	      'Accept': 'application/json',
+	      'Content-Type': 'application/json',
+	      'X-CSRF-Token' :  QM.CONST.CSRF_TOKEN
+	    },
+	    body: JSON.stringify(jsonData)
+	  })
+	  .then(this.status)
+	  .then(this.json)
+	  .then(function(data) {
+	    return Promise.resolve(data);
+	  }).catch(this.error);
+	};
+
+	module.exports = backend;
+
 
 /***/ }
 /******/ ]);

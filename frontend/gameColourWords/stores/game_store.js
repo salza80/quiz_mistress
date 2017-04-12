@@ -140,13 +140,17 @@ var GameStore = Reflux.createStore({
     this.addStrike()
     if (this.isGameOver()){
       GameActions.GameOver();
-      this.data.gameover=true;
+      
     }else{
       this.data.level.question=this.getNextQuestion();
     }
     this.trigger(this.data)
-  },
 
+  },
+  onGameOver: function(){
+    this.data.gameover=true;
+    this.trigger(this.data)
+  },
   onTimedOut: function(){
     this.onWrongAnswer()
   },

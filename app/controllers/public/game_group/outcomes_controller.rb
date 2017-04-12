@@ -1,20 +1,15 @@
 module Public
   module GameGroup
-    class GamesController < ApplicationController
-      # before_action :set_quiz, only: [:show]
+    class OutcomesController < ApplicationController
 
 
 
-      # GET /quizzes
-      # GET /quizzes.json
-      # def index
-      #   @quizzes = Quiz.published
-      # end
 
-      # GET /quizzes/1
-      # GET /quizzes/1.json
       def show
-        template = "public/game_group/#{params[:url_name]}/show"
+        template = "public/game_group/#{params[:game_url_name]}/outcome"
+        @result = HashEncoder.new(params[:result_code]).decoded
+        puts @result.inspect
+         
         if template_exists? template
           render template: template
         else
@@ -22,7 +17,6 @@ module Public
         end
       end
 
-  
 
 
      private

@@ -1,6 +1,7 @@
 const Reflux = require('reflux');
 const GameActions = require('../actions/game_actions.js');
-//const backend = require('../../modules/backend.js');
+const backend = require('../../modules/backend.js');
+
 
 var ResultStore = Reflux.createStore({
 // this will set up listeners to all publishers in GameActions
@@ -33,6 +34,22 @@ var ResultStore = Reflux.createStore({
     this.data.totalScore +=score["points"]
     this.data.results.push(score)
     this.trigger(this.data)
+  },
+  onGameOver: function(){
+    backend.updateJSON('games/word_colour_game.json', 
+    {
+      result: {
+        totalScore: this.data.totalScore
+      }
+    }).then(this.onResultEncodeCompleted)
+    .catch( this.onFinishQuizFailed );
+  },
+  onResultEncodeCompleted: function(data){
+    window.location = data.redirect_to
+
+  },
+  onResultEncodeFailed: function(){
+
   }
 });
 module.exports = ResultStore;

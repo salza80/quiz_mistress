@@ -1,4 +1,4 @@
- class ResultEncoder
+ class HashEncoder
   attr_reader :decoded, :encoded
 
   def initialize(initValue)
@@ -6,9 +6,9 @@
   end
 
   def setValue(initValue)
-    isInt = Integer(initValue) rescue false
-    if isInt
-      @decoded = Integer(initValue)
+    isHash = initValue.respond_to?(:each)
+    if isHash
+      @decoded = initValue
       @encoded = encode(initValue)
     else
       @decoded= decode(initValue)
@@ -19,10 +19,10 @@
   private
 
   def encode(value)
-    Base64.urlsafe_encode64(value)
+    Base64.urlsafe_encode64(value.inspect)
   end
 
   def decode(value)
-    Integer(Base64.urlsafe_decode64(value))
+    eval(Base64.urlsafe_decode64(value))
   end
 end
