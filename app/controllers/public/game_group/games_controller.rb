@@ -22,6 +22,16 @@ module Public
         end
       end
 
+      def outcome
+        template = "public/game_group/#{params[:url_name]}/outcome"
+        
+        if template_exists? template
+          render template: template
+        else
+          render file: "public/404.html", status: :not_found
+        end
+      end
+
       # private
       #   # Use callbacks to share common setup or constraints between actions.
       #   def set_quiz

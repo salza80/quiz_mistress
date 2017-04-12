@@ -2,23 +2,30 @@ module Public
   module QuizGroup
 
     class OutcomesController < ApplicationController
-      before_action :set_outcome, only: [:show]
-      layout :set_layout, only:[:show] 
+      layout :set_layout, only:[:preview] 
 
       
-      def show
-        @preview = params[:preview] ? true : false
-        @quiz =  Quiz.find_by(url_name: params[:quiz_url_name])
-        @result = @quiz.get_result_by_result_code(params[:result_code])
-        @outcome = @result[:outcome]
-        set_tags(@quiz, @outcome)
+      def show 
+        @preview = false
+        @quiz = Quiz.published.find_by(url_name: params[:quiz_url_name])
+        set_results
+      end
+
+      def preview
+        @quiz = current_user.quizzes.find_by(url_name: params[:quiz_url_name])
+        @preview = true
+        set_results
+        render :show
       end
 
 
       private
         # Use callbacks to share common setup or constraints between actions.
-        def set_outcome
-        
+
+        def set_results
+          @result = @quiz.get_result_by_result_code(params[:result_code])
+          @outcome = @result[:outcome]
+          set_tags(@quiz, @outcome)
         end
 
         def set_tags(quiz, outcome)
@@ -32,7 +39,7 @@ module Public
           params.fetch(:outcome, {})
         end
         def set_layout
-          params['preview'] ? "client/application" : "application"
+          "client/application"
         end
     end
   end

@@ -14,7 +14,7 @@
       -unless @preview
         = button_tag 'Share on facebook!', style: 'button', onclick: "Social.share(this)", class:"btn btn-primary", data:{ 's-href': request.original_url, 's-redirect-url': quiz_url(@quiz) }
       -if @preview
-        = link_to 'Play Again', quiz_path(@quiz, preview: true ), class: "btn"
+        = link_to 'Play Again! ', preview_quiz_path(@quiz), class: "btn"
       -else
-        = link_to "Play Again!", @quiz, class: "btn"
+        = link_to "Play Again!", quiz_path(@quiz), class: "btn"
 

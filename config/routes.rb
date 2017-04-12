@@ -10,7 +10,14 @@ Rails.application.routes.draw do
   scope module: 'public' do
     scope module: 'quiz_group' do
       resources :quizzes, only: [:index, :show] , param: :url_name do
-        resources :outcomes, only: [:show], param: :result_code
+        member do
+          get :preview
+        end
+        resources :outcomes, only: [:show], param: :result_code do
+          member do
+            get :preview
+          end
+        end
       end
     end
     scope module: 'game_group' do

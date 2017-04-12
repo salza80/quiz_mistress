@@ -10,11 +10,13 @@ module Api
       json = JSON.parse(request.body.read)
       answers = json['result']['answers']
       result_code = Quiz.get_result_code(params[:url_name], answers)
-      @path = quiz_outcome_path(result_code: result_code, quiz_url_name: params[:url_name])
+      
       if params[:preview]
-        @path += "?preview=true"
+        @path = preview_quiz_outcome_path(result_code: result_code, quiz_url_name: params[:url_name])
+      else
+        @path = quiz_outcome_path(result_code: result_code, quiz_url_name: params[:url_name])
       end
-    end
+    end 
 
     private
 

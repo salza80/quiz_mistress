@@ -2,8 +2,7 @@ module Public
   module QuizGroup
 
     class QuizzesController < ApplicationController
-      before_action :set_quiz, only: [:show]
-      layout :set_layout, only:[:show]
+      layout :set_layout, only:[:preview]
 
 
       # GET /quizzes
@@ -15,20 +14,20 @@ module Public
       # GET /quizzes/1
       # GET /quizzes/1.json
       def show
-        @preview = params[:preview] ? true : false
+        @preview = false
+        @quiz = Quiz.published.find_by(url_name: params[:url_name])
+        set_tags(@quiz)
+      end
+
+      def preview
+        @preview =true
+        @quiz = current_user.quizzes.find_by(url_name: params[:url_name])
+        set_tags(@quiz)
+        render :show
       end
 
       private
-        # Use callbacks to share common setup or constraints between actions.
-        def set_quiz
-          if params[:preview]
-            @quiz = current_user.quizzes.find_by(url_name: params[:url_name])
-          else
-            @quiz = Quiz.published.find_by(url_name: params[:url_name])
-          end 
-          set_tags(@quiz)
-        end
-
+       
         # Never trust parameters from the scary internet, only allow the white list through.
         def quiz_params
           params.fetch(:quiz, {})
@@ -40,7 +39,7 @@ module Public
         end
 
         def set_layout
-          params['preview'] ? "client/application" : "application"
+          "client/application"
         end
     end
   end

@@ -16,7 +16,7 @@
           = link_to 'Unpublish', client_unpublish_quiz_path(quiz), method: :patch, remote:true
         -else
           = link_to 'Edit', client_quiz_path(quiz) 
-          = link_to 'Preview', quiz_path(quiz, preview:true)
+          = link_to 'Preview', preview_quiz_path(quiz)
           = link_to 'Publish', client_publish_quiz_path(quiz), method: :patch, remote:true
           = link_to 'Delete', client_quiz_path(quiz), data: {confirm: 'Are you sure?'}, method: :delete
 
