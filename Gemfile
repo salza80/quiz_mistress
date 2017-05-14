@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails'
+gem 'rails', '~> 5.1'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
 # Use Puma as the app server
@@ -34,7 +34,9 @@ end
 gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'font-awesome-rails'
 gem 'meta-tags'
-gem 'devise'
+# gem 'devise'
+gem 'devise', github: 'plataformatec/devise'
+gem 'erubis'
 gem 'omniauth-facebook'
 gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
 gem 'remotipart', '~> 1.2'
@@ -47,6 +49,8 @@ gem 'mini_magick'
 gem 'acts-as-taggable-on', '~> 4.0'
 gem 'select2-rails'
 # gem "fog-aws" 
+
+gem 'webpacker'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

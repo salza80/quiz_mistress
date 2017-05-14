@@ -27,3 +27,5 @@ config/database.yml
 node_modules
 
 
+/public/packs
+/node_modules

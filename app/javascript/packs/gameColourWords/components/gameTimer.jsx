@@ -1,7 +1,10 @@
 const React = require('react');
 const _ = require('underscore')
-// const Progress = require('react-progressbar');
-import Progress from 'react-progressbar';
+const rc = require('rc-progress');
+const Progress = rc.Line
+
+//import Progress from 'react-progressbar';
+
 
 var GameTimer = React.createClass({
   increment: 50,
@@ -87,7 +90,7 @@ var GameTimer = React.createClass({
     return (
       <div className="timer">
          Seconds Remaining: <span> {this.state.seconds}</span>
-         <Progress color={this.state.colour} completed={this.state.percent}></Progress>
+        <Progress percent={this.state.percent} strokeColor={this.state.colour}></Progress>
 
       </div>
     );
