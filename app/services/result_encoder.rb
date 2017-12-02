@@ -19,7 +19,7 @@
   private
 
   def encode(value)
-    Base64.urlsafe_encode64(value)
+    Base64.urlsafe_encode64(value.to_s)
   end
 
   def decode(value)
