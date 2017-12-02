@@ -11,6 +11,14 @@
       var QM = QM || {};
       QM.CONST = {};
       QM.CONST.CSRF_TOKEN  = '#{form_authenticity_token}'
+    - if Rails.env == "production"
+      / Global site tag (gtag.js) - Google Analytics
+      %script{:async => "", :src => "https://www.googletagmanager.com/gtag/js?id=UA-110576315-1"}
+      :javascript
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-110576315-1');
     = yield :head
   %body{"data-action" => "#{controller.action_name}", "data-controller" => "#{controller.controller_path}"}
     .container-fluid

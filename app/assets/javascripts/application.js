@@ -24,3 +24,9 @@
 //= require utility
 //= require general
 //= require_tree ./client
+
+document.addEventListener('turbolinks:load', function(event) {
+  if (typeof gtag === 'function') {
+    gtag('event', 'page_view');
+  }
+});
