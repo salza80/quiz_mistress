@@ -1,36 +1,20 @@
-const React = require('react');
+import React from 'react'
 
 
-
-
-var ImageReference = React.createClass({
-  getInitialState: function() {
-    return {
-           
-          };
-  },
-
-  conponentWillMount: function(){
-    
-  },
-  componentDidMount: function() {
-   
-   
-    },
-  componentWillUnmount: function() {
-
-  },
-  shouldRenderRef: function(){
+export default class ImageReference extends React.Component {
+  shouldRenderRef(){
     if(this.props.image === undefined){return false}
     if(this.props.image.ref_url === undefined || this.props.image.ref_url == ''){return false}
     return true;
-  },
-  shouldRenderImg: function(){
+  }
+
+  shouldRenderImg(){
     if(this.props.image === undefined){return false}
     if(this.props.image.image_file === undefined ){return false}
     return true;
-  },
-  render: function() {
+  }
+
+  render() {
     var ref, img;
     if(this.shouldRenderRef()){
       ref = (
@@ -50,8 +34,6 @@ var ImageReference = React.createClass({
         {img} 
         {ref}
       </div> 
-    );
+    )
   }
-});
-  
-module.exports = React.createFactory(ImageReference);
+}

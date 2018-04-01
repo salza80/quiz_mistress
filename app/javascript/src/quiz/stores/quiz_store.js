@@ -1,7 +1,7 @@
-const Reflux = require('reflux');
-const QuizActions = require('../actions/quiz_actions.js');
-const backend = require('../../modules/backend.js');
-const Preload =require('image-preloader-promise').default
+import Reflux from 'reflux'
+import QuizActions from '../actions/quiz_actions.js'
+import backend from '../../modules/backend.js'
+import Preload from 'image-preloader-promise'
 
 var QuizStore = Reflux.createStore({
 // this will set up listeners to all publishers in SearchActiions, using onKeyname (or keyname) as callbacks
@@ -36,7 +36,7 @@ var QuizStore = Reflux.createStore({
       .catch( this.onLoadFailed );
   },
   onLoadCompleted: function(data){
-    images = this.getImages(data)
+    var images = this.getImages(data)
     this.answers = [];
     this.data.title=data.title;
     this.data.url_name = data.url_name;
@@ -95,4 +95,4 @@ var QuizStore = Reflux.createStore({
   onAnsweredFailed: function(data){
   }
 });
-module.exports = QuizStore;
+export default QuizStore

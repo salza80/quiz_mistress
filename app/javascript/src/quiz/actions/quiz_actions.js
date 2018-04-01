@@ -1,4 +1,4 @@
-const Reflux = require('reflux');
+import Reflux from 'reflux'
 
 
 var QuizActions = Reflux.createActions([
@@ -7,5 +7,4 @@ var QuizActions = Reflux.createActions([
   "Load"
 ]);
 
-
-module.exports = QuizActions;
+export default QuizActions
