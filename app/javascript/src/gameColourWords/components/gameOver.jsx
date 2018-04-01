@@ -1,34 +1,13 @@
-const React = require('react');
-const GameActions = require('../actions/game_actions.js'); 
+import React from 'react'
 
-
-var GameOver = React.createClass({
-  getInitialState: function() {
-    return {
-           
-          };
-  },
-
-  conponentWillMount: function(){
-    
-  },
-  componentDidMount: function() {
-  
-   
-    },
-  componentWillUnmount: function() {
-
-  },
- 
-  render: function() {
+export default class GameOver extends React.Component {
+  render() {
    
     return (
         <div className="card-block">
          GAME OVER!
        </div>
 
-    );
+    )
   }
-});
-
-module.exports = React.createFactory(GameOver);
+}

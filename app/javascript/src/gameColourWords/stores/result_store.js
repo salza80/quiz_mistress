@@ -1,9 +1,9 @@
-const Reflux = require('reflux');
-const GameActions = require('../actions/game_actions.js');
-const backend = require('../../modules/backend.js');
+import Reflux from 'reflux'
+import GameActions from '../actions/game_actions.js'
+import backend from '../../modules/backend.js'
 
 
-var ResultStore = Reflux.createStore({
+const ResultStore = Reflux.createStore({
 // this will set up listeners to all publishers in GameActions
   listenables: [GameActions],
   init: function(){
@@ -52,4 +52,4 @@ var ResultStore = Reflux.createStore({
 
   }
 });
-module.exports = ResultStore;
+export default ResultStore

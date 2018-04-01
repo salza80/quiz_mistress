@@ -1,16 +1,17 @@
-const React = require('react');
-const GameStore = require('../stores/game_store')
-const SoundStore = require('../stores/sound_store')
-const GameActions= require('../actions/game_actions')
-const GameBoard= require('./gameBoard.jsx')
-const LevelStart = require('./levelStart.jsx')
-const GameOver = require('./gameOver.jsx')
-const ScoreList = require('./scoreList.jsx')
-const Sound = require('react-sound');
+import React from 'react'
+import GameStore from '../stores/game_store'
+import SoundStore from '../stores/sound_store'
+import GameActions from '../actions/game_actions'
+import GameBoard from './gameBoard.jsx'
+import LevelStart from './levelStart.jsx'
+import GameOver from './gameOver.jsx'
+import ScoreList from './scoreList.jsx'
+import Sound from 'react-sound'
 
-var Game = React.createClass({
-  getInitialState: function() {
-    return {
+export default class Game extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
             gameover:false,
             sound:{
               soundFile:"",
@@ -30,36 +31,34 @@ var Game = React.createClass({
               colours: []
             }
           }
-  },
-  onStoreChange: function(data){
+  }
+
+  onStoreChange = (data) => {
     this.setState({
       gameover: data.gameover,
       level: data.level
     }, this.onStateUpdated);
-  },
-  onStateUpdated: function(){
+  }
+  onStateUpdated = () => {
    
-  },
-  onSoundChange: function(data){
+  }
+  onSoundChange = (data) => {
     this.setState({
       sound: data 
-    }, this.onStateUpdated);
-  },
-  onSoundFinished: function(){
+    }, this.onStateUpdated)
+  }
+  onSoundFinished = () => {
     GameActions.SoundFinished()
-  },
-  conponentWillMount: function(){
-    
-  },
-  componentDidMount: function() {
+  }
+  componentDidMount() {
       this.unsubscribe = GameStore.listen(this.onStoreChange);
       this.unsubscribe = SoundStore.listen(this.onSoundChange);
       GameActions.Load()
-    },
-  componentWillUnmount: function() {
-    this.unsubscribe();
-  },
-  render: function() {
+  }
+  componentWillUnmount() {
+    this.unsubscribe()
+  }
+  render() {
 
     let content = null;
     let sound = null;
@@ -91,8 +90,6 @@ var Game = React.createClass({
       </div>
       {sound}
     </div>
-    );
+    )
   }
-});
-
-module.exports = React.createFactory(Game);
+}

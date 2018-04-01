@@ -1,8 +1,7 @@
-const Reflux = require('reflux');
-const GameActions = require('../actions/game_actions.js');
+import Reflux from 'reflux'
+import GameActions from '../actions/game_actions.js'
+import { shuffle } from 'underscore'
 
-
-const _ = require('underscore')
 //const backend = require('../../modules/backend.js');
 
 var GameStore = Reflux.createStore({
@@ -63,7 +62,7 @@ var GameStore = Reflux.createStore({
         this.data.level.colours[i]["complete"] = false;
       }catch(e){}
     }
-    this.data.level.colours = _.shuffle(this.data.level.colours)
+    this.data.level.colours = shuffle(this.data.level.colours)
     this.data.level.question=this.getNextQuestion()
   },
   getNextQuestion: function(){
@@ -72,7 +71,7 @@ var GameStore = Reflux.createStore({
       this.setNextLevel()
       return this.getNextQuestion()
     }else{
-      coloursCopy = _.shuffle(coloursCopy);
+      coloursCopy = shuffle(coloursCopy);
 
       var c1 = coloursCopy[0]
       var c2
@@ -164,5 +163,7 @@ var GameStore = Reflux.createStore({
       return "Word"
     } else {return "Colour"}
   }
-});
-module.exports = GameStore;
+})
+
+
+export default GameStore

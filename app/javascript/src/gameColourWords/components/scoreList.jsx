@@ -1,35 +1,29 @@
-const React = require('react');
-const Score = require('./score.jsx')
-const ResultStore = require('../stores/result_store')
+import React from 'react'
+import Score from './score.jsx'
+import ResultStore from '../stores/result_store'
 
-
-var ScoreList = React.createClass({
-  getInitialState: function() {
-    return {
+export default class ScoreList extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
             results: [],
             totalScore:0
             }
-  },
+  }
 
- onStoreChange: function(data){
+ onStoreChange = (data) => {
     this.setState({
       results: data.results,
       totalScore: data.totalScore
-    }, this.onStateUpdated);
-  },
-  onStateUpdated: function(){
-   
-  },
-  conponentWillMount: function(){
-    
-  },
-  componentDidMount: function() {
+    })
+  }
+  componentDidMount() {
       this.unsubscribe = ResultStore.listen(this.onStoreChange);
-    },
-  componentWillUnmount: function() {
+  }
+  componentWillUnmount() {
     this.unsubscribe();
-  },
-  render: function() {
+  }
+  render() {
     var aList = this.state.results.map(function(result,i) {
       return (
         <Score index={i} result={result} key={i}> </Score>
@@ -40,8 +34,7 @@ var ScoreList = React.createClass({
        {aList}
         <div>Total Score: {this.state.totalScore}</div>
     </div>
-    );
+    )
   }
-});
+}
 
-module.exports = React.createFactory(ScoreList);

@@ -1,100 +1,89 @@
-const React = require('react');
-const _ = require('underscore')
-const rc = require('rc-progress');
+import React from 'react'
+import rc from 'rc-progress'
 const Progress = rc.Line
 
-//import Progress from 'react-progressbar';
+import { isFunction } from 'underscore'
 
-
-var GameTimer = React.createClass({
-  increment: 50,
-  msRemaining:600000,
-  msTotal:600000,
-  colour1: [0,180,0],
-  colour2: [255,0,0],
-  getInitialState: function() {
-    return {
+export default class GameTimer extends React.Component {
+  constructor(props) {
+    super(props)
+    this.increment = 50
+    this.msRemaining = 600000
+    this.msTotal = 600000
+    this.colour1 = [0,180,0]
+    this.colour2 = [255,0,0]
+    this.state = {
               percent: 0,
               seconds:0,
               colour: "RGB(255,0,0)"
             }
-  },
-  
-  onStateUpdated: function(){
-   
-  },
-  conponentWillMount: function(){
+  }
 
-    
-  },
-  componentDidMount: function() {
+  componentDidMount() {
     this.resetTimer(this.props.seconds)
     this.timeout = setInterval(this.incrementTimer, this.increment)
       
-  },
-  componentWillUnmount: function() {
+  }
+  componentWillUnmount() {
     this.unmountTimer()
-  },
-  resetTimer: function(seconds){
+  }
+  resetTimer = (seconds) => {
     this.msRemaining=seconds * 1000
     this.onTimerChange(0)
     this.msTotal=seconds * 1000
-  },
-  fadeToColour: function(ratio) {
-    var  difference, newColour = [];
+  }
+  fadeToColour = (ratio) => {
+    let  difference, newColour = [];
 
-    for (var i = 0; i < this.colour1.length; i++) {
+    for (let i = 0; i < this.colour1.length; i++) {
         difference = this.colour2[i] - this.colour1[i];
         newColour.push(Math.floor(parseInt(this.colour1[i], 10) + difference * ratio));
     }
 
     return 'rgb(' + newColour + ')';
-  },
-  unmountTimer: function(){
+  }
+  unmountTimer = () => {
     if(this.timeout){
       clearTimeout(this.timeout)
     }
-  },
-  incrementTimer: function(){
+  }
+  incrementTimer = () => {
     this.msRemaining = this.msRemaining - this.increment
-    var seconds, percent, colour
+    let seconds, percent, colour
 
-    if(this.msRemaining <=0){
+    if(this.msRemaining <=0) {
       this.unmountTimer();
       percent = 100
       colour = this.fadeToColour(100/100)
       seconds = 0
       this.setState({percent: percent, seconds: seconds, colour:colour})
       this.onTimeout();
-    }else{
+    }else {
       seconds = Math.ceil(this.msRemaining/1000)
       percent = 100-((this.msRemaining/this.msTotal)*100)
       colour = this.fadeToColour(percent/100)
       this.onTimerChange(this.msTotal - this.msRemaining)
       this.setState({percent: percent, seconds: seconds, colour:colour})
     }
-  },
-  onTimeout: function(){
-    if(_.isFunction(this.props.onTimeout)){
+  }
+  onTimeout = () => {
+    if(isFunction(this.props.onTimeout)) {
         this.props.onTimeout();
       }
-  },
-  onTimerChange: function(durationMS){
-    if(_.isFunction(this.props.onTimerChange)){
-        this.props.onTimerChange(durationMS);
+  }
+  onTimerChange = (durationMS) => {
+    if(isFunction(this.props.onTimerChange)){
+        this.props.onTimerChange(durationMS)
       }
-  },
-  render: function() {
-
-    
+  }
+  render() {
     return (
       <div className="timer">
          Seconds Remaining: <span> {this.state.seconds}</span>
         <Progress percent={this.state.percent} strokeColor={this.state.colour}></Progress>
 
       </div>
-    );
+    )
   }
-});
+}
 
-module.exports = React.createFactory(GameTimer);

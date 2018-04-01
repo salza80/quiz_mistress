@@ -1,16 +1,13 @@
-"use strict";
-const Game = require('./components/game');
-const React = require("react");
-const ReactDOM = require("react-dom");
+import React from 'react'
+import ReactDOM from 'react-dom'
+import Game from './components/game.jsx'
+
+document.addEventListener('DOMContentLoaded', () => {
+  const node = document.getElementById('renderer')
+  ReactDOM.render(
+    <Game />,
+    node
+  )
+})
 
 
-var pEle = $('#renderer')
-var props = null
-
-if (pEle.data('props') != undefined){
-  props = pEle.data('props')
-}
-
-ReactDOM.render( Game(), document.getElementById('renderer'));
-
- 

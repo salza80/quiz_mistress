@@ -1,35 +1,16 @@
-const React = require('react');
+import React from 'react'
 
-
-var Score = React.createClass({
-  getInitialState: function() {
-    return {
-           
-          };
-  },
-
-  conponentWillMount: function(){
-    
-  },
-  componentDidMount: function() {
-  
-   
-    },
-  componentWillUnmount: function() {
-
-  },
-  blockStyle: function(){
-    var blockcolour = "#D3D0D0"
+export default class Score extends React.Component {
+  blockStyle(){
+    let blockcolour = "#D3D0D0"
     // if (this.props.colour.complete ==false){
     //   blockcolour=this.props.colour.hex
     // }
     return {
       backgroundColor:blockcolour,
     }
-  },
-  render: function() {
-
-   
+  }
+  render() {
     return (
       <div className="row score" style={this.blockStyle()}>
         <div className="col-2">
@@ -42,8 +23,6 @@ var Score = React.createClass({
          {this.props.result.points}
         </div>
       </div>
-    );
+    )
   }
-});
-
-module.exports = React.createFactory(Score);
+}

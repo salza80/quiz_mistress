@@ -1,30 +1,15 @@
-const React = require('react');
-const GameActions = require('../actions/game_actions.js'); 
+import React from 'react'
+import GameActions from '../actions/game_actions.js'
 
-var AnswerBlock = React.createClass({
-  getInitialState: function() {
-    return {
+export default class AnswerBlock extends React.Component {
 
-          };
-  },
-
-  conponentWillMount: function(){
-    
-  },
-  componentDidMount: function() {
-  
-   
-    },
-  componentWillUnmount: function() {
-
-  },
-  colourClick: function(){
+  colourClick = () => {
     if(this.props.colour.complete==false){
       GameActions.ColourClick(this.props.index)
     }
-  },
-  blockStyle: function(){
-    var blockcolour = "#D3D0D0"
+  }
+  blockStyle = () => {
+    let blockcolour = "#D3D0D0"
     if (this.props.colour.complete ==false){
       blockcolour=this.props.colour.hex
     }
@@ -32,15 +17,11 @@ var AnswerBlock = React.createClass({
       backgroundColor:blockcolour,
       minHeight: "2em"
     }
-  },
-  render: function() {
-
-   
+  }
+  render() {
     return (
       <div className="answer-block" style={this.blockStyle()} onClick={this.colourClick}>
       </div>
-    );
+    )
   }
-});
-
-module.exports = React.createFactory(AnswerBlock);
+}

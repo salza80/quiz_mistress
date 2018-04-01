@@ -1,37 +1,18 @@
-const React = require('react');
-const GameActions = require('../actions/game_actions.js'); 
+import React from 'react'
+import GameActions from '../actions/game_actions.js'
 
-
-var LevelStart = React.createClass({
-  getInitialState: function() {
-    return {
-           
-          };
-  },
-
-  conponentWillMount: function(){
-    
-  },
-  componentDidMount: function() {
-  
-   
-    },
-  componentWillUnmount: function() {
-
-  },
-  StartLevel: function(e){
+export default class LevelStart extends React.Component {
+  StartLevel(e){
     e.preventDefault();
     GameActions.StartLevel()
-  },
-  render: function() {
-   
+  }
+  render() {
     return (
         <div className="card-block">
           <button className="btn btn-primary" onClick={this.StartLevel}>Start Level</button>
        </div>
 
-    );
+    )
   }
-});
+}
 
-module.exports = React.createFactory(LevelStart);

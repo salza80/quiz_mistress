@@ -1,13 +1,12 @@
-const CorrectSound = require("../sounds/correct.mp3");
-const WrongSound = require("../sounds/wrong.mp3");
-const GameOver = require("../sounds/gameover.mp3");
+import CorrectSound from "../sounds/correct.mp3"
+import WrongSound from "../sounds/wrong.mp3"
+import GameOver from "../sounds/gameover.mp3"
 
 
-const Reflux = require('reflux');
-const GameActions = require('../actions/game_actions.js');
-//const backend = require('../../modules/backend.js');
+import Reflux from 'reflux'
+import GameActions from '../actions/game_actions.js'
 
-var SoundStore = Reflux.createStore({
+const SoundStore = Reflux.createStore({
 // this will set up listeners to all publishers in ResultActions
   listenables: [GameActions],
   init: function(){
@@ -19,9 +18,7 @@ var SoundStore = Reflux.createStore({
       soundFile:"",
       playing:true
     }    
-  },
-  
-            
+  },     
   onSoundFinished: function(){
     this.data.playing=false;
     this.trigger(this.data)
@@ -41,5 +38,6 @@ var SoundStore = Reflux.createStore({
     this.data.playing=true;
     this.trigger(this.data)
   },
-});
-module.exports = SoundStore;
+})
+
+export default SoundStore

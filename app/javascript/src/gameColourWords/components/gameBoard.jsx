@@ -1,41 +1,28 @@
-const React = require('react');
-const GameActions = require('../actions/game_actions.js'); 
-const AnswerList = require('./answerList.jsx')
-const StrikeList = require('./strikeList.jsx')
-const GameTimer = require('./gameTimer.jsx')
+import React from 'react'
+import AnswerBlock from './answerBlock.jsx'
+import GameActions from '../actions/game_actions.js'
+import AnswerList from './answerList.jsx'
+import StrikeList from './strikeList.jsx'
+import GameTimer from './gameTimer.jsx'
 
+export default class GameBoard extends React.Component {
+  constructor(props) {
+    super(props)
+    this.currentMS = 0
+  }
 
-var GameBoard = React.createClass({
-  currentMS:0,
-  getInitialState: function() {
-    return {
-           
-          };
-  },
-
-  conponentWillMount: function(){
-    
-  },
-  componentDidMount: function() {
-  
-   
-    },
-  componentWillUnmount: function() {
-
-  },
-  timeout: function(){
+  timeout(){
     GameActions.TimedOut();
-  },
-  wordStyle: function(){
+  }
+  wordStyle = () => {
     return {
       color: this.props.level.question.hex
     }
-  },
-  onTimerChange: function(ms){
+  }
+  onTimerChange(ms) {
     GameActions.TimeUpdated(ms)
-  },
-  render: function() {
- 
+  }
+  render() {
     return (
       <div className="card-block game-board">
         <div className="row">
@@ -63,8 +50,6 @@ var GameBoard = React.createClass({
         </div>
       </div>
 
-    );
+    )
   }
-});
-
-module.exports = React.createFactory(GameBoard);
+}
