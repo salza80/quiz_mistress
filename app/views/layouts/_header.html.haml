@@ -1,9 +1,9 @@
-%nav.navbar.navbar-light.bg-faded.navbar-toggleable-sm
-  %button.navbar-toggler.navbar-toggler-right{"aria-controls" => "navCollapse", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navCollapse", "data-toggle" => "collapse", :type => "button"}
-    %span.navbar-toggler-icon
+%nav.navbar.navbar-light.bg-light.navbar-expand-sm
   = link_to root_path, class: 'navbar-brand' do
     = image_tag "smart-woman.svg", size: "30x30", alt:"Quiz Mistress", class: "d-inline-block align-top"
     Quiz Mistress    
+  %button.navbar-toggler{"aria-controls" => "navCollapse", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navCollapse", "data-toggle" => "collapse", :type => "button"}
+    %span.navbar-toggler-icon
   #navCollapse.collapse.navbar-collapse
     = render :partial => 'layouts/navmenu'
     = render :partial => 'layouts/login'

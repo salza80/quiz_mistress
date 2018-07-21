@@ -15,5 +15,5 @@
         = button_tag 'share on facebook', style: 'button', onclick: "Social.share(this)", class:"btn btn-primary", data:{ 's-href': quiz_url(@quiz) , 's-redirect-url': quiz_url(@quiz) }
 
 = content_tag :div, nil, id: "renderer", class: 'hidden', data: {props: {url_name: @quiz.url_name, preview: @preview}}
-= javascript_pack_tag 'quiz/index' 
+= javascript_pack_tag 'quiz' 
 
