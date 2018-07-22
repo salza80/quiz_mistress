@@ -13,7 +13,6 @@
 !/log/.keep
 !/tmp/.keep
 
-config/secrets.yml
 .env
 .idea
 .byebug_history
