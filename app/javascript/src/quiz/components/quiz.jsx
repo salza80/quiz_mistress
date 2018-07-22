@@ -6,6 +6,7 @@ import Question from './question'
 export default class Quiz extends React.Component {
   constructor(props) {
     super(props)
+
     this.state = {
       title: '',
       question: {
@@ -22,8 +23,9 @@ export default class Quiz extends React.Component {
   }
   
   componentDidMount() {
-      this.unsubscribe = QuizStore.listen(this.onStoreChange);
-      QuizActions.Load(this.props.url_name, this.props.preview)
+    const { url_name, preview } = this.props
+    this.unsubscribe = QuizStore.listen(this.onStoreChange);
+    QuizActions.Load( url_name, preview)
   }
 
   componentWillUnmount() {
@@ -31,15 +33,16 @@ export default class Quiz extends React.Component {
   }
 
   render() {
+    const { question, title } = this.state
     return (
       <div className="quiz-container card text-center">
         <div className="quiz card-header heading-bk">
           <div className="quiz-title">
-            <h2 className="card-title"> {this.state.title}</h2>
+            <h2 className="card-title"> {title}</h2>
           </div>
         </div>
         <div className="question-container card-block">
-          <Question question={this.state.question}></Question>
+          <Question question={question}></Question>
         </div>
       </div>
     );

@@ -6,11 +6,12 @@ export default class Answer extends React.Component {
     QuizActions.answerQuestion(this.props.answer)
   }
 
-  render() { 
+  render() {
+    const { answer: { title } } = this.props
     return (
         <li onClick={this.answerQuestion} className="list-group-item">
           <span className='fa' aria-hidden="true"></span>
-          <span>{this.props.answer.title}</span>
+          <span>{title}</span>
         </li>
     )
   }

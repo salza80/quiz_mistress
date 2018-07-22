@@ -11,16 +11,17 @@ export default class Score extends React.Component {
     }
   }
   render() {
+    const { resut: { levelNo, reactionTime, points } } = this.props
     return (
       <div className="row score" style={this.blockStyle()}>
         <div className="col-2">
-          {this.props.result.levelNo}
+          {levelNo}
         </div>
          <div className="col-2">
-         {this.props.result.reactionTime}
+         {reactionTime}
         </div>
         <div className="col-2">
-         {this.props.result.points}
+         {points}
         </div>
       </div>
     )

@@ -4,7 +4,8 @@ import Answer from './answer.jsx'
 
 export default class Question extends React.Component {
   render() {
-    var aList = this.props.answers.map(function(answer,i) {
+    const { answers } = this.props
+    var aList = answers.map(function(answer,i) {
       return (
         <Answer index={i} answer={answer} key={i}> </Answer>
       )

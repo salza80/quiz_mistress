@@ -24,7 +24,8 @@ export default class ScoreList extends React.Component {
     this.unsubscribe();
   }
   render() {
-    var aList = this.state.results.map(function(result,i) {
+    const { results , totalScore } = this.state
+    var aList = results.map(function(result,i) {
       return (
         <Score index={i} result={result} key={i}> </Score>
       );
@@ -32,7 +33,7 @@ export default class ScoreList extends React.Component {
     return (
     <div className="card-block score-list">
        {aList}
-        <div>Total Score: {this.state.totalScore}</div>
+        <div>Total Score: {totalScore}</div>
     </div>
     )
   }

@@ -23,29 +23,30 @@ export default class GameBoard extends React.Component {
     GameActions.TimeUpdated(ms)
   }
   render() {
+    const { level: { question, seconds, colours, strikes } } = this.props
     return (
       <div className="card-block game-board">
         <div className="row">
           <div className="col-12">
-              <GameTimer key={this.props.level.question.key} onTimerChange={this.onTimerChange} onTimeout={this.timeout} seconds={this.props.level.seconds} />
+              <GameTimer key={question.key} onTimerChange={this.onTimerChange} onTimeout={this.timeout} seconds={seconds} />
           </div>
         </div>
         <div className="row">      
           <div className="col-12">
             <span className="question-box">
-            Match on  <span>{this.props.level.question.match} </span>:
-            <span style={this.wordStyle()} > {this.props.level.question.title}</span>
+            Match on  <span>{question.match} </span>:
+            <span style={this.wordStyle()} > {question.title}</span>
             </span>
           </div>
         </div>
         <div className="row">
           <div className="col-12">
-            <AnswerList colours={this.props.level.colours}></AnswerList>
+            <AnswerList colours={colours}></AnswerList>
           </div>
         </div>
         <div className="row">
           <div className="col-12">
-            <StrikeList strikes={this.props.level.strikes}></StrikeList>
+            <StrikeList strikes={strikes}></StrikeList>
           </div>
         </div>
       </div>
