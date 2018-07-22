@@ -1,6 +1,4 @@
-const Reflux = require('reflux');
-
-
+const Reflux = require('reflux')
 var GameActions = Reflux.createActions([
   "StartLevel",
   "ColourClick",
@@ -13,6 +11,5 @@ var GameActions = Reflux.createActions([
   "SoundFinished",
   "GameOver"
 ]);
-
 
 module.exports = GameActions;

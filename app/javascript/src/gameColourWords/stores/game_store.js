@@ -144,14 +144,13 @@ var GameStore = Reflux.createStore({
       this.data.level.question=this.getNextQuestion();
     }
     this.trigger(this.data)
-
   },
   onGameOver: function(){
     this.data.gameover=true;
     this.trigger(this.data)
   },
   onTimedOut: function(){
-    this.onWrongAnswer()
+    GameActions.WrongAnswer()
   },
   getRemainingColours: function(){
     return this.data.level.colours.filter(function(colour){

@@ -5055,9 +5055,9 @@ react-dom@^16.3.0:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
 
-react-sound@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/react-sound/-/react-sound-1.1.0.tgz#d3647c2cbe8adabc3c6661a804d810f23e81917a"
+react-sound@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/react-sound/-/react-sound-1.2.0.tgz#1bb7e1ec8494ecc57b03dbdecd1496b10f6541f2"
   dependencies:
     prop-types "^15.5.7"
     soundmanager2 "^2.97.20170602"

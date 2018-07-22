@@ -1,8 +1,3 @@
-import CorrectSound from "../sounds/correct.mp3"
-import WrongSound from "../sounds/wrong.mp3"
-import GameOver from "../sounds/gameover.mp3"
-
-
 import Reflux from 'reflux'
 import GameActions from '../actions/game_actions.js'
 
@@ -15,29 +10,22 @@ const SoundStore = Reflux.createStore({
   getInitialState: function() {
     
     return {
-      soundFile:"",
-      playing:true
+      whichSound: "",
     }    
   },     
   onSoundFinished: function(){
-    this.data.playing=false;
+    this.data.whichSound=""
     this.trigger(this.data)
   }, 
   onCorrectAnswer: function(){
-    this.data.soundFile =  CorrectSound;
-    this.data.playing=true;
+    this.data.whichSound="correct"
     this.trigger(this.data)
   },
   onWrongAnswer: function(){
-    this.data.soundFile= WrongSound;
-    this.data.playing=true;
+    console.log('WRONG')
+    this.data.whichSound="wrong"
     this.trigger(this.data)
-  },
-  onGameOver: function(){
-    this.data.soundFile =  GameOver;
-    this.data.playing=true;
-    this.trigger(this.data)
-  },
+  }
 })
 
 export default SoundStore

@@ -4,25 +4,20 @@ import GameActions from '../actions/game_actions.js'
 export default class AnswerBlock extends React.Component {
   colourClick = () => {
     const { index, colour: { complete } } = this.props
-    if(complete==false){
+    if(!complete){
       GameActions.ColourClick(index)
     }
   }
   blockStyle = () => {
-    let blockcolour = "#D3D0D0"
     const { index, colour: { complete, hex } } = this.props
-    if (complete == false){
-      blockcolour= hex
-    }
     return {
-      backgroundColor:blockcolour,
+      backgroundColor: complete ? "#D3D0D0" : hex,
       minHeight: "2em"
     }
   }
   render() {
     return (
-      <div className="answer-block" style={this.blockStyle()} onClick={this.colourClick}>
-      </div>
+      <div className="answer-block" style={this.blockStyle()} onClick={this.colourClick} />
     )
   }
 }
