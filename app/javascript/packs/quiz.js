@@ -1,1 +1,1 @@
-const render = require("../src/quiz/render.jsx");
+import render from "../src/quiz"

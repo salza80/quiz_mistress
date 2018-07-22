@@ -1,1 +1,1 @@
-const render = require("../src/gameColourWords/render.jsx");
+import render from "../src/gameColourWords"
