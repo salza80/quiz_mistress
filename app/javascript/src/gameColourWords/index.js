@@ -1,12 +1,15 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { render } from 'react-dom'
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import theApp from './reducers'
 import Game from './components/game.jsx'
-
-const node = document.getElementById('renderer')
-export default ReactDOM.render(
-  <Game />,
-  node
+​
+const store = createStore(theApp)
+​
+render(
+  <Provider store={store}>
+    <Game />
+  </Provider>,
+  document.getElementById('renderer')
 )
-
-
-
