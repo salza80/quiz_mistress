@@ -1,58 +1,47 @@
 import React from 'react'
-import GameStore from '../stores/game_store'
-import GameActions from '../actions/game_actions'
 import GameBoard from './gameBoard.jsx'
 import LevelStart from './levelStart.jsx'
 import GameOver from './gameOver.jsx'
 import ScoreList from './scoreList.jsx'
 import PlaySound from './playSound.jsx'
 
-export default class Game extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      gameover:false,
-      level: {
-        no:1,
-        running: false,
-        title:"",
-        seconds:0,
-        question: {
-          key:"",
-          title: "",
-          hex: "",  
-          match: ""
-        },
-        colours: []
+import { startLevel, correctAnswer, wrongAnswer, gameOver } from '../actions'
+import { connect } from 'react-redux'
+
+const mapStateToProps = state => {
+  return {
+    level: state.level
+  }
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    answerOnClick: hex => {
+      if (hex === ownProps.question.hex){
+        dispatch(correctAnswer(hex))
+      } else {
+        dispatch(wrongAnswer())
       }
+    },
+    startLevel: () => {
+      dispatch(startLevel)
+    },
+    gameOver: () => {
+      dispatch(gameOver)
     }
   }
+}
 
-  onStoreChange = (data) => {
-    this.setState({
-      gameover: data.gameover,
-      level: data.level
-    }, this.onStateUpdated);
-  }
-  onStateUpdated = () => {
-   
-  }
-  componentDidMount() {
-    this.unsubscribe = GameStore.listen(this.onStoreChange)
-    GameActions.Load()
-  }
-  componentWillUnmount() {
-    this.unsubscribe()
-  }
+class Game extends React.Component {
   render() {
-    const { gameover, level } = this.state
+    const { level, startLevel, answerOnClick } = this.props
     let content = null
-    if (gameover){
+    if (level.gameover){
       content = <GameOver />
     } else if (!level.running){
-      content = <LevelStart/>
+      content = <LevelStart startLevel={startLevel}/>
     }else{
-      content = <GameBoard level={level}></GameBoard>
+      content = <GameBoard level={level} answerOnClick={answerOnClick}></GameBoard>
     }
     return (
       <div className="gamecolourwords game-container card text-center">
@@ -64,7 +53,7 @@ export default class Game extends React.Component {
         <div className="levelStart card text-center">
           <div className="card-header">
             <div className="question-title">
-              <h4 className="card-title"> {level.title}</h4>
+              <h4 className="card-title"> Level {level.no}</h4>
             </div>
           </div>
           {content}
@@ -75,3 +64,10 @@ export default class Game extends React.Component {
     )
   }
 }
+
+const GameContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Game)
+​
+export default GameContainer

@@ -1,1 +1,1 @@
-import render from "../src/gameColourWords"
+import render from "../src/gameColourWords/index.jsx"

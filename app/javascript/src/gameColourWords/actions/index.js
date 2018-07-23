@@ -8,6 +8,7 @@ const CORRECT_ANSWER='CORRECT_ANSWER'
 const WRONG_ANSWER='WRONG_ANSWER'
 const SOUND_FINISHED = 'SOUND_FINISHED'
 const GAME_OVER = 'GAME_OVER'
+const NEXT_LEVEL = 'NEXT_LEVEL'
 
 export const timeUpdated = ms => ({
   type: TIME_UPDATED,
@@ -18,14 +19,9 @@ export const startLevel = () => ({
   type: START_LEVEL
 })
 
-export const colourClick = index => ({
-  type: COLOUR_CLICK,
-  index
-})
-
-export const correctAnswer = index => ({
+export const correctAnswer = hex => ({
   type: CORRECT_ANSWER,
-  index
+  hex
 })
 
 export const wrongAnswer = () => ({
