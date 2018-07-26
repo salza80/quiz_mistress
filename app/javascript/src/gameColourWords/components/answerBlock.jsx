@@ -1,13 +1,6 @@
 import React from 'react'
-import GameActions from '../actions/game_actions.js'
 
 export default class AnswerBlock extends React.Component {
-  colourClick = () => {
-    const { index, colour: { complete } } = this.props
-    if(!complete){
-      GameActions.ColourClick(index)
-    }
-  }
   blockStyle = () => {
     const { index, colour: { complete, hex } } = this.props
     return {
@@ -16,8 +9,9 @@ export default class AnswerBlock extends React.Component {
     }
   }
   render() {
+    const { onClick, colour: { hex } } = this.props
     return (
-      <div className="answer-block" style={this.blockStyle()} onClick={this.colourClick} />
+      <div className="answer-block" style={this.blockStyle()} onClick={onClick(hex)} />
     )
   }
 }

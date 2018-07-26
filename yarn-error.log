@@ -1,8 +1,8 @@
 Arguments: 
-  /home/sally/.nvm/versions/node/v6.5.0/bin/node /home/sally/.nvm/versions/node/v6.5.0/bin/yarn install react-redux --save
+  /home/sally/.nvm/versions/node/v6.5.0/bin/node /home/sally/.nvm/versions/node/v6.5.0/bin/yarn check --integrity
 
 PATH: 
-  /home/sally/.rvm/gems/ruby-2.3.1@rails5.0/bin:/home/sally/.rvm/gems/ruby-2.3.1@global/bin:/home/sally/.rvm/rubies/ruby-2.3.1/bin:/home/sally/.rvm/bin:/home/sally/bin:/home/sally/.local/bin:/usr/local/heroku/bin:/home/sally/.nvm/versions/node/v6.5.0/bin:/home/sally/bin:/home/sally/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin
+  /home/sally/.rvm/gems/ruby-2.3.1@rails5.0/bin:/home/sally/.rvm/gems/ruby-2.3.1@global/bin:/home/sally/.rvm/rubies/ruby-2.3.1/bin:/home/sally/.rvm/bin:/home/sally/bin:/home/sally/.local/bin:/usr/local/heroku/bin:/home/sally/.nvm/versions/node/v6.5.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
 
 Yarn version: 
   1.5.1
@@ -39,8 +39,10 @@ npm manifest:
       "rc-progress": "^2.1",
       "react": "^16.3.0",
       "react-dom": "^16.3.0",
+      "react-redux": "^5.0.7",
       "react-sound": "^1.2.0",
       "react-timer-mixin": "^0.13.3",
+      "redux": "^4.0.0",
       "reflux": "^6.4.1",
       "sass-loader": "^6.0.5",
       "style-loader": "^0.20.3",
@@ -2881,6 +2883,10 @@ Lockfile:
     version "4.2.1"
     resolved "https://registry.yarnpkg.com/hoek/-/hoek-4.2.1.tgz#9634502aa12c445dd5a7c5734b572bb8738aacbb"
   
+  hoist-non-react-statics@^2.5.0:
+    version "2.5.5"
+    resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.5.5.tgz#c5903cf409c0dfd908f388e619d86b9c1174cb47"
+  
   home-or-tmp@^2.0.0:
     version "2.0.0"
     resolved "https://registry.yarnpkg.com/home-or-tmp/-/home-or-tmp-2.0.0.tgz#e36c3f2d2cae7d746a857e38d18d5f32a7882db8"
@@ -3069,7 +3075,7 @@ Lockfile:
     version "1.1.0"
     resolved "https://registry.yarnpkg.com/interpret/-/interpret-1.1.0.tgz#7ed1b1410c6a0e0f78cf95d3b8440c63f78b8614"
   
-  invariant@^2.2.2:
+  invariant@^2.0.0, invariant@^2.2.2:
     version "2.2.4"
     resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
     dependencies:
@@ -3558,6 +3564,10 @@ Lockfile:
     dependencies:
       p-locate "^2.0.0"
       path-exists "^3.0.0"
+  
+  lodash-es@^4.17.5:
+    version "4.17.10"
+    resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.10.tgz#62cd7104cdf5dd87f235a837f0ede0e8e5117e05"
   
   lodash._reinterpolate@~3.0.0:
     version "3.0.0"
@@ -5297,6 +5307,17 @@ Lockfile:
       object-assign "^4.1.1"
       prop-types "^15.6.0"
   
+  react-redux@^5.0.7:
+    version "5.0.7"
+    resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-5.0.7.tgz#0dc1076d9afb4670f993ffaef44b8f8c1155a4c8"
+    dependencies:
+      hoist-non-react-statics "^2.5.0"
+      invariant "^2.0.0"
+      lodash "^4.17.5"
+      lodash-es "^4.17.5"
+      loose-envify "^1.1.0"
+      prop-types "^15.6.0"
+  
   react-sound@^1.2.0:
     version "1.2.0"
     resolved "https://registry.yarnpkg.com/react-sound/-/react-sound-1.2.0.tgz#1bb7e1ec8494ecc57b03dbdecd1496b10f6541f2"
@@ -5401,6 +5422,13 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/reduce-function-call/-/reduce-function-call-1.0.2.tgz#5a200bf92e0e37751752fe45b0ab330fd4b6be99"
     dependencies:
       balanced-match "^0.4.2"
+  
+  redux@^4.0.0:
+    version "4.0.0"
+    resolved "https://registry.yarnpkg.com/redux/-/redux-4.0.0.tgz#aa698a92b729315d22b34a0553d7e6533555cc03"
+    dependencies:
+      loose-envify "^1.1.0"
+      symbol-observable "^1.2.0"
   
   reflux-core@^1.0.0:
     version "1.0.0"
@@ -6218,6 +6246,10 @@ Lockfile:
       sax "~1.2.1"
       whet.extend "~0.9.9"
   
+  symbol-observable@^1.2.0:
+    version "1.2.0"
+    resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.2.0.tgz#c22688aed4eab3cdc2dfeacbb561660560a00804"
+  
   tapable@^0.2.7:
     version "0.2.8"
     resolved "https://registry.yarnpkg.com/tapable/-/tapable-0.2.8.tgz#99372a5c999bf2df160afc0d74bed4f47948cd22"
@@ -6837,10 +6869,10 @@ Lockfile:
       window-size "0.1.0"
 
 Trace: 
-  Error: `install` has been replaced with `add` to add new dependencies. Run "yarn add react-redux" instead.
+  Error: Found 1 errors.
       at MessageError.Error (native)
       at new MessageError (/home/sally/.nvm/versions/node/v6.5.0/lib/node_modules/yarn/lib/cli.js:186:110)
-      at Object.<anonymous> (/home/sally/.nvm/versions/node/v6.5.0/lib/node_modules/yarn/lib/cli.js:21987:13)
+      at /home/sally/.nvm/versions/node/v6.5.0/lib/node_modules/yarn/lib/cli.js:59470:13
       at next (native)
       at step (/home/sally/.nvm/versions/node/v6.5.0/lib/node_modules/yarn/lib/cli.js:98:30)
       at /home/sally/.nvm/versions/node/v6.5.0/lib/node_modules/yarn/lib/cli.js:109:13

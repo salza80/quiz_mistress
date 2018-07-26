@@ -10,38 +10,42 @@ import { connect } from 'react-redux'
 
 const mapStateToProps = state => {
   return {
-    level: state.level
+    level: state.level,
+    results: state.results
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    answerOnClick: hex => {
-      if (hex === ownProps.question.hex){
-        dispatch(correctAnswer(hex))
+    onAnswerClick: (ms, answerHex, questionHex) => {
+      if (answerHex === questionHex) {
+        dispatch(correctAnswer(answerHex, ms))
       } else {
         dispatch(wrongAnswer())
       }
     },
-    startLevel: () => {
-      dispatch(startLevel)
+    onTimeOut: () => {
+      dispatch(wrongAnswer())
     },
-    gameOver: () => {
-      dispatch(gameOver)
+    onStartLevel: () => {
+      dispatch(startLevel())
+    },
+    onGameOver: () => {
+      dispatch(gameOver())
     }
   }
 }
 
 class Game extends React.Component {
   render() {
-    const { level, startLevel, answerOnClick } = this.props
+    const { level, onAnswerClick, onTimeOut, onStartLevel, results } = this.props
     let content = null
     if (level.gameover){
       content = <GameOver />
     } else if (!level.running){
-      content = <LevelStart startLevel={startLevel}/>
+      content = <LevelStart onStartLevel={onStartLevel}/>
     }else{
-      content = <GameBoard level={level} answerOnClick={answerOnClick}></GameBoard>
+      content = <GameBoard level={level} onAnswerClick={onAnswerClick} onTimeOut={onTimeOut}></GameBoard>
     }
     return (
       <div className="gamecolourwords game-container card text-center">
@@ -57,7 +61,7 @@ class Game extends React.Component {
             </div>
           </div>
           {content}
-          <ScoreList />
+          <ScoreList results={results} />
         </div>
         <PlaySound/>
       </div>
@@ -69,5 +73,5 @@ const GameContainer = connect(
   mapStateToProps,
   mapDispatchToProps
 )(Game)
-​
+
 export default GameContainer

@@ -1,8 +1,17 @@
 import React from 'react'
 import rc from 'rc-progress'
 const Progress = rc.Line
-
+import { wrongAnswer } from '../actions'
+import { connect } from 'react-redux'
 import { isFunction } from 'underscore'
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onTimeout: () => {
+      dispatch(wrongAnswer)
+    }
+  }
+}
 
 export default class GameTimer extends React.Component {
   constructor(props) {
@@ -13,10 +22,10 @@ export default class GameTimer extends React.Component {
     this.colour1 = [0,180,0]
     this.colour2 = [255,0,0]
     this.state = {
-              percent: 0,
-              seconds:0,
-              colour: "RGB(255,0,0)"
-            }
+      percent: 0,
+      seconds:0,
+      colour: "RGB(255,0,0)"
+    }
   }
 
   componentDidMount() {
@@ -77,10 +86,11 @@ export default class GameTimer extends React.Component {
       }
   }
   render() {
+    const { seconds, percent, colour } = this.state
     return (
       <div className="timer">
-         Seconds Remaining: <span> {this.state.seconds}</span>
-        <Progress percent={this.state.percent} strokeColor={this.state.colour}></Progress>
+         Seconds Remaining: <span> {seconds}</span>
+        <Progress percent={percent} strokeColor={colour}></Progress>
 
       </div>
     )

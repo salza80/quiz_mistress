@@ -1,10 +1,10 @@
 import React from 'react'
-import GameActions from '../actions/game_actions.js'
 
 export default class LevelStart extends React.Component {
-  StartLevel(e){
-    e.preventDefault();
-    GameActions.StartLevel()
+  StartLevel = (e) => {
+    e.preventDefault()
+    console.log('test')
+    this.props.onStartLevel()
   }
   render() {
     return (

@@ -3,10 +3,10 @@ import AnswerBlock from './answerBlock.jsx'
 
 export default class AnswerList extends React.Component {
   render() {
-    const { colours } = this.props
+    const { colours, onAnswerClick } = this.props
     var aList = colours.map(function(colour,i) {
       return (
-        <AnswerBlock index={i} colour={colour} key={i}> </AnswerBlock>
+        <AnswerBlock index={i} colour={colour} key={i} onClick={onAnswerClick}> </AnswerBlock>
       )
      })
     return (

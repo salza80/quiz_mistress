@@ -1,53 +1,44 @@
 import React from 'react'
-import SoundStore from '../stores/sound_store'
-import GameActions from '../actions/game_actions'
 import Sound from 'react-sound'
 import CorrectSound from "../sounds/correct.mp3"
 import WrongSound from "../sounds/wrong.mp3"
+import GameoverSound from "../sounds/gameover.mp3"
+import { soundFinished } from '../actions'
+import { connect } from 'react-redux'
 
-export default class PlaySound extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-            sound:{
-              whichSound: "",
-            }
-          }
+const mapStateToProps = state => {
+  return {
+    whichSound: state.whichSound
   }
+}
 
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    onSoundFinished: () => {
+      dispatch(SoundFinished())
+    }
+  }
+}
 
-  onStoreChange = (data) => {
-
-  }
-  onStateUpdated = () => {
-   
-  }
-
-  onSoundChange = (data) => {
-    this.setState({
-      sound: data 
-    }, this.onStateUpdated)
-  }
-  onSoundFinished = () => {
-    GameActions.SoundFinished()
-  }
-  componentDidMount() {
-      this.unsubscribe = SoundStore.listen(this.onSoundChange)
-      GameActions.Load()
-  }
-  componentWillUnmount() {
-    this.unsubscribe()
-  }
+class PlaySound extends React.Component {
   render() {
-    const { sound } = this.state
+    const { whichSound, onSoundFinished } = this.props
 
-    let correct = <Sound url={CorrectSound} onFinishedPlaying={this.onSoundFinished} playStatus={sound.whichSound === "correct" ? Sound.status.PLAYING : Sound.status.STOPPED} loop={false}/>
-    let wrong = <Sound url={WrongSound} onFinishedPlaying={this.onSoundFinished} playStatus={sound.whichSound === "wrong" ? Sound.status.PLAYING : Sound.status.STOPPED} loop={false} />
+    let correct = <Sound url={CorrectSound} onFinishedPlaying={onSoundFinished} playStatus={whichSound === "correct" ? Sound.status.PLAYING : Sound.status.STOPPED} loop={false}/>
+    let wrong = <Sound url={WrongSound} onFinishedPlaying={onSoundFinished} playStatus={whichSound === "wrong" ? Sound.status.PLAYING : Sound.status.STOPPED} loop={false} />
+    let gameover = <Sound url={GameoverSound} onFinishedPlaying={onSoundFinished} playStatus={whichSound === "gameover" ? Sound.status.PLAYING : Sound.status.STOPPED} loop={false} />
  
     return (
       <div>
-       {correct} {wrong}
+       {correct} {wrong} { gameover }
       </div>
     )
   }
 }
+
+const PlaySoundContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PlaySound)
+
+export default PlaySound
