@@ -9,9 +9,9 @@ export default class AnswerBlock extends React.Component {
     }
   }
   render() {
-    const { onClick, colour: { hex } } = this.props
+    const { onClick, colour: { hex, complete } } = this.props
     return (
-      <div className="answer-block" style={this.blockStyle()} onClick={onClick(hex)} />
+      <div className="answer-block" style={this.blockStyle()} onClick={ () => {if (!complete) {onClick(hex)}}} />
     )
   }
 }

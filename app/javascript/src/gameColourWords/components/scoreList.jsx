@@ -7,7 +7,7 @@ export default class ScoreList extends React.Component {
     const { results } = this.props
     let totalScore = 0
     var aList = results.map(function(result, i) {
-      totalScore += result
+      totalScore += result.points
       return (
         <Score index={i} result={result} key={i}> </Score>
       )

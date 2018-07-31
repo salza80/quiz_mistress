@@ -20,12 +20,12 @@ export default class GameBoard extends React.Component {
   }
 
   onAnswerClick = (answerHex) => {
-    this.props.onAnswerClick(this.currentMS, answerHex, this.props.level.question.hex)
+    const { level: { no, question } } = this.props
+    this.props.onAnswerClick(no, this.currentMS, answerHex, question.answer)
   }
 
   render() {
-
-    const { level: { question, seconds, colours, strikes, onTimeOut } } = this.props
+    const { level: { question, seconds, colours, strikes }, onTimeOut } = this.props
     return (
       <div className="card-block game-board">
         <div className="row">

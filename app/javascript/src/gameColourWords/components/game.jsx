@@ -5,7 +5,7 @@ import GameOver from './gameOver.jsx'
 import ScoreList from './scoreList.jsx'
 import PlaySound from './playSound.jsx'
 
-import { startLevel, correctAnswer, wrongAnswer, gameOver } from '../actions'
+import { startLevel, correctAnswer, wrongAnswer, newGame } from '../actions'
 import { connect } from 'react-redux'
 
 const mapStateToProps = state => {
@@ -17,9 +17,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onAnswerClick: (ms, answerHex, questionHex) => {
+    onAnswerClick: (levelNo, ms, answerHex, questionHex) => {
       if (answerHex === questionHex) {
-        dispatch(correctAnswer(answerHex, ms))
+        dispatch(correctAnswer(levelNo, answerHex, ms))
       } else {
         dispatch(wrongAnswer())
       }
@@ -32,16 +32,19 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     onGameOver: () => {
       dispatch(gameOver())
+    },
+    onNewGame: () => {
+      dispatch(newGame())
     }
   }
 }
 
 class Game extends React.Component {
   render() {
-    const { level, onAnswerClick, onTimeOut, onStartLevel, results } = this.props
+    const { level, onAnswerClick, onTimeOut, onStartLevel, onNewGame, results } = this.props
     let content = null
     if (level.gameover){
-      content = <GameOver />
+      content = <GameOver onNewGame={onNewGame} />
     } else if (!level.running){
       content = <LevelStart onStartLevel={onStartLevel}/>
     }else{
