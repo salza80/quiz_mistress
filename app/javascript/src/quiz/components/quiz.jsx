@@ -1,8 +1,9 @@
 import React from 'react'
 import Question from './question'
+import Finished from './finished'
 import { getCurrentQuestion } from '../selectors'
 
-import { answerQuestion, prevQuestion, loadData } from '../actions'
+import { answerQuestion, prevQuestion, loadData, finishQuiz } from '../actions'
 import { connect } from 'react-redux'
 
 const mapStateToProps = state => {
@@ -21,8 +22,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch(prevQuestion())
     },
     loadData: () => {
-      console.log(ownProps)
       dispatch(loadData(ownProps.url_name, ownProps.preview))
+    },
+    onFinishClick: () => {
+      dispatch(finishQuiz())
     }
   }
 }
@@ -34,7 +37,7 @@ class Quiz extends React.Component {
   }
 
   render() {
-    const {question, quiz: {loaded, error, errorMessage, title}, onNextClick } = this.props
+    const {question, quiz: {loaded, error, errorMessage, title}, onNextClick, onFinishClick } = this.props
 
     if (error) {
       return (<div>{errorMessage}</div>)
@@ -42,6 +45,10 @@ class Quiz extends React.Component {
 
     if (!loaded) {
       return (<div>Loading...</div>)
+    }
+
+    if (question.isFinished) {
+      return ( <Finished onFinishClick={onFinishClick}></Finished>)
     }
 
     return (

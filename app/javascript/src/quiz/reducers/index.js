@@ -16,7 +16,7 @@ function question(state = {list: [], currentIndex: 0}, action) {
     case PREV_QUESTION:
       return {...state, currentIndex: state.currentIndex <= 0 ? state.currentIndex : state.currentIndex - 1}
     case ANSWER_QUESTION:
-      return {...state, currentIndex: state.currentIndex >= state.list.length -1 ? state.currentIndex : state.currentIndex + 1}
+      return {...state, currentIndex: state.currentIndex >= state.list.length -1 ? -1 : state.currentIndex + 1}
     default:
       return state
   }
