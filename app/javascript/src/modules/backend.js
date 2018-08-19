@@ -1,13 +1,9 @@
 
-var backend = {
-  path: '/api/'
-};
+const path = '/api/'
 
-backend.getPath = function(url){
-  return backend.path.concat(url);
-};
+const getPath = (url) => (path.concat(url))
 
-backend.status = function(response) {
+const responseStatus = (response) => {
   if (response.status === 200) {
     return Promise.resolve(response);
   } else {
@@ -15,22 +11,20 @@ backend.status = function(response) {
   }
 };
 
-backend.json = function(response) {
-  return response.json();
-};
+const jsonResponse = (response) => (response.json())
 
-backend.error = function(response) {};
+const errorResponse = (response) => { console.log(response)}
 
-backend.fetch = function(url) {
-  return fetch(backend.getPath(url), {credentials: 'include'})
-  .then(backend.status)
-  .then(backend.json)
-  .then(function(data) {
-    return Promise.resolve(data);
-  }).catch(backend.error);
-};
-backend.updateJSON = function(url, jsonData) {
-  return fetch(backend.getPath(url), {
+export const apiFetch = (url) => (
+  fetch(getPath(url), {credentials: 'include'})
+  .then(responseStatus)
+  .then(jsonResponse)
+  .then((data) => (Promise.resolve(data))
+  ).catch(errorResponse)
+)
+
+export const apiUpdate = (url, jsonData) => (
+  fetch(getPath(url), {
     credentials: 'include',
     method: 'PUT',
     headers: {
@@ -40,13 +34,13 @@ backend.updateJSON = function(url, jsonData) {
     },
     body: JSON.stringify(jsonData)
   })
-  .then(backend.json)
-  .then(function (data) {
-    return Promise.resolve(data);
-  }).catch(backend.error);
-}; 
-backend.postJSON = function(url, jsonData) {
-  return fetch(backend.getPath(url), {
+  .then(jsonResponse)
+  .then((data) => (Promise.resolve(data))
+  ).catch(errorResponse)
+)
+
+export const apiPost = (url, jsonData) => (
+  fetch(getPath(url), {
     credentials: 'include',
     method: 'post',
     headers: {
@@ -56,14 +50,13 @@ backend.postJSON = function(url, jsonData) {
     },
     body: JSON.stringify(jsonData)
   })
-  .then(backend.json)
-  .then(function (data) {
-    return Promise.resolve(data);
-  }).catch(backend.error);
-}; 
+  .then(jsonResponse)
+  .then((data) => (Promise.resolve(data))
+  ).catch(errorResponse)
+)
 
-backend.delete = function(url, jsonData) {
-  return fetch(backend.getPath(url), {
+export const apiDelete = (url, jsonData) => (
+  fetch(getPath(url), {
     credentials: 'include',
     method: 'delete',
     headers: {
@@ -73,11 +66,7 @@ backend.delete = function(url, jsonData) {
     },
     body: JSON.stringify(jsonData)
   })
-  .then(backend.status)
-  .then(backend.json)
-  .then(function(data) {
-    return Promise.resolve(data);
-  }).catch(backend.error);
-};
-
-module.exports = backend;
+  .then(jsonResponse)
+  .then((data) => (Promise.resolve(data))
+  ).catch(errorResponse)
+)

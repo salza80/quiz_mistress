@@ -25,7 +25,8 @@ function question(state = {list: [], currentIndex: 0}, action) {
 function answers(state = [], action){
   switch (action.type) {
     case ANSWER_QUESTION:
-      let answers = state.push({question_id: action.question_id, answer_id: action.answer_id});
+      let answers = state.slice()
+      answers.push({question_id: action.question_id, answer_id: action.answer_id})
       return answers
     default:
       return state
@@ -35,8 +36,6 @@ function answers(state = [], action){
 function quiz(state = {loaded: false, error: false, errorMessage: '', title: '', url_name: '', preview: false}, action) {
   switch (action.type) {
     case DATA_LOADED:
-      console.log("HERE")
-      console.log(action)
       return {...state, loaded: true, error: false, errorMessage:'', title: action.data.title, url_name: action.data.url_name}
     case DATA_LOAD_FAILED:
       return {...state, loaded: false, error: true, errorMessage:action.errorMessage, title: '', url_name: ''}

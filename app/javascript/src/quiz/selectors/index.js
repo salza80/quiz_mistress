@@ -1,8 +1,9 @@
 import { isEmpty } from 'underscore'
 
 export const getCurrentQuestion = (state) => {
-  if (isEmpty(state.question.list)){ return undefined; }
-  let question = state.question.list[state.question.currentIndex]
-  question.isLast = state.question.list.length === state.currentIndex -1
-  return question
+  const { question } = state
+  if (isEmpty(question.list)){ return undefined; }
+  let currentQuestion = question.list[question.currentIndex]
+  currentQuestion.isLast = ((question.list.length-1) === question.currentIndex )
+  return currentQuestion
 }
