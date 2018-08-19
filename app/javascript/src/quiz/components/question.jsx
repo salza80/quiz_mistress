@@ -3,8 +3,13 @@ import AnswerList from './answerList.jsx'
 import ImageReference from '../../shared/components/imageReference.jsx'
 
 export default class Question extends React.Component {
+  onNextClick = (answer_id) => {
+    const {question: { id }} = this.props
+    this.props.onNextClick(id, answer_id)
+  }
+  
   render() {
-    const {question} = this.props
+    const {question, onNextClick} = this.props
     return (
       <div className="question card text-center">
         <div className="card-header">
@@ -21,7 +26,7 @@ export default class Question extends React.Component {
           <div className="question-description">
             <p className="card-text">{question.description}</p>
           </div>
-           <AnswerList answers={question.answers}></AnswerList>
+           <AnswerList answers={question.answers} onNextClick={this.onNextClick}></AnswerList>
         </div>
       </div>
     )

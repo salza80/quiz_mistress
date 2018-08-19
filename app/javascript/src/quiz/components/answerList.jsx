@@ -1,13 +1,12 @@
 import React from 'react'
 import Answer from './answer.jsx'
 
-
 export default class Question extends React.Component {
   render() {
-    const { answers } = this.props
+    const { answers, onNextClick } = this.props
     var aList = answers.map(function(answer,i) {
       return (
-        <Answer index={i} answer={answer} key={i}> </Answer>
+        <Answer index={i} answer={answer} onNextClick={onNextClick} key={i}> </Answer>
       )
      })
     return (

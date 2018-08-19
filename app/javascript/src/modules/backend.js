@@ -4,7 +4,7 @@ var backend = {
 };
 
 backend.getPath = function(url){
-  return this.path.concat(url);
+  return backend.path.concat(url);
 };
 
 backend.status = function(response) {
@@ -22,15 +22,15 @@ backend.json = function(response) {
 backend.error = function(response) {};
 
 backend.fetch = function(url) {
-  return fetch(this.getPath(url), {credentials: 'include'})
-  .then(this.status)
-  .then(this.json)
+  return fetch(backend.getPath(url), {credentials: 'include'})
+  .then(backend.status)
+  .then(backend.json)
   .then(function(data) {
     return Promise.resolve(data);
-  }).catch(this.error);
+  }).catch(backend.error);
 };
 backend.updateJSON = function(url, jsonData) {
-  return fetch(this.getPath(url), {
+  return fetch(backend.getPath(url), {
     credentials: 'include',
     method: 'PUT',
     headers: {
@@ -40,13 +40,13 @@ backend.updateJSON = function(url, jsonData) {
     },
     body: JSON.stringify(jsonData)
   })
-  .then(this.json)
+  .then(backend.json)
   .then(function (data) {
     return Promise.resolve(data);
-  }).catch(this.error);
+  }).catch(backend.error);
 }; 
 backend.postJSON = function(url, jsonData) {
-  return fetch(this.getPath(url), {
+  return fetch(backend.getPath(url), {
     credentials: 'include',
     method: 'post',
     headers: {
@@ -56,14 +56,14 @@ backend.postJSON = function(url, jsonData) {
     },
     body: JSON.stringify(jsonData)
   })
-  .then(this.json)
+  .then(backend.json)
   .then(function (data) {
     return Promise.resolve(data);
-  }).catch(this.error);
+  }).catch(backend.error);
 }; 
 
 backend.delete = function(url, jsonData) {
-  return fetch(this.getPath(url), {
+  return fetch(backend.getPath(url), {
     credentials: 'include',
     method: 'delete',
     headers: {
@@ -73,11 +73,11 @@ backend.delete = function(url, jsonData) {
     },
     body: JSON.stringify(jsonData)
   })
-  .then(this.status)
-  .then(this.json)
+  .then(backend.status)
+  .then(backend.json)
   .then(function(data) {
     return Promise.resolve(data);
-  }).catch(this.error);
+  }).catch(backend.error);
 };
 
 module.exports = backend;

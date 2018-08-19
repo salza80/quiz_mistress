@@ -1,39 +1,49 @@
 import React from 'react'
-import QuizStore from '../stores/quiz_store'
-import QuizActions from '../actions/quiz_actions'
 import Question from './question'
+import { getCurrentQuestion } from '../selectors'
 
-export default class Quiz extends React.Component {
-  constructor(props) {
-    super(props)
+import { answerQuestion, prevQuestion, loadData } from '../actions'
+import { connect } from 'react-redux'
 
-    this.state = {
-      title: '',
-      question: {
-        answers: []
-      }
+const mapStateToProps = state => {
+  return {
+    quiz: state.quiz,
+    question: getCurrentQuestion(state)
+  }
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    onNextClick: (question_id, answer_id) => {
+      dispatch(answerQuestion(question_id, answer_id))
+    },
+    onPrevClick: () => {
+      dispatch(prevQuestion())
+    },
+    loadData: () => {
+      console.log(ownProps)
+      dispatch(loadData(ownProps.url_name, ownProps.preview))
     }
   }
+}
 
-  onStoreChange = (data) => {
-    this.setState({
-      title: data.title,
-      question: data.question
-    })
-  }
-  
-  componentDidMount() {
-    const { url_name, preview } = this.props
-    this.unsubscribe = QuizStore.listen(this.onStoreChange);
-    QuizActions.Load( url_name, preview)
-  }
+class Quiz extends React.Component {
 
-  componentWillUnmount() {
-    this.unsubscribe()
+  componentWillMount() {
+    this.props.loadData()
   }
 
   render() {
-    const { question, title } = this.state
+    const {question, quiz: {loaded, error, errorMessage, title}, onNextClick } = this.props
+
+    if (error) {
+      return (<div>{errorMessage}</div>)
+    }
+
+    if (!loaded) {
+      return (<div>Loading...</div>)
+    }
+
     return (
       <div className="quiz-container card text-center">
         <div className="quiz card-header heading-bk">
@@ -42,9 +52,17 @@ export default class Quiz extends React.Component {
           </div>
         </div>
         <div className="question-container card-block">
-          <Question question={question}></Question>
+          <Question question={question} onNextClick={onNextClick}></Question>
         </div>
       </div>
     );
   }
 }
+
+
+const QuizContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Quiz)
+
+export default QuizContainer
