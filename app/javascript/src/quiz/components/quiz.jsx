@@ -2,7 +2,6 @@ import React from 'react'
 import Question from './question'
 import Finished from './finished'
 import { getCurrentQuestion } from '../selectors'
-
 import { answerQuestion, prevQuestion, loadData, finishQuiz } from '../actions'
 import { connect } from 'react-redux'
 
@@ -30,8 +29,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 }
 
-class Quiz extends React.Component {
-
+class Quiz extends React.Component{
   componentWillMount() {
     this.props.loadData()
   }
@@ -65,7 +63,6 @@ class Quiz extends React.Component {
     );
   }
 }
-
 
 const QuizContainer = connect(
   mapStateToProps,

@@ -2,7 +2,7 @@ class Quiz < ApplicationRecord
   has_many :questions, dependent: :destroy
   has_many :outcomes, dependent: :destroy
   has_one :image, as: :imageable, dependent: :destroy
-  acts_as_taggable_on :category, :topic
+  acts_as_taggable_on 'category', 'topic'
   belongs_to :user
   validates :title, :description, :url_name, presence: true
   validates :url_name, format:{ without: /^\d/, multiline: true, message: "can't begin with a number"}

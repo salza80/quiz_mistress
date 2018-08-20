@@ -38,7 +38,7 @@ gem 'meta-tags'
 gem 'devise', github: 'plataformatec/devise'
 gem 'erubis'
 gem 'omniauth-facebook'
-gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
+gem 'carrierwave', '>= 1.2.3', '< 2.0'
 gem 'remotipart', '~> 1.2'
 gem 'reform', '~> 2.2'
 gem 'cocoon'
@@ -46,7 +46,7 @@ gem 'file_validators'
 gem 'reform-rails'
 gem 'carrierwave-aws'
 gem 'mini_magick'
-gem 'acts-as-taggable-on', '~> 4.0'
+gem 'acts-as-taggable-on', '~> 6.0'
 gem 'select2-rails'
 # gem "fog-aws" 
 
@@ -58,6 +58,7 @@ gem 'webpacker'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'dotenv-rails'
 end
 
 group :development do

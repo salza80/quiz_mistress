@@ -23,7 +23,7 @@ CarrierWave.configure do |config|
     # host:                  's3-us-west-1.amazonaws.com',             # optional, defaults to nil
     # endpoint:              'https://s3-us-west-1.amazonaws.com' # optional, defaults to nil
   }
-  config.aws_bucket  =  Rails.application.secrets.aws_dir                          # required
+  config.aws_bucket  =  Rails.application.secrets.aws_bucket_name                          # required
   config.aws_acl     = 'public-read'                                        # optional, defaults to true
   config.aws_authenticated_url_expiration = 60 * 60 * 24 * 7
   config.aws_attributes = {

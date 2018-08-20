@@ -8,6 +8,8 @@ module Public
       # GET /quizzes
       # GET /quizzes.json
       def index
+        puts "HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH"
+        puts Rails.application.secrets.aws_key
         @quizzes = Quiz.published
       end
 

@@ -38,7 +38,7 @@ function quiz(state = {loaded: false, error: false, errorMessage: '', title: '',
     case DATA_LOADED:
       return {...state, loaded: true, error: false, errorMessage:'', title: action.data.title, url_name: action.data.url_name}
     case DATA_LOAD_FAILED:
-      return {...state, loaded: false, error: true, errorMessage:action.errorMessage, title: '', url_name: ''}
+      return {...state, loaded: false, error: true, errorMessage: action.errorMessage, title: '', url_name: ''}
     default:
       return state
   }
