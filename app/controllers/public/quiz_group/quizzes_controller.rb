@@ -3,13 +3,9 @@ module Public
 
     class QuizzesController < ApplicationController
       layout :set_layout, only:[:preview]
-
-
       # GET /quizzes
       # GET /quizzes.json
       def index
-        puts "HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH"
-        puts Rails.application.secrets.aws_key
         @quizzes = Quiz.published
       end
 

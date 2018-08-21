@@ -10,8 +10,7 @@ class QuizImageUploader < CarrierWave::Uploader::Base
     # storage :fog
     storage :aws
   else
-    # storage :file
-    storage :aws
+    storage :file
   end
 
   # Override the directory where uploaded files will be stored.
@@ -24,8 +23,7 @@ class QuizImageUploader < CarrierWave::Uploader::Base
     if Rails.env.production?
       "images/quizzes/#{mounted_as}/#{model.id}"
     else
-      "images/quizzes/#{mounted_as}/#{model.id}"
-      # "assets/images/quizzes/#{mounted_as}/#{model.id}"
+      "assets/images/quizzes/#{mounted_as}/#{model.id}"
     end 
     
   end

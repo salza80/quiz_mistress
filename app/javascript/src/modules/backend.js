@@ -13,7 +13,10 @@ const responseStatus = (response) => {
 
 const jsonResponse = (response) => (response.json())
 
-const errorResponse = (response) => { console.log(response)}
+const errorResponse = (response) => { 
+  console.log('ERROR')
+  console.log(response)
+}
 
 export const apiFetch = (url) => (
   fetch(getPath(url), {credentials: 'include'})

@@ -6,3 +6,7 @@ export const getCurrentQuestion = (state) => {
   if (isEmpty(question.list)){ return undefined }
   return question.list[question.currentIndex]
 }
+
+export const getAnswers = (state) => (state.answers)
+
+export const getQuiz = (state) => (state.quiz)

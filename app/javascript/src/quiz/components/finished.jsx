@@ -3,7 +3,8 @@ import React from 'react'
 export default class Finished extends React.Component {
   
   render() {
-    const {onFinishedClick} = this.props
+    const {onFinishClick} = this.props
+    console.log(onFinishClick)
     return (
       <div className="question card text-center">
         <div className="card-header">
@@ -19,10 +20,10 @@ export default class Finished extends React.Component {
           <div className="question-description">
             <p className="card-text">Get your results</p>
           </div>
-          <li onClick={this.onFinishedClick} className="list-group-item">
-          <span className='fa' aria-hidden="true"></span>
-          <span>Finish</span>
-        </li>
+          <div onClick={onFinishClick} className="list-group-item">
+            <span className='fa' aria-hidden="true"></span>
+            <span>Finish</span>
+        </div>
         </div>
       </div>
     )
